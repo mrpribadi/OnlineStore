@@ -8,7 +8,8 @@ class Home extends CI_Controller
     }
 
     function index() {
-        $this->load->view('');
+        //echo "asdsad";
+        $this->load->view('backend/layout/app');
     }
     
 }
