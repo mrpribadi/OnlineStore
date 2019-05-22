@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie ie6 ie-lt10 ie-lt9 ie-lt8 ie-lt7 no-js" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 ie-lt10 ie-lt9 ie-lt8 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 ie-lt10 ie-lt9 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 ie-lt10 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <![endif]-->
+        <title>Check Out</title>
+        <meta name="keywords" content="keywords" />
+        <meta name="description" content="description" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="assets/images/favico.ico" />
+        <link href="assets/styles/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+        <link href="assets/pe-icon-7-stroke/css/helper.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/minimal-menu.css" rel="stylesheet" type="text/css" />
+        <!--[if LTE IE 8]>
+        <link rel="stylesheet" type="text/css" href="assets/styles/minimal-menu-ie.css" />
+        <![endif]-->
+        <link href="assets/styles/flat-form.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/fancySelect.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/allinone_bannerRotator.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/owl.carousel.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/responsive-accordion.css" rel="stylesheet" type="text/css" />
+        <link href="assets/styles/styles.css" rel="stylesheet" type="text/css" />
+        <script src="assets/scripts/libs/prefixfree.min.js"></script>
+        <script src="assets/scripts/libs/modernizr.js"></script>
+        <!--[if lt IE 9]>
+        <script src="assets/scripts/libs/html5shiv.js"></script>
+        <script src="assets/scripts/libs/respond.js"></script>
+        <![endif]-->
+        
+    </head>
+    <body>
+        <div class="topbar gray-bg">
+            <div class="container">
+                <div class="left-topbar">
+                    WELCOME GUEST! <a href="login-register.html">LOG IN</a> OR <a href="login-register.html">REGISTER</a>
+                </div>
+                <!-- /.left-topbar -->
+                <div class="right-topbar">
+                    <ul class="list-inline">
+                        <li>
+                            <div class="btn-group">
+                                <button class="dropdown dropdown-toggle" data-toggle="dropdown">
+                                <span>My Account</span>
+                                <i class="pe-7s-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="wishlist.html"><i class="fa fa-heart"></i> Wish List (0)</a>
+                                    </li>
+                                    <li>
+                                        <a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i> Shopping Cart</a>
+                                    </li>
+                                    <li>
+                                        <a href="check-out.html"><i class="fa fa-share"></i> Checkout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <form action="#">
+                                <div class="btn-group">
+                                    <button class="dropdown dropdown-toggle" data-toggle="dropdown">
+                                    <span>Language:</span>
+                                    en
+                                    <i class="pe-7s-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#"><img src="assets/images/flags/Indonesia.png" alt="Indonesia" title="Indonesia"/> Indonesia</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="assets/images/flags/United-Kingdom.png" alt="English" title="English"/> English</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.right-topbar -->
+            </div>
+        </div>
+        <!-- /.topbar -->
+        <hr class="gray-line" />
+        <header class="gray-bg">
+            <div class="container">
+                <a class="logo" href="index.html">
+                    <img src="assets/images/kdo.png" alt="img" />
+                </a>
+                <!-- /.logo -->
+                <div class="header-social">
+                    <ul class="list-social">
+                        <li><a href="https://www.facebook.com/belikado.co.id/" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/belikado_id" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/belikado.co.id/" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" class="vk"><i class="fa fa-google"></i></a></li>
+                    </ul>
+                    <!-- /.list-social -->
+                </div>
+                <!-- /.header-social -->
+                <div class="top-cart">
+                    <a href="shopping-cart.html">
+                        <i class="pe-7s-cart"></i>
+                        <span>2</span>
+                    </a>
+                </div>
+                <!-- /.top-cart -->
+                <nav class="main-nav">
+                    <div class="minimal-menu">
+                        <ul class="menu">
+                            <li class="current-menu-item">
+                                <a href="index.html">HOME</a>
+                            </li>
+
+                            <li>
+                                <a href="portfolio-3-col.html">OCCASSION</a>
+                                <ul class="sub-menu">
+                                    <li><a href="portfolio-4-col.html">VALENTINE</a></li>
+                                    <li><a href="#">HALLOWEEN</a></li>
+                                    <li><a href="#">EID MUBARAK</a></li>
+                                    <li><a href="#">CHRISTMAS</a></li>
+                                    <li><a href="#">EASTER</a></li>
+                                    <li><a href="#">NEW YEAR</a></li>
+                                    <li><a href="#">CHINESE NEW YEAR</a></li>
+                                    <li><a href="#">INDEPENDENCE</a></li>
+                                    <li><a href="#">FUNERAL</a></li>
+                                    <li><a href="#">TRAVEL</a></li>
+                                    <li><a href="#">FIRST COMMUNIONS</a></li>
+                                    <li><a href="#">BAPTISM</a></li>
+                                    <li><a href="#">FOLKS DAY</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#">FOR THE HOME</a>
+                            </li>
+
+                             <li>
+                                <a href="#">BABIES N KIDS</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">BABY SHOWER</a></li>
+                                    <li><a href="#">NEW BORN</a></li>
+                                </ul>
+                            </li>
+
+                             <li>
+                                <a href="#">STATIONARY</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">NAME CARD</a></li>
+                                    <li><a href="#">ENVLOPE</a></li>
+                                    <li><a href="#">LETTER HEAD</a></li>
+                                    <li><a href="#">PACKAGING</a></li>
+                                    <li><a href="#">NOTEBOOK</a></li>
+                                    <li><a href="#">AGENDA (SCHEDULE BOOK)</a></li>
+                                    <li><a href="#">ID CARD</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="shop-fullwidth.html">CELEBRATION</a>
+                                <div class="menu-wrapper">
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <h3>BIRTHDAY</h3>
+                                        <hr />
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta felis sed ma..</p>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="shop-with-sidebar.html">
+                                                    <img class="img-responsive" src="assets/images/small-product-imgg-1.jpg" alt="img" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <ul>
+                                                    <li><a href="shop-with-sidebar.html">For Girls</a></li>
+                                                    <li><a href="shop-with-sidebar.html">For Boys</a></li>
+                                                    <li><a href="shop-with-sidebar.html">Milestones</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <h3>ANNIVERSARY</h3>
+                                        <hr />
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta felis sed ma..</p>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="shop-with-sidebar.html">
+                                                    <img class="img-responsive" src="assets/images/small-product-imgg-2.jpg" alt="img" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <ul>
+                                                    <li><a href="shop-with-sidebar.html">For Her</a></li>
+                                                    <li><a href="shop-with-sidebar.html">For Him</a></li>
+                                                    <li><a href="shop-with-sidebar.html">For The Couple</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <h3>WEDDING</h3>
+                                        <hr />
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta felis sed ma..</p>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="shop-with-sidebar.html">
+                                                    <img class="img-responsive" src="assets/images/small-product-imgg-3.jpg" alt="img" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <ul>
+                                                    <li><a href="shop-with-sidebar.html">Reception</a></li>
+                                                    <li><a href="shop-with-sidebar.html">Wedding Favors</a></li>
+                                                    <li><a href="shop-with-sidebar.html">For The Couple</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <h3>BRIDE SHOWER</h3>
+                                        <hr />
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta felis sed ma..</p>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="shop-with-sidebar.html">
+                                                    <img class="img-responsive" src="assets/images/small-product-imgg-4.jpg" alt="img" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <ul>
+                                                    <li><a href="shop-with-sidebar.html">Engangement Gifts</a></li>
+                                                    <li><a href="shop-with-sidebar.html">For The Bride</a></li>
+                                                    <li><a href="shop-with-sidebar.html">Shower Gifts</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#">BACK TO SCHOOL</a>
+                            </li>
+
+                            <li>
+                                <a href="#">CORPORATE GIFT</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">NAME PLATE</a></li>
+                                    <li><a href="#">PHOTO CLOCK</a></li>
+                                    <li><a href="#">DEKSTOP ACCESSORIES</a></li>
+                                    <li><a href="#">CUSTOM KEY RINGS</a></li>
+                                    <li><a href="#">PIC ON STONE</a></li>
+                                    <li><a href="#">PEN</a></li>
+                                    <li><a href="#">MUG/ TUMBLER</a></li>
+                                    <li><a href="#">T-SHIRT</a></li>
+                                    <li><a href="#">WOODEN ENGRAVED</a></li>
+                                    <li><a href="#">AWARD AND TROPHY</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="page-with-sidebar.html">PHOTO PRINT</a>
+                                <div class="menu-wrapper">
+                                    <div class="box-product">
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-item">
+                                                <div class="product-thumb">
+                                                    <div class="main-img">
+                                                        <a href="single-product.html">
+                                                            <img class="img-responsive" src="assets/images/product-imgfa-4.jpg" alt="img" />
+                                                        </a>
+                                                    </div>
+                                                    <a href="single-product.html" class="details"><i class="pe-7s-search"></i></a>
+                                                </div>
+                                                <h4 class="product-name"><a href="single-product.html">PHOTO ALBUM</a></h4>
+                                                <p class="product-price">
+                                                Rp. 860.000,00
+                                                </p>
+                                                <div class="group-buttons">
+                                                    <button type="button" class="add-to-cart" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                    <span>Add to Cart</span>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Compare this Product">
+                                                    <i class="pe-7s-repeat"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                                                    <i class="pe-7s-like"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-item">
+                                                <div class="product-thumb">
+                                                    <div class="main-img">
+                                                        <a href="single-product.html">
+                                                            <img class="img-responsive" src="assets/images/product-imgfa-2.jpg" alt="img" />
+                                                        </a>
+                                                    </div>
+                                                    <a href="single-product.html" class="details"><i class="pe-7s-search"></i></a>
+                                                </div>
+                                                <h4 class="product-name"><a href="single-product.html">PHOTO PACKAGE</a></h4>
+                                                <p class="product-price">
+                                                Rp. 540.000,00
+                                                </p>
+                                                <div class="group-buttons">
+                                                    <button type="button" class="add-to-cart" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                    <span>Add to Cart</span>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Compare this Product">
+                                                    <i class="pe-7s-repeat"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                                                    <i class="pe-7s-like"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-item">
+                                                <div class="product-thumb">
+                                                    <div class="main-img">
+                                                        <a href="single-product.html">
+                                                            <img class="img-responsive" src="assets/images/product-imgfa-1.jpg" alt="img" />
+                                                        </a>
+                                                    </div>
+                                                    <a href="single-product.html" class="details"><i class="pe-7s-search"></i></a>
+                                                </div>
+                                                <h4 class="product-name"><a href="single-product.html">PHOTO FRAME</a></h4>
+                                                <p class="product-price">
+                                                Rp. 120.000,00
+                                                </p>
+                                                <div class="group-buttons">
+                                                    <button type="button" class="add-to-cart" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                    <span>Add to Cart</span>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Compare this Product">
+                                                    <i class="pe-7s-repeat"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                                                    <i class="pe-7s-like"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-item">
+                                                <div class="product-thumb">
+                                                    <div class="main-img">
+                                                        <a href="single-product.html">
+                                                            <img class="img-responsive" src="assets/images/product-imgfa-3.jpg" alt="img" />
+                                                        </a>
+                                                    </div>
+                                                    <a href="single-product.html" class="details"><i class="pe-7s-search"></i></a>
+                                                </div>
+                                                <h4 class="product-name"><a href="single-product.html">PHOTO FRAME</a></h4>
+                                                <p class="product-price">
+                                                Rp. 250.000,00
+                                                </p>
+                                                <div class="group-buttons">
+                                                    <button type="button" class="add-to-cart" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                    <span>Add to Cart</span>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Compare this Product">
+                                                    <i class="pe-7s-repeat"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                                                    <i class="pe-7s-like"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="hidden-xs">
+                                <div class="wrap-search">
+                                    <form action="#" class="search-form">
+                                        <input type="text" placeholder="Search.." />
+                                        <button type="submit"><i class="pe-7s-search"></i></button>
+                                    </form>
+                                </div>
+                                <!-- /.search-form -->
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.minimal-menu -->
+                </nav>
+                <!-- /.main-nav -->
+            </div>
+        </header>
+        <div class="main">
+            <div class="container">
+                <div class="header-page">
+                    <h1>CHECK OUT</h1>
+                </div>
+                <!-- /.header-page -->
+                <div class="main-content">
+                    <div class="check-out-content">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 returning-customer">
+                                <ul class="responsive-accordion responsive-accordion-default">
+                                    <li>
+                                        <div class="responsive-accordion-head">
+                                            Returning customer? <span class="click-here">Click here to login</span>
+                                        </div>
+                                        <div class="responsive-accordion-panel">
+                                            <form action="#" class="login-form">
+                                                <h3>LOGIN</h3>
+                                                <label for="your_id">USERNAME OR EMAIL ADDRESS*</label>
+                                                <input class="input-form" type="text" id="your_id" />
+                                                <label for="your_password">YOUR PASSWORD*</label>
+                                                <input class="input-form" type="password" id="your_password" />
+                                                <button class="submit-btn" type="submit">LOGIN</button>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> REMEMBER ME?
+                                                    </label>
+                                                </div>
+                                                <a href="#">FORGOT YOUR PASSWORD?</a>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="responsive-accordion-head">
+                                            Have a coupon? <span class="click-here">Click here to enter your code</span>
+                                        </div>
+                                        <div class="responsive-accordion-panel">
+                                            <form action="#">
+                                                <label for="your_code">ENTER COUPON CODE</label>
+                                                <input class="input-form" type="text" id="your_code" />
+                                                <button class="apply-coupon-btn">APPLY COUPON</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form action="#" class="check-out-form">
+                            <div class="billing-details">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3>BILLING DETAILS</h3>
+                                        <select class="custom-select">
+                                            <option value="AF">DKI Jakarta</option>
+                                        <option value="AX">Bali</option>
+                                        <option value="AL">Bangka Belitung</option>
+                                        <option value="DZ">Banten</option>
+                                        <option value="AS">Bengkulu</option>
+                                        <option value="AD">D.I. Yogyakarta</option>
+                                        <option value="AO">Gorontalo</option>
+                                        <option value="AI">Jambi</option>
+                                        <option value="AQ">Jawa Barat</option>
+                                        <option value="AG">Jawa Tengah</option>
+                                        <option value="AR">Jawa Timur</option>
+                                        <option value="AM">Kalimantan Barat</option>
+                                        <option value="AW">Kalimantan Tengah</option>
+                                        <option value="AU">Kalimantan Selatan</option>
+                                        <option value="AT">Kalimantan Timur</option>
+                                        <option value="AZ">Kalimantan Utara</option>
+                                        <option value="BS">Kepulauan Riau</option>
+                                        <option value="BH">Lampung</option>
+                                        <option value="BD">Maluku</option>
+                                        <option value="BB">Maluku Utara</option>
+                                        <option value="BY">Nanggroe Aceh Darussalam (NAD)</option>
+                                        <option value="BE">Nusa Tenggara Barat (NTB)</option>
+                                        <option value="BZ">Nusa Tenggara Timur (NTT)</option>
+                                        <option value="BJ">Papua</option>
+                                        <option value="BM">Papua Barat</option>
+                                        <option value="BT">Riau</option>
+                                        <option value="BO">Sulawesi Barat</option>
+                                        <option value="BQ">Sulawesi Selatan</option>
+                                        <option value="BA">Sulawesi Tengah</option>
+                                        <option value="BW">Sulawesi Tenggara</option>
+                                        <option value="BV">Sulawesi Utara</option>
+                                        <option value="BR">Sumatera Barat</option>
+                                        <option value="IO">Sumatera Selatan</option>
+                                        <option value="BN">Sumatera Utara</option>
+                                        </select>
+                                        <div class="row">
+                                            <div class="col-md-6 pdr-5">
+                                                <input class="input-form" type="text" placeholder="FIRST NAME" />
+                                            </div>
+                                            <div class="col-md-6 pdl-5">
+                                                <input class="input-form" type="text" placeholder="LAST NAME" />
+                                            </div>
+                                        </div>
+                                        <input class="input-form" type="text" placeholder="STREET ADDRESS" />
+                                        <input class="input-form" type="text" placeholder="APARTMENT, SUITE, UNIT ECT. (OPTIONAL)" />
+                                        <div class="row">
+                                            <div class="col-md-6 pdr-5">
+                                                <input class="input-form" type="text" placeholder="CITY/REGION" />
+                                            </div>
+                                            <div class="col-md-6 pdl-5">
+                                                <input class="input-form" type="text" placeholder="POSTCODE/ZIP" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pdr-5">
+                                                <input class="input-form" type="email" placeholder="EMAIL" />
+                                            </div>
+                                            <div class="col-md-6 pdl-5">
+                                                <input class="input-form" type="text" placeholder="PHONE" />
+                                            </div>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" /> CREATE AN ACCOUNT?
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>SHIP TO DIFFERENT ADDRESS <input class="dif-add-chb" type="checkbox" checked /></h3>
+                                        <div class="wrap-different-address">
+                                            <select class="custom-select">
+                                               <option value="AF">DKI Jakarta</option>
+                                        <option value="AX">Bali</option>
+                                        <option value="AL">Bangka Belitung</option>
+                                        <option value="DZ">Banten</option>
+                                        <option value="AS">Bengkulu</option>
+                                        <option value="AD">D.I. Yogyakarta</option>
+                                        <option value="AO">Gorontalo</option>
+                                        <option value="AI">Jambi</option>
+                                        <option value="AQ">Jawa Barat</option>
+                                        <option value="AG">Jawa Tengah</option>
+                                        <option value="AR">Jawa Timur</option>
+                                        <option value="AM">Kalimantan Barat</option>
+                                        <option value="AW">Kalimantan Tengah</option>
+                                        <option value="AU">Kalimantan Selatan</option>
+                                        <option value="AT">Kalimantan Timur</option>
+                                        <option value="AZ">Kalimantan Utara</option>
+                                        <option value="BS">Kepulauan Riau</option>
+                                        <option value="BH">Lampung</option>
+                                        <option value="BD">Maluku</option>
+                                        <option value="BB">Maluku Utara</option>
+                                        <option value="BY">Nanggroe Aceh Darussalam (NAD)</option>
+                                        <option value="BE">Nusa Tenggara Barat (NTB)</option>
+                                        <option value="BZ">Nusa Tenggara Timur (NTT)</option>
+                                        <option value="BJ">Papua</option>
+                                        <option value="BM">Papua Barat</option>
+                                        <option value="BT">Riau</option>
+                                        <option value="BO">Sulawesi Barat</option>
+                                        <option value="BQ">Sulawesi Selatan</option>
+                                        <option value="BA">Sulawesi Tengah</option>
+                                        <option value="BW">Sulawesi Tenggara</option>
+                                        <option value="BV">Sulawesi Utara</option>
+                                        <option value="BR">Sumatera Barat</option>
+                                        <option value="IO">Sumatera Selatan</option>
+                                        <option value="BN">Sumatera Utara</option>
+                                            </select>
+                                            <div class="row">
+                                                <div class="col-md-6 pdr-5">
+                                                    <input class="input-form" type="text" placeholder="FIRST NAME" />
+                                                </div>
+                                                <div class="col-md-6 pdl-5">
+                                                    <input class="input-form" type="text" placeholder="LAST NAME" />
+                                                </div>
+                                            </div>
+                                            <input class="input-form" type="text" placeholder="STREET ADDRESS" />
+                                            <input class="input-form" type="text" placeholder="APARTMENT, SUITE, UNIT ECT. (OPTIONAL)" />
+                                            <div class="row">
+                                                <div class="col-md-6 pdr-5">
+                                                    <input class="input-form" type="text" placeholder="CITY/REGION" />
+                                                </div>
+                                                <div class="col-md-6 pdl-5">
+                                                    <input class="input-form" type="text" placeholder="POSTCODE/ZIP" />
+                                                </div>
+                                            </div>
+                                            <textarea class="textarea-form" placeholder="NOTES ABOUT YOUR ORDER, E.G. SPECIAL NOTES FOR DELIVERY"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- /.wrap-different-address -->
+                                </div>
+                            </div>
+                            <!-- /.billing-details -->
+                            <h3>CHECK OUT</h3>
+                            <div class="table-responsive">
+                                <table class="check-out-table table" cellspacing="0">
+                                    <thead>
+                                        
+                                        <tr>
+                                            <th class="product-name">Product</th>
+                                            <th class="no-border"></th>
+                                            <th class="product-subtotal">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="product-name" style="text-align: left";>
+                                                Yellow Theme Travel Book #34844990 x 2
+                                            </td>
+                                            <td class="no-border"></td>
+                                            <td class="product-subtotal" style="text-align: right";>
+                                                Rp. 100.000,00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-name" style="text-align: left";>
+                                                Summer Theme Book #34844991
+                                            </td>
+                                            <td class="no-border"></td>
+                                            <td class="product-subtotal" style="text-align: right";>
+                                               Rp. 100.000,00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-name" style="text-align: left";>
+                                                Cart Subtotal
+                                            </td>
+                                            <td class="no-border"></td>
+                                            <td class="product-subtotal" style="text-align: right";>
+                                                Rp. 300.000,00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-name" style="text-align: left";>
+                                                Shipping and Handling
+                                            </td>
+                                            <td class="no-border"></td>
+                                            <td class="product-subtotal" style="text-align: right";>
+                                                Rp. 25.000,00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-name" style="text-align: left";>
+                                                <span class="highlight">Order Total</span>
+                                            </td>
+                                            <td class="no-border"></td>
+                                            <td class="product-subtotal" style="text-align: right";>
+                                                <span class="highlight">Rp. 325.000,00</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.check-out-table -->
+                            </div>
+                            <!-- /.table-responsive -->
+                            <div class="payment-methods">
+                                <ul class="responsive-accordion responsive-accordion-default">
+                                    <li class="first-open">
+                                        <div class="responsive-accordion-head">
+                                            <input type="radio" name="payment-methods" value="direct" checked />
+                                            DIRECT BANK TRANSFER
+                                        </div>
+                                        <div class="responsive-accordion-panel">
+                                            Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button class="place-order-btn">PLACE ORDER</button>
+                            </div>
+                            <!-- /.payment-methods -->
+                        </form>
+                        <!-- /.check-out-form -->
+                    </div>
+                    <!-- /.check-out-content -->
+                </div>
+                <!-- /.main-content -->
+            </div>
+        </div>
+        <!-- /.main -->
+                <!-- /.locations -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h3>MENU LINKS</h3>
+                        <ul class="list-link">
+                            <li><a href="page-with-sidebar.html">Occassion</a></li>
+                            <li><a href="page-with-sidebar.html">For The Home</a></li>
+                            <li><a href="page-with-sidebar.html">Babies And Kids</a></li>
+                            <li><a href="page-with-sidebar.html">Stationary</a></li>
+                            <li><a href="page-with-sidebar.html">Celebration</a></li>
+                            <li><a href="page-with-sidebar.html">Back To School</a></li>
+                            <li><a href="page-with-sidebar.html">Photo Print</a></li>
+                            <li><a href="page-with-sidebar.html">Corporate Gift</a></li>
+                            <li><a href="page-with-sidebar.html">Mobile Apps Features</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <h3>ABOUT US</h3>
+                        <div class="address">Ini nanti di isi: menceritakan<br />kado itu apa</div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <h3>HELP</h3>
+                        <ul class="list-link">
+                            <li><a href="how-to-buy.html">HOW TO BUY</a></li>
+                            <li><a href="general-information.html">FAQ</a></li>
+                            <li><a href="payment.html">PAYMENT</a></li>
+                            <li><a href="shipping.html">SHIPPING</a></li>
+                            <li><a href="track-your-order.html">TRACK YOUR ORDER</a></li>
+                            <li><a href="#">MY ACCOUNT</a></li>
+                            <li><a href="contact2.html">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bottom-footer">
+                    <div class="copyright">
+                        ©COPYRIGHT 2017-2018.BELIKADO.CO.ID. ALL RIGHTS RESERVED.
+                    </div>
+                    <!-- /.copyright -->
+                    <ul class="list-payment">
+                        <li><a href="https://www.facebook.com/belikado.co.id/"><img src="assets/images/fb.png" alt="img" /></a></li>
+                        <li><a href="https://twitter.com/belikado_id"><img src="assets/images/twitter.png" alt="img" /></a></li>
+                        <li><a href="https://www.instagram.com/belikado.co.id/"><img src="assets/images/ig.png" alt="img" /></a></li>
+                        <li><a href="#"><img src="assets/images/gplus.png" alt="img" /></a></li>
+                    </ul>
+                    <!-- /.list-payment -->
+                </div>
+            </div>
+        </footer>
+        <script src="assets/scripts/libs/jquery-1.11.2.min.js"></script>
+        <script src="assets/scripts/libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <script src="assets/scripts/libs/jquery.easing.1.3.js"></script>
+        <script src="assets/scripts/libs/bootstrap.min.js"></script>
+        <script src="assets/scripts/libs/fancySelect.js"></script>
+        <script src="assets/scripts/libs/jquery.fancybox.pack.js"></script>
+        <script src="assets/scripts/libs/jquery.ui.touch-punch.min.js"></script>
+        <script src="assets/scripts/libs/jquery.mousewheel.min.js"></script>
+        <script src="assets/scripts/libs/allinone_bannerRotator.js"></script>
+        <script src="assets/scripts/libs/owl.carousel.min.js"></script>
+        <script src="assets/scripts/libs/jquery.countdown.min.js"></script>
+        <script src="assets/scripts/libs/responsive-accordion.min.js"></script>
+        <script src="assets/scripts/functions.js"></script>
+    </body>
+</html>
