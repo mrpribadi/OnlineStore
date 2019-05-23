@@ -8,7 +8,8 @@ class Kategori extends CI_Controller
     }
 
     function index() {
-        $data = array('content' => 'backend/home');
+        
+        $data = array('content' => 'backend/kategori/index');
         $this->load->view('backend/layout/app', $data);
     }
     

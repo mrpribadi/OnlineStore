@@ -99,8 +99,8 @@
                         <img src="<?php echo BASE_URL('assets/themes/backend/adminlte/dist/img/avatar.png') ?>" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Anggun Pribadi</p>
-                        <span><i class="fa fa-users"></i> Administrator</span>
+                        <p><?php echo $this->session->userdata('fullname') ?></p>
+                        <span><i class="fa fa-users"></i> <?php echo $this->session->userdata('level') ?></span>
                     </div>
                 </div>
 

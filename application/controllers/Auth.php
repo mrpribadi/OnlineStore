@@ -15,21 +15,19 @@ class Auth extends CI_COntroller
         $uname = trim($this->input->post('uid'));
         $passw = md5(trim($this->input->post('passw')));
 
-        $query = "SELECT * FROM mst_user WHERE username = '".$uname."' ";
+        $query = "SELECT * FROM user_admin WHERE admin_email = '".$uname."' AND admin_status = 'active' ";
 
         $login = $this->app_model->get_data_query($query);
         if ($login->num_rows() > 0) {
             $user = $this->app_model->get_data_query($query)->row();
 
-            if ($passw == $user->password){
+            if ($passw == $user->admin_password){
                 
                 $data_session = array(
-                    'id'        => $user->id,
-                    'username'  => $user->username,
-                    'fullname'  => $user->fullname,
-                    'email'     => $user->email,
-                    'initial'   => $user->initial,
-                    'level'     => $user->level,
+                    'id'        => $user->admin_id,
+                    'email'     => $user->admin_email,
+                    'fullname'  => $user->admin_full_name,
+                    'level'     => $user->admin_level,
                     'status'    => 'success'
                 );
     
