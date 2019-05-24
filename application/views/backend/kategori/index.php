@@ -34,16 +34,16 @@
                         <?php
                             foreach ($kategori as $row) {
                         ?>
-                            <tr>
+                            <tr id="<?php echo $row->product_category_id; ?>">
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm dropdown-toggle bg-teal" data-toggle="dropdown">
                                             <span class="fa fa-caret-down"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?php BASE_URL('kategori/detail')?>"><i class="fa fa-eye"></i> View</a></li>
-                                            <li><a href="<?php BASE_URL('kategori/edit')?>"><i class="fa fa-pencil"></i> Edit</a></li>
-                                            <li><a href="<?php BASE_URL('kategori/delete')?>"><i class="fa fa-trash"></i> Delete</a></li>
+                                            <!-- <li><a href="<?php echo BASE_URL()."kategori/detail/".$row->product_category_id; ?>"><i class="fa fa-eye"></i> View</a></li> -->
+                                            <li><a href="<?php echo BASE_URL()."kategori/edit/".$row->product_category_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
+                                            <li><a href="#" class="delete" id="<?php echo $row->product_category_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -110,4 +110,100 @@
             .draw();
         });
     });
+</script>
+
+<script type="text/javascript">
+    $(".delete").click(function(){
+        var id = $(this).attr("id");
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this category!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if(willDelete) {
+                $.ajax({
+                    url: '<?php BASE_URL()?>kategori/delete/'+id,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    error: function(){
+                        alert('Something is wrong');
+                    },
+                    success: function(data) {
+                        if(data.status == 'success'){
+                            $("#"+id).remove();
+                            swal("Deleted!", "Your category has been deleted.", "success");
+                        }
+                        else {
+                            swal("Cancelled", "Error delete data", "error");
+                        }
+                        
+                    }
+                });
+            }
+            else {
+                swal("Cancelled", "Your category is safe :)", "error");
+            }
+        });
+        // function(isConfirm) {
+        //     if(isConfirm) {
+        //         $.ajax({
+        //             url: '<?php BASE_URL()?>kategori/delete'+id,
+        //             type: 'DELETE',
+        //             error: function(){
+        //                 alert('Something is wrong');
+        //             },
+        //             success: function(data) {
+        //                 $("#"+id).remove();
+        //                 swal("Deleted!", "Your category has been deleted.", "success");
+        //             }
+        //         });
+        //     }
+        //     else {
+        //         swal("Cancelled", "Your category is safe :)", "error");
+        //     }
+        // });
+        // .then((willDelete) => {
+        // if (willDelete) {
+        //     swal("Poof! Your imaginary file has been deleted!", {
+        //     icon: "success",
+        //     });
+        // } else {
+        //     swal("Your imaginary file is safe!");
+        // }
+    //     var id = $(this).parents("tr").attr("id");
+    
+    //    swal({
+    //     title: "Are you sure?",
+    //     text: "You will not be able to recover this imaginary file!",
+    //     type: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonClass: "btn-danger",
+    //     confirmButtonText: "Yes, delete it!",
+    //     cancelButtonText: "No, cancel plx!",
+    //     closeOnConfirm: false,
+    //     closeOnCancel: false
+    //   },
+    //   function(isConfirm) {
+    //     if (isConfirm) {
+    //       $.ajax({
+    //          url: '/item-list/'+id,
+    //          type: 'DELETE',
+    //          error: function() {
+    //             alert('Something is wrong');
+    //          },
+    //          success: function(data) {
+    //               $("#"+id).remove();
+    //               swal("Deleted!", "Your imaginary file has been deleted.", "success");
+    //          }
+    //       });
+    //     } else {
+    //       swal("Cancelled", "Your imaginary file is safe :)", "error");
+    //     }
+    //   });
+     
+    });
+    
 </script>
