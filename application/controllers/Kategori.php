@@ -16,7 +16,7 @@ class Kategori extends CI_Controller
     }
 
     function index() {
-        $query = "SELECT a.*, b.product_category_nama AS parent_name FROM product_category AS a 
+        $query = "SELECT a.*, b.product_category_name AS parent_name FROM product_category AS a 
                   LEFT JOIN product_category AS b ON b.product_category_id = a.product_category_parent ";
         $data_kategory = $this->app_model->get_data_query($query)->result();
         $data = array(
@@ -34,7 +34,7 @@ class Kategori extends CI_Controller
     }
 
     function create() {
-        $query = "SELECT product_category_id, product_category_nama FROM product_category
+        $query = "SELECT product_category_id, product_category_name FROM product_category
                   WHERE product_category_status ='active'";
         $data_parent = $this->app_model->get_data_query($query)->result();
         $data = array(
@@ -47,7 +47,7 @@ class Kategori extends CI_Controller
     function edit() {
         $id = $this->uri->segment(3);
         $key = array('product_category_id' => $id);
-        $query = "SELECT product_category_id, product_category_nama FROM product_category
+        $query = "SELECT product_category_id, product_category_name FROM product_category
                   WHERE product_category_status ='active'";
         $data_parent = $this->app_model->get_data_query($query)->result();
         $data_row    = $this->app_model->get_data("product_category", $key, "product_category_id", "ASC")->row();
@@ -59,7 +59,7 @@ class Kategori extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function delete($ID) {
+    function delete($id) {
         // $id = $this->uri->segment(3);
         $key = array('product_category_id' => $id);
 
@@ -88,7 +88,7 @@ class Kategori extends CI_Controller
             else 
             {
                 $data_insert = array(
-                    'product_category_nama'     => $nama,
+                    'product_category_name'     => $nama,
                     'product_category_url'      => $url,
                     'product_category_parent'   => $parent,
                     'create_by'                 => $user,
@@ -107,7 +107,7 @@ class Kategori extends CI_Controller
         } else {
             $key = array('product_category_id' => $id);
             $data_update = array(
-                'product_category_nama'     => $nama,
+                'product_category_name'     => $nama,
                 'product_category_url'      => $url,
                 'product_category_parent'   => $parent,
                 'update_by'                 => $user,

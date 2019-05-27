@@ -34,16 +34,16 @@
                         <?php
                             foreach ($bank as $row) {
                         ?>
-                            <tr id="<?php echo $row->payment_method_id; ?>">
+                            <tr id="<?php echo $row->payment_id; ?>">
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm dropdown-toggle bg-teal" data-toggle="dropdown">
                                             <span class="fa fa-caret-down"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <!-- <li><a href="<?php echo BASE_URL()."kategori/detail/".$row->payment_method_id; ?>"><i class="fa fa-eye"></i> View</a></li> -->
-                                            <li><a href="<?php echo BASE_URL()."bank/edit/".$row->payment_method_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
-                                            <li><a href="#" class="delete" id="<?php echo $row->payment_method_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
+                                            <!-- <li><a href="<?php echo BASE_URL()."kategori/detail/".$row->payment_id; ?>"><i class="fa fa-eye"></i> View</a></li> -->
+                                            <li><a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
+                                            <li><a href="#" class="delete" id="<?php echo $row->payment_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
                                         </ul>
                                     </div>
                                 </td>

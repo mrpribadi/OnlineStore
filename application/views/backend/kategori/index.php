@@ -48,7 +48,7 @@
                                     </div>
                                 </td>
                                 <td><?php echo $row->product_category_status; ?></td>
-                                <td><?php echo $row->product_category_nama; ?></td>
+                                <td><?php echo $row->product_category_name; ?></td>
                                 <td><?php echo $row->parent_name; ?></td>
                             </tr>
                         <?php

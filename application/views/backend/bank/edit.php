@@ -23,7 +23,7 @@
                 <label for="name" class="col-sm-2 control-label">Nama Bank</label>
 
                 <div class="col-sm-4 col-sm-4">
-                    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->payment_method_id; ?>">
+                    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->payment_id; ?>">
                     <input type="text" class="form-control" name="nama_bank" id="nama_bank" placeholder="Nama Bank" autocomplete="off" value="<?php echo $row->payment_bank_name; ?>">
                     <div id="nama_error"></div>
                 </div>
@@ -65,7 +65,7 @@
                 <div class="col-sm-4 col-sm-4">
                     <select name="status" id="status" class="form-control">
                         <?php 
-                        if ($row->payment_method_status == 'active') {
+                        if ($row->payment_status == 'active') {
                             echo '<option value="active" selected>Aktif</option>
                                   <option value="deactive">Tidak Aktif</option>';
                         } else {

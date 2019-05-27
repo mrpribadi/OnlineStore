@@ -24,7 +24,7 @@
 
                 <div class="col-sm-4 col-sm-4">
                     <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->product_category_id; ?>">
-                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Kategori" autocomplete="off" onkeyup="create_url()" value="<?php echo $row->product_category_nama; ?>">
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Kategori" autocomplete="off" onkeyup="create_url()" value="<?php echo $row->product_category_name; ?>">
                     <div id="name_error"></div>
                 </div>
             </div>
@@ -37,10 +37,10 @@
                         <?php
                         foreach ($parent as $pr) {
                             if ($row->product_category_parent == $pr->product_category_id){
-                                echo '<option value="'.$pr->product_category_id.'" selected>'.$pr->product_category_nama.'</option>';
+                                echo '<option value="'.$pr->product_category_id.'" selected>'.$pr->product_category_name.'</option>';
                             }
                             else {
-                                echo '<option value="'.$pr->product_category_id.'">'.$pr->product_category_nama.'</option>';
+                                echo '<option value="'.$pr->product_category_id.'">'.$pr->product_category_name.'</option>';
                             }
                         }
                         ?>
