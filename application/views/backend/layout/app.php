@@ -123,6 +123,7 @@
                         <li class=""><a href="<?php echo BASE_URL('customer') ?>"> <i class="fa fa-users"></i> Customer</a></li>
                         <li class=""><a href="<?php echo BASE_URL('bank') ?>"> <i class="fa fa-credit-card"></i> Bank</a></li>
                         <li class=""><a href="<?php echo BASE_URL('order') ?>"> <i class="fa fa-shopping-cart"></i> Order</a></li>
+                        <li class=""><a href="<?php echo BASE_URL('user') ?>"> <i class="fa fa-lock"></i> Administrator</a></li>
                         
                     </li>
                 </ul>

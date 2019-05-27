@@ -3,12 +3,12 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Bank <br>
-        <small>Bank Account</small>
+        User <br>
+        <small>List User</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
-        <a href="<?php echo BASE_URL('bank/create'); ?>" class="btn btn-success"><i class="fa fa-plus fa-sm fa-mr"></i> Tambah</a>
+        <a href="<?php echo BASE_URL('user/create'); ?>" class="btn btn-success"><i class="fa fa-plus fa-sm fa-mr"></i> Tambah</a>
     </div>
 </section>
 
@@ -25,35 +25,25 @@
                             <tr>
                                 <th></th>
                                 <th>Status</th>
-                                <th>Nama Bank</th>
-                                <th>Nomor Rekening</th>
-                                <th>Nama Pemilik</th>
+                                <th>Email</th>
+                                <th>Nama Lengkap</th>
+                                <th>Level</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                            foreach ($bank as $row) {
+                            foreach ($user as $row) {
                         ?>
-                            <tr id="<?php echo $row->payment_id; ?>">
+                            <tr id="<?php echo $row->admin_id; ?>">
                                 <td width="8%">
-                                    <!-- <div class="btn-group">
-                                        <button type="button" class="btn btn-sm dropdown-toggle bg-teal" data-toggle="dropdown">
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="<?php echo BASE_URL()."bank/detail/".$row->payment_id; ?>"><i class="fa fa-eye"></i> View</a></li>
-                                            <li><a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
-                                            <li><a href="#" class="delete" id="<?php echo $row->payment_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
-                                        </ul>
-                                    </div> -->
-                                    <a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>" class="btn btn-sm bg-purple"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                                    <a href="#" id="<?php echo $row->payment_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a>
+                                    <a href="<?php echo BASE_URL()."user/edit/".$row->admin_id; ?>" class="btn btn-sm bg-purple"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+                                    <a href="#" id="<?php echo $row->admin_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a>
                                 </td>
-                                <td><?php echo $row->payment_status; ?></td>
-                                <td><?php echo $row->payment_bank_name; ?></td>
-                                <td><?php echo $row->payment_bank_account_no; ?></td>
-                                <td><?php echo $row->payment_bank_account_name; ?></td>
+                                <td><?php echo $row->admin_status; ?></td>
+                                <td><?php echo $row->admin_email; ?></td>
+                                <td><?php echo $row->admin_full_name; ?></td>
+                                <td><?php echo $row->admin_level; ?></td>
                             </tr>
                         <?php
                             }  
@@ -121,7 +111,7 @@
         var id = $(this).attr("id");
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this bank!",
+            text: "Once deleted, you will not be able to recover this user!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -129,7 +119,7 @@
         .then((willDelete) => {
             if(willDelete) {
                 $.ajax({
-                    url: '<?php BASE_URL()?>bank/delete/'+id,
+                    url: '<?php BASE_URL()?>user/delete/'+id,
                     type: 'DELETE',
                     dataType: 'json',
                     error: function(){
@@ -138,8 +128,7 @@
                     success: function(data) {
                         if(data.status == 'success'){
                             $("#"+id).remove();
-                            swal("Deleted!", "Your bank has been deleted.", "success");
-                            
+                            swal("Deleted!", "Your user has been deleted.", "success");
                         }
                         else {
                             swal("Cancelled", "Error delete data", "error");
@@ -149,7 +138,7 @@
                 });
             }
             else {
-                swal("Cancelled", "Your bank is safe :)", "error");
+                swal("Cancelled", "Your user is safe :)", "error");
             }
         });
      
