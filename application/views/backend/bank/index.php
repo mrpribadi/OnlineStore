@@ -35,17 +35,19 @@
                             foreach ($bank as $row) {
                         ?>
                             <tr id="<?php echo $row->payment_id; ?>">
-                                <td>
-                                    <div class="btn-group">
+                                <td width="8%">
+                                    <!-- <div class="btn-group">
                                         <button type="button" class="btn btn-sm dropdown-toggle bg-teal" data-toggle="dropdown">
                                             <span class="fa fa-caret-down"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <!-- <li><a href="<?php echo BASE_URL()."kategori/detail/".$row->payment_id; ?>"><i class="fa fa-eye"></i> View</a></li> -->
+                                            <li><a href="<?php echo BASE_URL()."bank/detail/".$row->payment_id; ?>"><i class="fa fa-eye"></i> View</a></li>
                                             <li><a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
                                             <li><a href="#" class="delete" id="<?php echo $row->payment_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
+                                    <a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>" class="btn btn-sm bg-purple"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+                                    <a href="#" id="<?php echo $row->payment_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a>
                                 </td>
                                 <td><?php echo $row->payment_bank_name; ?></td>
                                 <td><?php echo $row->payment_bank_account_no; ?></td>

@@ -26,6 +26,17 @@ class Item extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
+    function detail() {
+        $id = $this->uri->segment(3);
+        $key = array('product_id' => $id);
+        $data_row    = $this->app_model->get_data("product", $key, "product_id", "ASC")->row();
+        $data = array(
+            'content'   => 'backend/item/detail',
+            'row'       => $data_row
+        );
+        $this->load->view('backend/layout/app', $data);
+    }
+
     function create() {
         $query = "SELECT product_category_id, product_category_name FROM product_category
                   WHERE product_category_status ='active'";
@@ -50,6 +61,19 @@ class Item extends CI_Controller
             'row'       => $data_row
         );
         $this->load->view('backend/layout/app', $data);
+    }
+
+    function delete($id) {
+        // $id = $this->uri->segment(3);
+        $key = array('product_id' => $id);
+
+        $delete = $this->app_model->delete_data("product", $key);
+        if ($delete) {
+            echo json_encode(array('status' => 'success'));
+        } else {
+            echo json_encode(array('status' => 'failed'));
+        }
+        
     }
 
     function post() {
