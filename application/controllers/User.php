@@ -29,32 +29,24 @@ class User extends CI_Controller
 
     function detail() {
         $data = array(
-            'content'   => 'backend/bank/detail'
+            'content'   => 'backend/user/detail'
         );
         $this->load->view('backend/layout/app', $data);
     }
 
     function create() {
-        $query = "SELECT payment_type_id, payment_type_nama FROM payment_type
-                  WHERE payment_type_status ='active'";
-        $data_type = $this->app_model->get_data_query($query)->result();
         $data = array(
-            'content'       => 'backend/bank/create',
-            'payment_type'  => $data_type
+            'content'   => 'backend/user/create',
         );
         $this->load->view('backend/layout/app', $data);
     }
 
     function edit() {
         $id = $this->uri->segment(3);
-        $key = array('payment_id' => $id);
-        $query = "SELECT payment_type_id, payment_type_nama FROM payment_type
-                  WHERE payment_type_status ='active'";
-        $data_type = $this->app_model->get_data_query($query)->result();
-        $data_row    = $this->app_model->get_data("payment", $key, "payment_id", "ASC")->row();
+        $key = array('admin_id' => $id);
+        $data_row    = $this->app_model->get_data("user_admin", $key, "admin_id", "ASC")->row();
         $data = array(
-            'content'       => 'backend/bank/edit',
-            'payment_type'  => $data_type,
+            'content'       => 'backend/user/edit',
             'row'           => $data_row
         );
         $this->load->view('backend/layout/app', $data);
@@ -62,9 +54,9 @@ class User extends CI_Controller
 
     function delete($id) {
         // $id = $this->uri->segment(3);
-        $key = array('payment_id' => $id);
+        $key = array('admin_id' => $id);
 
-        $delete = $this->app_model->delete_data("payment", $key);
+        $delete = $this->app_model->delete_data("user_admin", $key);
         if ($delete) {
             echo json_encode(array('status' => 'success'));
         } else {
@@ -74,31 +66,31 @@ class User extends CI_Controller
     }
 
     function post() {
-        $nama_bank = $this->input->post('nama_bank');
-        $norek = $this->input->post('rek');
-        $pemilik = $this->input->post('pemilik');
-        $tipe = $this->input->post('tipe');
+        $nama = $this->input->post('nama');
+        $email = $this->input->post('email');
+        $level = $this->input->post('level');
+        $password = md5($this->input->post('password'));
         $id = $this->input->post('id');
         $user = $this->session->userdata('id');
         $status = $this->input->post('status');
 
         if ($id == "") {
-            $get_rek_exist = $this->app_model->get_data_query("SELECT payment_bank_account_no FROM payment WHERE payment_bank_account_no = '".$norek."'");
-            if ($get_rek_exist->num_rows() > 0) {
-                echo json_encode(array('status' => 'failed', 'message' => 'Nomor rekening sudah terdaftar..!'));
+            $get_email_exist = $this->app_model->get_data_query("SELECT admin_email FROM user_admin WHERE admin_email = '".$email."'");
+            if ($get_email_exist->num_rows() > 0) {
+                echo json_encode(array('status' => 'failed', 'message' => 'Email sudah terdaftar..!'));
             }
             else 
             {
                 $data_insert = array(
-                    'payment_bank_name'         => $nama_bank,
-                    'payment_bank_account_no'   => $norek,
-                    'payment_bank_account_name' => $pemilik,
-                    'create_by'                 => $user,
-                    'create_date'               => date('Y-m-d H:i:s'),
-                    'payment_status'     => $status,
-                    'payment_type_id'           => $tipe
+                    'admin_full_name'   => $nama,
+                    'admin_email'       => $email,
+                    'admin_level'       => $level,
+                    'create_by'         => $user,
+                    'create_date'       => date('Y-m-d H:i:s'),
+                    'admin_status'      => $status,
+                    'admin_password'    => $password
                 );
-                $save = $this->app_model->insert_data('payment', $data_insert);
+                $save = $this->app_model->insert_data('user_admin', $data_insert);
     
                 if ($save) {
                     echo json_encode(array('status' => 'success'));
@@ -108,17 +100,29 @@ class User extends CI_Controller
             }
         
         } else {
-            $key = array('payment_id' => $id);
-            $data_update = array(
-                'payment_bank_name'         => $nama_bank,
-                'payment_bank_account_no'   => $norek,
-                'payment_bank_account_name' => $pemilik,
-                'update_by'                 => $user,
-                'update_date'               => date('Y-m-d H:i:s'),
-                'payment_status'     => $status,
-                'payment_type_id'           => $tipe
-            );
-            $update = $this->app_model->update_data('payment', $data_update, $key);
+            $key = array('admin_id' => $id);
+            if ($password == '') {
+                $data_update = array(
+                    'admin_full_name'   => $nama,
+                    'admin_email'       => $email,
+                    'admin_level'       => $level,
+                    'update_by'         => $user,
+                    'update_date'       => date('Y-m-d H:i:s'),
+                    'admin_status'      => $status
+                );
+            } else {
+                $data_update = array(
+                    'admin_full_name'   => $nama,
+                    'admin_email'       => $email,
+                    'admin_level'       => $level,
+                    'update_by'         => $user,
+                    'update_date'       => date('Y-m-d H:i:s'),
+                    'admin_status'      => $status,
+                    'admin_password'    => $password
+                );
+            }
+            
+            $update = $this->app_model->update_data('user_admin', $data_update, $key);
 
             if ($update) {
                 echo json_encode(array('status' => 'success'));

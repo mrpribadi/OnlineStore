@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Customer <br>
-        <small>Tambah Customer</small>
+        User <br>
+        <small>Tambah User</small>
     </h1>
     <div class="content-header-action">
         
@@ -17,14 +17,14 @@
             <h3 class="box-title"><div id="app_error"></div></h3>
         </div>
         
-        <form class="form-horizontal" id="form_customer">
+        <form class="form-horizontal" id="form_user">
         <div class="box-body">
             <div class="form-group">
                 <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
 
                 <div class="col-sm-4 col-sm-4">
-                    <input type="hidden" class="form-control" name="id" id="id">
-                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" autocomplete="off">
+                    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->admin_id; ?>">
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" autocomplete="off" value="<?php echo $row->admin_full_name; ?>">
                     <div id="name_error"></div>
                 </div>
             </div>
@@ -32,26 +32,8 @@
                 <label for="email" class="col-sm-2 control-label">Email</label>
 
                 <div class="col-sm-4 col-sm-4">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" value="<?php echo $row->admin_email; ?>">
                     <div id="email_error"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="phone" class="col-sm-2 control-label">No. Telp</label>
-
-                <div class="col-sm-4 col-sm-4">
-                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Nomor Telpon" autocomplete="off">
-                    <div id="phone_error"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="gender" class="col-sm-2 control-label">Jenis Kelamin</label>
-
-                <div class="col-sm-4 col-sm-4">
-                    <select name="gender" id="gender" class="form-control">
-                        <option value="pria">Pria</option>
-                        <option value="wanita">Wanita</option>
-                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -71,12 +53,37 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="parent" class="col-sm-2 control-label">Level</label>
+
+                <div class="col-sm-4 col-sm-4">
+                    <select name="level" id="level" class="form-control">
+                        <?php 
+                        if ($row->admin_level == 'admin_super') {
+                            echo '<option value="admin_super" selected>Super Admin</option>
+                                  <option value="admin_web">Admin Web</option>';
+                        } else {
+                            echo '<option value="admin_super">Super Admin</option>
+                                  <option value="admin_web" selected>Admin Web</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="status" class="col-sm-2 control-label">Status</label>
 
                 <div class="col-sm-4 col-sm-4">
                     <select name="status" id="status" class="form-control">
-                        <option value="active">Aktif</option>
-                        <option value="deactive">Tidak Aktif</option>
+                        <?php 
+                        if ($row->admin_status == 'active') {
+                            echo '<option value="active" selected>Aktif</option>
+                                  <option value="deactive">Tidak Aktif</option>';
+                        } else {
+                            echo '<option value="active">Aktif</option>
+                                  <option value="deactive" selected>Tidak Aktif</option>';
+                        }
+                        ?>
+                        
                     </select>
                 </div>
             </div>
@@ -111,31 +118,22 @@
                 $('#app_error').html(msg);
                 $('#email').focus();
             }
-            else if ($.trim($('#phone').val()) == ''){
-                var msg = '<p class="text-red">Nomor telpon harus diisi..!</p>';
-                $('#app_error').html(msg);
-                $('#phone').focus();
-            }
-            else if ($.trim($('#password').val()) == ''){
-                var msg = '<p class="text-red">Password harus diisi..!</p>';
-                $('#app_error').html(msg);
-                $('#password').focus();
-            }
             else if ($.trim($('#cpassword').val()) != $.trim($('#password').val())){
                 var msg = '<p class="text-red">Confirm password tidak sama..!</p>';
                 $('#app_error').html(msg);
                 $('#cpassword').focus();
             }
+            
             else {
-                var data = $("#form_customer").serialize();
+                var data = $("#form_user").serialize();
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: '<?=base_url()?>customer/post',
+                    url: '<?=base_url()?>user/post',
                     data: data,
                     success: function(respon){
                         if (respon.status == 'success') {
-                            window.location.href = '<?=base_url()?>customer';
+                            window.location.href = '<?=base_url()?>user';
                         }
                         else {
                             //alert(respon.message);
@@ -155,6 +153,6 @@
 
 <script type="text/javascript">
     function back(){
-        window.location.href = '<?=base_url()?>customer';
+        window.location.href = '<?=base_url()?>user';
     }
 </script>

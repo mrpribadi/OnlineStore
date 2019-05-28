@@ -20,7 +20,7 @@
         <form class="form-horizontal" id="form_kategori">
         <div class="box-body">
             <div class="form-group">
-                <label for="name" class="col-sm-2 control-label">Nama Kategori</label>
+                <label for="nama" class="col-sm-2 control-label">Nama Kategori</label>
 
                 <div class="col-sm-4 col-sm-4">
                     <input type="hidden" class="form-control" name="id" id="id">
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="parent" class="col-sm-2 control-label">Status</label>
+                <label for="status" class="col-sm-2 control-label">Status</label>
 
                 <div class="col-sm-4 col-sm-4">
                     <select name="status" id="status" class="form-control">
@@ -84,9 +84,9 @@
 
         $('#btn-save').click(function(){
             if ($.trim($('#nama').val()) == '') {
-                var msg = '<p class="text-red">Nama kategori harus diidi..!</p>';
+                var msg = '<p class="text-red">Nama kategori harus diisi..!</p>';
                 $('#app_error').html(msg);
-                $('#name').focus();
+                $('#nama').focus();
             }
             else if ($.trim($('#url').val()) == ''){
                 var msg = '<p class="text-red">URL harus diisi..!</p>';
@@ -106,7 +106,7 @@
                             window.location.href = '<?=base_url()?>kategori';
                         }
                         else {
-                            alert(respon.message);
+                            swal("Cancelled", respon.message, "error");
                         }
                     },
                     error:function(){

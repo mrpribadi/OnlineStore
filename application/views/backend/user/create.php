@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Customer <br>
-        <small>Tambah Customer</small>
+        User <br>
+        <small>Tambah User</small>
     </h1>
     <div class="content-header-action">
         
@@ -17,7 +17,7 @@
             <h3 class="box-title"><div id="app_error"></div></h3>
         </div>
         
-        <form class="form-horizontal" id="form_customer">
+        <form class="form-horizontal" id="form_user">
         <div class="box-body">
             <div class="form-group">
                 <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
@@ -37,24 +37,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="phone" class="col-sm-2 control-label">No. Telp</label>
-
-                <div class="col-sm-4 col-sm-4">
-                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Nomor Telpon" autocomplete="off">
-                    <div id="phone_error"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="gender" class="col-sm-2 control-label">Jenis Kelamin</label>
-
-                <div class="col-sm-4 col-sm-4">
-                    <select name="gender" id="gender" class="form-control">
-                        <option value="pria">Pria</option>
-                        <option value="wanita">Wanita</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">Password</label>
 
                 <div class="col-sm-4 col-sm-4">
@@ -68,6 +50,16 @@
                 <div class="col-sm-4 col-sm-4">
                     <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password" autocomplete="off">
                     <div id="cpassword_error"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="parent" class="col-sm-2 control-label">Level</label>
+
+                <div class="col-sm-4 col-sm-4">
+                    <select name="level" id="level" class="form-control">
+                        <option value="admin_super">Super Admin</option>
+                        <option value="admin_web">Admin Web</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -111,11 +103,6 @@
                 $('#app_error').html(msg);
                 $('#email').focus();
             }
-            else if ($.trim($('#phone').val()) == ''){
-                var msg = '<p class="text-red">Nomor telpon harus diisi..!</p>';
-                $('#app_error').html(msg);
-                $('#phone').focus();
-            }
             else if ($.trim($('#password').val()) == ''){
                 var msg = '<p class="text-red">Password harus diisi..!</p>';
                 $('#app_error').html(msg);
@@ -126,16 +113,17 @@
                 $('#app_error').html(msg);
                 $('#cpassword').focus();
             }
+            
             else {
-                var data = $("#form_customer").serialize();
+                var data = $("#form_user").serialize();
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: '<?=base_url()?>customer/post',
+                    url: '<?=base_url()?>user/post',
                     data: data,
                     success: function(respon){
                         if (respon.status == 'success') {
-                            window.location.href = '<?=base_url()?>customer';
+                            window.location.href = '<?=base_url()?>user';
                         }
                         else {
                             //alert(respon.message);
@@ -155,6 +143,6 @@
 
 <script type="text/javascript">
     function back(){
-        window.location.href = '<?=base_url()?>customer';
+        window.location.href = '<?=base_url()?>user';
     }
 </script>

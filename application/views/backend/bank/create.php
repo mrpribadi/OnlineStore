@@ -118,7 +118,7 @@
                             window.location.href = '<?=base_url()?>bank';
                         }
                         else {
-                            alert(respon.message);
+                            swal("Cancelled", respon.message, "error");
                         }
                     },
                     error:function(){
