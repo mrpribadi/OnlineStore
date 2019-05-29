@@ -128,7 +128,7 @@
                     var data = $('#form_login').serialize();
                     $.post('<?php echo base_url()?>auth/login', data, function(result){
                         if(result.status=='success'){
-                            window.location.href='<?php echo base_url()?>home';
+                            window.location.href='<?php echo base_url()?>user';
                         }else{
                             $('#msg_error').html('<div class="bg-maroon disabled color-palette"><span>'+result.msg+'</span></div><br>');            
                             $('#uid').val("");
