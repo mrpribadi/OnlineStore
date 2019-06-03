@@ -198,13 +198,9 @@
                                     <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
                                     </p>
                                     <div class="group-buttons">
-                                        <button type="button" class="add-to-cart" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                            <span>Book Now</span>
+                                         <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
+                                            <i class="pe-7s-cart"></i>
                                         </button>
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Detail">
-                                            <i class="pe-7s-more"></i>
-                                        </button>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -237,13 +233,9 @@
                                     <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
                                     </p>
                                     <div class="group-buttons">
-                                        <button type="button" class="add-to-cart" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                            <span>Book Now</span>
+                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
+                                            <i class="pe-7s-cart"></i>
                                         </button>
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Detail">
-                                            <i class="pe-7s-more"></i>
-                                        </button>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -288,42 +280,36 @@
                 <div class="block-item">
                     <h3>NEW-IN</h3>
                     <div class="row">
-
+                        <?php foreach($newin AS $row): ?>
                         <div class="col-md-12 col-sm-6">
                             <div class="media">
                                 <div class="media-left">
                                     <div class="block-thumb">
                                         <div class="main-img">
-                                            <a href="single-product.html">
-                                                <img class="img-responsive" src="assets/themes/frontend/zorka/assets/images/new-in-imgg-1.jpg" alt="img" />
+                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
+                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
                                             </a>
                                         </div>
                                         <div class="overlay-img">
-                                            <a href="single-product.html">
-                                                <img class="img-responsive" src="assets/themes/frontend/zorka/assets/images/new-in-imggg-1.jpg" alt="img" />
+                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
+                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%"/>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <h4><a href="single-product.html">CUSTOM PILLOW</a></h4>
-                                    <p class="price">Rp. 175.000,00</p>
+                                    <h4><a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
+                                    <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
                                     
                                     <div class="group-buttons">
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
                                         <i class="pe-7s-cart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Compare this Product">
-                                        <i class="pe-7s-repeat"></i>
-                                        </button>
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
-                                        <i class="pe-7s-like"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!-- /.new-in -->
@@ -333,40 +319,36 @@
                     <h3>PROMO</h3>
                     <div class="row">
 
+                        <?php foreach($promo AS $row): ?>
                         <div class="col-md-12 col-sm-6">
                             <div class="media">
                                 <div class="media-left">
                                     <div class="block-thumb">
                                         <div class="main-img">
-                                            <a href="single-product.html">
-                                                <img class="img-responsive" src="assets/themes/frontend/zorka/assets/images/featured-imgg-1.jpg" alt="img" />
+                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
+                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
                                             </a>
                                         </div>
                                         <div class="overlay-img">
-                                            <a href="single-product.html">
-                                                <img class="img-responsive" src="assets/themes/frontend/zorka/assets/images/featured-imggg-1.jpg" alt="img" />
+                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
+                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%"/>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <h4><a href="single-product.html">PILLOW CHARACTER</a></h4>
-                                    <p class="price">Rp. 175.000,00</p>
-                                    <del><span class="amount">Rp. 200.000,00</span></del>
+                                    <h4><a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
+                                    <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
+                                    
                                     <div class="group-buttons">
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
                                         <i class="pe-7s-cart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Compare this Product">
-                                        <i class="pe-7s-repeat"></i>
-                                        </button>
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
-                                        <i class="pe-7s-like"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                         
                     </div>
                 </div>

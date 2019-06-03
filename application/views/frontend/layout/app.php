@@ -15,26 +15,27 @@
         <meta name="keywords" content="keywords" />
         <meta name="description" content="description" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="assets/themes/frontend/zorka/assets/images/favico.ico" />
-        <link href="assets/themes/frontend/zorka/assets/styles/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/pe-icon-7-stroke/css/helper.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/minimal-menu.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/images/favico.ico" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/pe-icon-7-stroke/css/helper.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/minimal-menu.css" rel="stylesheet" type="text/css" />
         <!--[if LTE IE 8]>
-        <link rel="stylesheet" type="text/css" href="assets/themes/frontend/zorka/assets/styles/minimal-menu-ie.css" />
+        <link rel="stylesheet" type="text/css" href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/minimal-menu-ie.css" />
         <![endif]-->
-        <link href="assets/themes/frontend/zorka/assets/styles/flat-form.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/fancySelect.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/allinone_bannerRotator.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/owl.carousel.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/themes/frontend/zorka/assets/styles/styles.css" rel="stylesheet" type="text/css" />
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/prefixfree.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/modernizr.js"></script>
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/flat-form.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/fancySelect.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/allinone_bannerRotator.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/owl.carousel.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/easy-responsive-tabs.css" rel="stylesheet" type="text/css" />
+        <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/styles.css" rel="stylesheet" type="text/css" />
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/prefixfree.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/modernizr.js"></script>
         <!--[if lt IE 9]>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/html5shiv.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/respond.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/html5shiv.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/respond.js"></script>
         <![endif]-->
         
     </head>
@@ -73,7 +74,7 @@
         <header>
             <div class="container">
                 <!-- <a class="logo" href="index.html">
-                    <img src="assets/themes/frontend/zorka/assets/images/kdo.png" alt="img" />
+                    <img src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/images/kdo.png" alt="img" />
                 </a> -->
                 <!-- /.logo -->
                 <!-- <div class="header-social">
@@ -98,7 +99,7 @@
                     <div class="minimal-menu">
                         <ul class="menu">
                             <li class="current-menu-item">
-                                <a href="<?php BASE_URL();?>">HOME</a>
+                                <a href="<?php echo BASE_URL();?>">HOME</a>
                             </li>
 
                             <?php foreach($menu AS $row): ?>
@@ -177,17 +178,19 @@
                 </div>
             </div>
         </footer>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery-1.11.2.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery.easing.1.3.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/bootstrap.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/fancySelect.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery.fancybox.pack.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery.ui.touch-punch.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery.mousewheel.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/allinone_bannerRotator.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/owl.carousel.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/libs/jquery.countdown.min.js"></script>
-        <script src="assets/themes/frontend/zorka/assets/scripts/functions.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery-1.11.2.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.easing.1.3.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/bootstrap.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/fancySelect.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.fancybox.pack.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.ui.touch-punch.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.mousewheel.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/allinone_bannerRotator.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/owl.carousel.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.countdown.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/easyResponsiveTabs.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.raty-fa.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/functions.js"></script>
     </body>
 </html>
