@@ -154,7 +154,7 @@
 
                     <div class="col-md-4 col-sm-6">
                         <h3>ABOUT US</h3>
-                        <div class="address">Ini nanti di isi: menceritakan<br />kado itu apa</div>
+                        <div class="address">Ini nanti di isi: menceritakan<br />tentang klinik kecantikan</div>
                     </div>
 
                     <div class="col-md-4 col-sm-6">
@@ -189,6 +189,9 @@
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/allinone_bannerRotator.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/owl.carousel.min.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.countdown.min.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.waypoints.min.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/gmaps.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/easyResponsiveTabs.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.raty-fa.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/functions.js"></script>

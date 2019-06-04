@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-6">
                         <nav class="breadcrumb">
-                            <a href="<?php echo BASE_URL(); ?>">HOME</a> <i class="fa fa-angle-right"></i> <a href="<?php echo BASE_URL().$product->product_category_url; ?>"><?php echo strtoupper($product->product_category_name); ?></a>
+                            <a href="<?php echo BASE_URL(); ?>">HOME</a> <i class="fa fa-angle-right"></i> <a href="<?php echo BASE_URL().'pages/'.$product->product_category_url; ?>"><?php echo strtoupper($product->product_category_name); ?></a>
                         </nav>
                         <!-- /.breadcrumb -->
                         <div class="summary">
@@ -78,7 +78,7 @@
                             <br>
                             <ul class="ul-product">
                                 <li>Code Barang: <?php echo $product->product_reff_code; ?></li>
-                                <li>Categories: <a href="parallax-category-shop.html">Valentine Books</a>, <a href="parallax-category-shop.html">Tapi Hijau Bukan Pink</a>, <a href="parallax-category-shop.html">Gapapa dong? Kan anti mainstream</a>.</li>
+                                <li>Categories: <a href="<?php echo BASE_URL().'pages/'.$product->product_category_url; ?>"><?php echo $product->product_category_name; ?></a></li>
                                 <!-- <li>Tags: <a href="parallax-category-shop.html">Shop</a>, <a href="parallax-category-shop.html">Theme</a>, <a href="parallax-category-shop.html">WooCommerce</a>.</li> -->
                             </ul>
                         </div>

@@ -52,12 +52,29 @@ class Home extends CI_Controller
         $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '".$row_id->product_category_id."' ")->result();
         $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
         $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
-        $data = array(
-            'content' => 'frontend/pages',
-            'menu'    => $menu,
-            'submenu' => $submenu,
-            'product' => $list_product
-        );
+
+        if ($url == 'about') {
+            $data = array(
+                'content' => 'frontend/about',
+                'menu'    => $menu,
+                'submenu' => $submenu
+            );
+        } 
+        else if ($url == 'outlet') {
+            $data = array(
+                'content' => 'frontend/outlet',
+                'menu'    => $menu,
+                'submenu' => $submenu
+            );
+        } else {
+            $data = array(
+                'content' => 'frontend/pages',
+                'menu'    => $menu,
+                'submenu' => $submenu,
+                'product' => $list_product
+            );
+        }
+        
         $this->load->view('frontend/layout/app', $data);
     }
     
