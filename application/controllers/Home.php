@@ -67,8 +67,10 @@ class Home extends CI_Controller
             $config['zoom'] = 16;
             $config['map_height'] = "400px";
             $this->googlemaps->initialize($config);
+
             $marker = array();
             $marker['position'] = "-6.242900, 106.965417";
+            $marker['infowindow_content'] = "xxxdahdasdhska";
             $this->googlemaps->add_marker($marker);
             $data = array(
                 'content' => 'frontend/outlet',
