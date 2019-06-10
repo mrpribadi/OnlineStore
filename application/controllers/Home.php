@@ -61,10 +61,20 @@ class Home extends CI_Controller
             );
         } 
         else if ($url == 'outlet') {
+            $this->load->library('googlemaps');
+            $config = array();
+            $config['center'] = "-6.2449033, 106.9658942";
+            $config['zoom'] = 16;
+            $config['map_height'] = "400px";
+            $this->googlemaps->initialize($config);
+            $marker = array();
+            $marker['position'] = "-6.242900, 106.965417";
+            $this->googlemaps->add_marker($marker);
             $data = array(
                 'content' => 'frontend/outlet',
                 'menu'    => $menu,
-                'submenu' => $submenu
+                'submenu' => $submenu,
+                'map'     => $this->googlemaps->create_map()
             );
         } else {
             $data = array(

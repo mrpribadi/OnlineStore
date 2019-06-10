@@ -130,59 +130,6 @@
     </div>
 </div>
 <!-- /.our-office -->
-<div class="testimonial-block">
-    <div class="container">
-        <h3 class="mgb-60">WHAT THEY SAY</h3>
-        <div id="carousel-8">
-            <div class="testimonial-item">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="avatar img-responsive" src="<?php echo BASE_URL()?>assets/themes/frontend/zorka/assets/images/testimonial-avatar2.png" alt="img" />
-                    </div>
-                    <div class="media-body">
-                        <h4>ANNA PANDORA</h4>
-                        <h5>Stylist</h5>
-                        <div>
-                            <img class="quote" src="<?php echo BASE_URL()?>assets/themes/frontend/zorka/assets/images/quote.png" alt="img" />
-                            <p>Etiam accumsan est arcu. Quisque venenatis a metus eu tempor. Nullam purus eros, sagittis in mi ac, elementum imperdiet lacus. Vestibulum imperdiet, leo id tempus mollis ...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="avatar img-responsive" src="<?php echo BASE_URL()?>assets/themes/frontend/zorka/assets/images/testimonial-avatar2.png" alt="img" />
-                    </div>
-                    <div class="media-body">
-                        <h4>ANNA PANDORA</h4>
-                        <h5>Stylist</h5>
-                        <div>
-                            <img class="quote" src="<?php echo BASE_URL()?>assets/themes/frontend/zorka/assets/images/quote.png" alt="img" />
-                            <p>Etiam accumsan est arcu. Quisque a metus eu tempor. Nullam purus eros, elementum imperdiet lacus. Vestibulum imperdiet, leo id tempus mollis ...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="avatar img-responsive" src="<?php echo BASE_URL()?>assets/themes/frontend/zorka/assets/images/testimonial-avatar2.png" alt="img" />
-                    </div>
-                    <div class="media-body">
-                        <h4>ANNA PANDORA</h4>
-                        <h5>Stylist</h5>
-                        <div>
-                            <img class="quote" src="<?php echo BASE_URL()?>assets/themes/frontend/zorka/assets/images/quote.png" alt="img" />
-                            <p>Etiam accumsan est arcu, sagittis in mi ac. Quisque venenatis a metus eu tempor. Nullam purus eros, sagittis in mi ac, elementum imperdiet lacus. Vestibulum imperdiet, leo id tempus mollis ...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /.testimonial-block -->
 <hr class="gray-line" />
 <div class="our-team">
     <div class="container">
@@ -300,29 +247,7 @@
     </div>
 </div>
 <!-- /.our-team -->
-<div class="parallax-banner-3 parallax">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <p class="big counter-1" data-counter="45000">0</p>
-                <p class="small">LOVELY CUSTOMERS</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <p class="big counter-2" data-counter="7750">0</p>
-                <p class="small">FACEBOOK FANS</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <p class="big counter-3" data-counter="19500">0</p>
-                <p class="small">PRODUCTS</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <p class="big counter-4" data-counter="3570">0</p>
-                <p class="small">RATINGS</p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /.parallax-banner-3 -->
+
 <div class="brand-logos">
     <div class="container">
         <div id="carousel-3">
