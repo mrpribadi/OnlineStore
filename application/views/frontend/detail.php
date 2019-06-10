@@ -71,7 +71,7 @@
                                         <input type="text" value="1" />
                                         <button class="plus-btn"><i class="fa fa-plus"></i></button>
                                     </div> -->
-                                    <a href="<?php echo BASE_URL()?>order/create"> <button type="submit" class="add-to-cart-btn"> BOOK NOW </button></a>
+                                    <a href="<?php echo BASE_URL()?>order/<?php echo $product->product_url; ?>"> <button type="submit" class="add-to-cart-btn"> BOOK NOW </button></a>
                                 </div>
                                 <!-- <a href="wishlist.html" class="wishlist-link"><i class="pe-7s-like"></i>ADD TO WISHLIST</a> -->
                             </div>
