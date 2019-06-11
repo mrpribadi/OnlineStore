@@ -1,75 +1,60 @@
 <div class="main">
     <div class="container">
         <div class="header-page">
-            <h1>BOOKING INFORMATION</h1>
+            <h1>BOOKING</h1>
         </div>
         <!-- /.header-page -->
         <div class="main-content">
             <div class="check-out-content">
-                <form action="#" class="check-out-form">
+                <form id="form-booking" action="<?php echo BASE_URL('proses/post');?>" method="POST" class="check-out-form">
                     <div class="billing-details">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3> </h3>
+                                <h3>PERSONAL INFORMATION </h3>
                                 <div class="wrap-different-address">
-                                    <select class="custom-select" name="provinsi">
-                                        <option value="AF">DKI Jakarta</option>
-                                        <option value="AX">Bali</option>
-                                        <option value="AL">Bangka Belitung</option>
-                                        <option value="DZ">Banten</option>
-                                        <option value="AS">Bengkulu</option>
-                                        <option value="AD">D.I. Yogyakarta</option>
-                                        <option value="AO">Gorontalo</option>
-                                        <option value="AI">Jambi</option>
-                                        <option value="AQ">Jawa Barat</option>
-                                        <option value="AG">Jawa Tengah</option>
-                                        <option value="AR">Jawa Timur</option>
-                                        <option value="AM">Kalimantan Barat</option>
-                                        <option value="AW">Kalimantan Tengah</option>
-                                        <option value="AU">Kalimantan Selatan</option>
-                                        <option value="AT">Kalimantan Timur</option>
-                                        <option value="AZ">Kalimantan Utara</option>
-                                        <option value="BS">Kepulauan Riau</option>
-                                        <option value="BH">Lampung</option>
-                                        <option value="BD">Maluku</option>
-                                        <option value="BB">Maluku Utara</option>
-                                        <option value="BY">Nanggroe Aceh Darussalam (NAD)</option>
-                                        <option value="BE">Nusa Tenggara Barat (NTB)</option>
-                                        <option value="BZ">Nusa Tenggara Timur (NTT)</option>
-                                        <option value="BJ">Papua</option>
-                                        <option value="BM">Papua Barat</option>
-                                        <option value="BT">Riau</option>
-                                        <option value="BO">Sulawesi Barat</option>
-                                        <option value="BQ">Sulawesi Selatan</option>
-                                        <option value="BA">Sulawesi Tengah</option>
-                                        <option value="BW">Sulawesi Tenggara</option>
-                                        <option value="BV">Sulawesi Utara</option>
-                                        <option value="BR">Sumatera Barat</option>
-                                        <option value="IO">Sumatera Selatan</option>
-                                        <option value="BN">Sumatera Utara</option>
-                                    </select>
+                                    <input class="input-form" type="text" placeholder="FULL NAME" id="fullname" name="fullname" required/>
                                     <div class="row">
                                         <div class="col-md-6 pdr-5">
-                                            <input class="input-form" type="text" placeholder="FIRST NAME" id="firstname" name="firstname" require/>
+                                            <select name="gender" id="gender" class="custom-select">
+                                                <option value="pria" selected>PRIA</option>
+                                                <option value="wanita">WANITA</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-6 pdl-5">
-                                            <input class="input-form" type="text" placeholder="LAST NAME" id="lastname" name="lastname" require/>
+                                            <input class="input-form" type="number" placeholder="PHONE" id="phone" name="phone" required/>
                                         </div>
                                     </div>
-                                    <input class="input-form" type="text" placeholder="STREET ADDRESS" id="address" name="address" require/>
-                                    <div class="row">
-                                        <div class="col-md-6 pdr-5">
-                                            <input class="input-form" type="number" placeholder="POSTCODE/ZIP" id="postcode" name="postcode"/>
-                                        </div>
-                                        <div class="col-md-6 pdl-5">
-                                            <input class="input-form" type="number" placeholder="PHONE" id="phone" name="phone" require/>
-                                        </div>
-                                    </div>
-                                    <input class="input-form" type="email" placeholder="EMAIL" id="email" name="email" require/>
-                                    <textarea class="textarea-form" placeholder="NOTES"></textarea>
+                                    <input class="input-form" type="email" placeholder="EMAIL" id="email" name="email" required/>
+                                    <input class="input-form" type="hidden" name="product_id" value="<?php echo $produk->product_id; ?>"/>
                                 </div>
                             </div>
                             <!-- /.wrap-different-address -->
+
+                            <div class="col-md-12">
+                                <h3>BOOKING INFORMATION </h3>
+                                <div class="wrap-different-address">
+                                    <div class="row">
+                                        <div class="col-md-6 pdr-5">
+                                            <input class="input-form date" type="text" placeholder="DATE" id="date" name="date" required/>
+                                        </div>
+                                        <div class="col-md-6 pdl-5">
+                                            <select name="time" id="time" class="custom-select">
+                                                <?php for ($i=8; $i < 17; $i++) { 
+                                                    if ($i < 10){
+                                                        $jam = "0".$i.":00";
+                                                    }
+                                                    else {
+                                                        $jam = $i.":00";
+                                                    }
+                                                    echo '<option value="'.$i.'">'.$jam.'</option>';
+                                                } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <textarea class="textarea-form" name="notes" placeholder="NOTES"></textarea>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <!-- /.billing-details -->
@@ -77,7 +62,6 @@
                     <div class="table-responsive">
                         <table class="check-out-table table" cellspacing="0">
                             <thead>
-                                
                                 <tr>
                                     <th class="product-name">Product</th>
                                     <th class="no-border"></th>
@@ -87,47 +71,21 @@
                             <tbody>
                                 <tr>
                                     <td class="product-name" style="text-align: left";>
-                                        Yellow Theme Travel Book #34844990 x 2
+                                        <?php echo $produk->product_name ?>
                                     </td>
                                     <td class="no-border"></td>
                                     <td class="product-subtotal" style="text-align: right";>
-                                        Rp. 100.000,00
+                                        Rp. <?php echo formatUang($produk->product_harga) ?>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="product-name" style="text-align: left";>
-                                        Summer Theme Book #34844991
-                                    </td>
-                                    <td class="no-border"></td>
-                                    <td class="product-subtotal" style="text-align: right";>
-                                        Rp. 100.000,00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="product-name" style="text-align: left";>
-                                        Cart Subtotal
-                                    </td>
-                                    <td class="no-border"></td>
-                                    <td class="product-subtotal" style="text-align: right";>
-                                        Rp. 300.000,00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="product-name" style="text-align: left";>
-                                        Shipping and Handling
-                                    </td>
-                                    <td class="no-border"></td>
-                                    <td class="product-subtotal" style="text-align: right";>
-                                        Rp. 25.000,00
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <td class="product-name" style="text-align: left";>
                                         <span class="highlight">Order Total</span>
                                     </td>
                                     <td class="no-border"></td>
                                     <td class="product-subtotal" style="text-align: right";>
-                                        <span class="highlight">Rp. 325.000,00</span>
+                                        <span class="highlight">Rp. <?php echo formatUang($produk->product_harga) ?></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -137,17 +95,22 @@
                     <!-- /.table-responsive -->
                     <div class="payment-methods">
                         <ul class="responsive-accordion responsive-accordion-default">
+                
                             <li class="first-open">
+                                <?php foreach($payment as $row): ?>
                                 <div class="responsive-accordion-head">
-                                    <input type="radio" name="payment-methods" value="direct" checked />
-                                    DIRECT BANK TRANSFER
+                                    <input type="radio" name="payment" value="<?php echo $row->payment_type_id?>"/>
+                                    <?php echo strtoupper($row->payment_type_nama)?>
                                 </div>
+                                <?php endforeach; ?>
                                 <div class="responsive-accordion-panel">
                                     Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
                                 </div>
                             </li>
+                            
                         </ul>
                         <button class="place-order-btn">PLACE ORDER</button>
+                        <!-- <input class="place-order-btn" type="submit" value="PLACE ORDER"> -->
                     </div>
                     <!-- /.payment-methods -->
                 </form>

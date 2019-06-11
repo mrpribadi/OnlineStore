@@ -31,8 +31,14 @@
         <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/easy-responsive-tabs.css" rel="stylesheet" type="text/css" />
         <link href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/styles/styles.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/jqueryui/jquery-ui.css">
+        <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/jqueryui/jquery.js"></script>
+        <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/jqueryui/jquery-ui.js"></script>
+        
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/prefixfree.min.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/modernizr.js"></script>
+        
         <!--[if lt IE 9]>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/html5shiv.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/respond.js"></script>
@@ -195,5 +201,18 @@
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/easyResponsiveTabs.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.raty-fa.js"></script>
         <script src="<?php  echo BASE_URL();?>assets/themes/frontend/zorka/assets/scripts/functions.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                //Date picker
+                $('.date').datepicker({
+                    autoclose: true,
+                    format: 'dd-mm-yyyy',
+                    changeMonth: true,
+                    changeYear: true
+                })
+                
+            });
+        </script>
     </body>
 </html>

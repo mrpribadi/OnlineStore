@@ -74,8 +74,8 @@
         if ($('.custom-select').length) {
             var mySelect = $('.custom-select');
             mySelect.fancySelect().on('change.fs', function() {
-                var raw_val = $(this).parent().find('.options').find('.selected').attr('data-raw-value');
-                $(this).find('option').removeAttr('selected').filter('[value=' + raw_val + ']').attr('selected', true);
+                // var raw_val = $(this).parent().find('.options').find('.selected').attr('data-raw-value');
+                // $(this).find('option').removeAttr('selected').filter('[value=' + raw_val + ']').attr('selected', true);
             }
             );
         }

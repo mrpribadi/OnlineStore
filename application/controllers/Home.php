@@ -5,14 +5,6 @@ class Home extends CI_Controller
 {
     function __construct() {
         parent::__construct();
-        // $this->load->library('session');
-		// $s_userid   = $this->session->userdata('id');
-        // if(empty($s_userid)){
-		// 	echo '<script>
-		// 			alert("You dont have Login Session, please login first.");
-		// 			window.location.href="'.base_url().'auth";
-		// 		 </script>';        
-		// }
     }
 
     function index() {
@@ -95,11 +87,13 @@ class Home extends CI_Controller
         $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
         $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
         $detail_product = $this->app_model->get_data_query("SELECT a.*, b.product_category_name, b.product_category_url  FROM product a LEFT JOIN product_category b ON b.product_category_id = a.product_category_id WHERE a.product_url = '".$url."' ")->row();
+        $payment = $this->app_model->get_data_query("SELECT * FROM payment_type WHERE payment_type_status = 'active' ")->result();
         $data = array(
             'content' => 'frontend/order',
             'menu'    => $menu,
             'submenu' => $submenu,
-            'produk'  => $detail_product
+            'produk'  => $detail_product,
+            'payment' => $payment
         );
 
         $this->load->view('frontend/layout/app', $data);
