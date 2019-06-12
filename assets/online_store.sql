@@ -13,7 +13,7 @@ File Encoding         : 65001
 Date: 2019-06-04 11:07:36
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for customer
