@@ -177,68 +177,72 @@
                 <div class="showcase">
                     <div class="row">
                         <div class="box-product">
-                            <?php foreach($popular AS $row): ?>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="product-thumb">
-                                        <div class="main-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
+                            <?php foreach ($popular as $row) : ?>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="product-thumb">
+                                            <div class="main-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
+                                                </a>
+                                            </div>
+                                            <div class="overlay-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
+                                                </a>
+                                            </div>
+                                            <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>" class="details"><i class="pe-7s-search"></i></a>
+                                        </div>
+                                        <h4 class="product-name"><a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>"><?php echo $row->product_name; ?></a></h4>
+                                        <p class="product-price">
+                                            <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
+                                        </p>
+                                        <div class="group-buttons">
+                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
+                                                    <i class="pe-7s-cart"></i>
+                                                </button>
                                             </a>
                                         </div>
-                                        <div class="overlay-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
-                                            </a>
-                                        </div>
-                                        <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>" class="details"><i class="pe-7s-search"></i></a>
-                                    </div>
-                                    <h4 class="product-name"><a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>"><?php echo $row->product_name; ?></a></h4>
-                                    <p class="product-price">
-                                    <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
-                                    </p>
-                                    <div class="group-buttons">
-                                         <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                            <i class="pe-7s-cart"></i>
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
                             <?php endforeach; ?>
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="showcase">
                     <div class="row">
                         <div class="box-product">
-                            <?php foreach($popular AS $row): ?>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="product-thumb">
-                                        <div class="main-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
+                            <?php foreach ($popular as $row) : ?>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="product-thumb">
+                                            <div class="main-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
+                                                </a>
+                                            </div>
+                                            <div class="overlay-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
+                                                </a>
+                                            </div>
+                                            <a href="single-product.html" class="details"><i class="pe-7s-search"></i></a>
+                                        </div>
+                                        <h4 class="product-name"><a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>"><?php echo $row->product_name; ?></a></h4>
+                                        <p class="product-price">
+                                            <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
+                                        </p>
+                                        <div class="group-buttons">
+                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
+                                                    <i class="pe-7s-cart"></i>
+                                                </button>
                                             </a>
                                         </div>
-                                        <div class="overlay-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" />
-                                            </a>
-                                        </div>
-                                        <a href="single-product.html" class="details"><i class="pe-7s-search"></i></a>
-                                    </div>
-                                    <h4 class="product-name"><a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>"><?php echo $row->product_name; ?></a></h4>
-                                    <p class="product-price">
-                                    <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
-                                    </p>
-                                    <div class="group-buttons">
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                            <i class="pe-7s-cart"></i>
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -257,7 +261,7 @@
         <div class="row">
             <div class="col-sm-4 col-md-12">
                 <div class="giveway">
-                    <a href="<?php echo BASE_URL('pages/treatment')?>">
+                    <a href="<?php echo BASE_URL('pages/treatment') ?>">
                         <div class="text-box">
                             MORE TREATMENT
                         </div>
@@ -280,35 +284,37 @@
                 <div class="block-item">
                     <h3>NEW-IN</h3>
                     <div class="row">
-                        <?php foreach($newin AS $row): ?>
-                        <div class="col-md-12 col-sm-6">
-                            <div class="media">
-                                <div class="media-left">
-                                    <div class="block-thumb">
-                                        <div class="main-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
-                                            </a>
-                                        </div>
-                                        <div class="overlay-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%"/>
-                                            </a>
+                        <?php foreach ($newin as $row) : ?>
+                            <div class="col-md-12 col-sm-6">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="block-thumb">
+                                            <div class="main-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
+                                                </a>
+                                            </div>
+                                            <div class="overlay-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="media-body">
-                                    <h4><a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
-                                    <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
-                                    
-                                    <div class="group-buttons">
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                        <i class="pe-7s-cart"></i>
-                                        </button>
+                                    <div class="media-body">
+                                        <h4><a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
+                                        <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
+
+                                        <div class="group-buttons">
+                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
+                                                    <i class="pe-7s-cart"></i>
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -319,37 +325,39 @@
                     <h3>PROMO</h3>
                     <div class="row">
 
-                        <?php foreach($promo AS $row): ?>
-                        <div class="col-md-12 col-sm-6">
-                            <div class="media">
-                                <div class="media-left">
-                                    <div class="block-thumb">
-                                        <div class="main-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
-                                            </a>
-                                        </div>
-                                        <div class="overlay-img">
-                                            <a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>">
-                                                <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%"/>
-                                            </a>
+                        <?php foreach ($promo as $row) : ?>
+                            <div class="col-md-12 col-sm-6">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="block-thumb">
+                                            <div class="main-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
+                                                </a>
+                                            </div>
+                                            <div class="overlay-img">
+                                                <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>">
+                                                    <img class="img-responsive" src="assets/images/<?php echo $row->product_image; ?>" alt="img" width="30%" />
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="media-body">
-                                    <h4><a href="<?php echo BASE_URL('detail').'/'.$row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
-                                    <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
-                                    
-                                    <div class="group-buttons">
-                                        <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                        <i class="pe-7s-cart"></i>
-                                        </button>
+                                    <div class="media-body">
+                                        <h4><a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
+                                        <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
+
+                                        <div class="group-buttons">
+                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
+                                                    <i class="pe-7s-cart"></i>
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <?php endforeach; ?>
-                        
+
                     </div>
                 </div>
                 <!-- /.featured -->

@@ -73,6 +73,20 @@ class Home extends CI_Controller
                 'submenu' => $submenu,
                 'map'     => $this->googlemaps->create_map()
             );
+        } else if ($url == 'payment') {
+            $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
+            $data = array(
+                'content' => 'frontend/payment',
+                'menu'    => $menu,
+                'submenu' => $submenu,
+                'payment' => $payment
+            );
+        } else if ($url == 'confirm') {
+            $data = array(
+                'content' => 'frontend/confirm',
+                'menu'    => $menu,
+                'submenu' => $submenu
+            );
         } else {
             $data = array(
                 'content' => 'frontend/pages',

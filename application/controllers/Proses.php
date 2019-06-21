@@ -23,6 +23,8 @@ class Proses extends CI_Controller
         $payment = $this->input->post('payment');
         $product_id = $this->input->post('product_id');
         $harga = $this->input->post('product_harga');
+        $product_name = $this->input->post('product_name');
+        $product_image = $this->input->post('product_image');
 
 
         $get_email_exist = $this->app_model->get_data_query("SELECT customer_email FROM customer WHERE customer_email = '" . $email . "'");
@@ -105,6 +107,16 @@ class Proses extends CI_Controller
 
                     $save_order = $this->app_model->insert_data('order_header', $data_book_insert);
                     if ($save_order) {
+                        $data_session = array(
+                            'product_id' => $product_id,
+                            'product_name' => $product_name,
+                            'harga' => $harga,
+                            'tanggal' => $date,
+                            'waktu' => $time,
+                            'order_no' => $new_code,
+                            'image' => $product_image
+                        );
+                        $this->session->set_userdata($data_session);
                         echo json_encode(array('status' => 'success', 'order_no' => $new_code));
                     } else {
                         echo json_encode(array('status' => 'failed', 'message' => 'Gagal simpan order..!'));

@@ -27,6 +27,8 @@
                                     <input class="input-form" type="email" placeholder="EMAIL" id="email" name="email" autocomplete="off" required />
                                     <input class="input-form" type="hidden" name="product_id" value="<?php echo $produk->product_id; ?>" />
                                     <input class="input-form" type="hidden" name="product_harga" value="<?php echo $produk->product_harga; ?>" />
+                                    <input class="input-form" type="hidden" name="product_name" value="<?php echo $produk->product_name; ?>" />
+                                    <input class="input-form" type="hidden" name="product_image" value="<?php echo $produk->product_image; ?>" />
                                 </div>
                             </div>
                             <!-- /.wrap-different-address -->
@@ -125,6 +127,10 @@
 </div>
 <!-- /.main -->
 
+<?php
+$this->session->set_flashdata('idproduct', $produk->product_id);
+?>
+
 <script type="text/javascript">
     var site = "<?php echo BASE_URL(); ?>";
 
@@ -151,7 +157,12 @@
                 data: $('#form_booking').serialize(),
                 success: function(respon) {
                     if (respon.status == 'success') {
-                        alert('Nomor Order Anda : ' + respon.order_no);
+                        swal("Success", 'Nomor Order Anda : ' + respon.order_no, "success");
+                        $("#fullname").val('');
+                        $("#phone").val('');
+                        $("#email").val('');
+                        $("#date").val('');
+                        window.location.href = '<?php echo base_url() ?>pages/payment';
                     } else {
                         alert(respon.message);
                     }

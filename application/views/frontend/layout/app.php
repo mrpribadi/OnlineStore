@@ -37,8 +37,12 @@
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/jqueryui/jquery.js"></script>
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/jqueryui/jquery-ui.js"></script>
 
+
+
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/prefixfree.min.js"></script>
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/modernizr.js"></script>
+
+    <script src="<?php echo BASE_URL('assets/themes/backend/adminlte/bower_components/sweetalert/docs/assets/sweetalert/sweetalert.min.js') ?>"></script>
 
     <!--[if lt IE 9]>
         <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/html5shiv.js"></script>
@@ -163,19 +167,16 @@
 
                 <div class="col-md-4 col-sm-6">
                     <h3>ABOUT US</h3>
-                    <div class="address">Ini nanti di isi: menceritakan<br />tentang klinik kecantikan</div>
+                    <div class="address">
+                        Klinik ini adalah klinik kecantikan<br> pertama di bekasi
+                    </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
                     <h3>HELP</h3>
                     <ul class="list-link">
-                        <li><a href="how-to-buy.html">HOW TO BUY</a></li>
-                        <li><a href="general-information.html">FAQ</a></li>
-                        <li><a href="payment.html">PAYMENT</a></li>
-                        <li><a href="shipping.html">SHIPPING</a></li>
-                        <li><a href="track-your-order.html">TRACK YOUR ORDER</a></li>
-                        <li><a href="#">MY ACCOUNT</a></li>
-                        <li><a href="contact2.html">CONTACT</a></li>
+                        <li><a href="how-to-buy.html">HOW TO BOOK</a></li>
+                        <li><a href="<?php echo BASE_URL('pages/confirm') ?>">CONFIRMATION</a></li>
                     </ul>
                 </div>
             </div>
