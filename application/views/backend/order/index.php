@@ -31,29 +31,29 @@
                                 <th>Tgl. Booking</th>
                                 <th>Status Pembayaran</th>
                                 <!-- <th>Jenis Kelamin</th> -->
-                                
+
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             foreach ($order as $row) {
-                        ?>
-                            <tr id="<?php echo $row->order_id; ?>">
-                                <td width="12%">
-                                    <a href="<?php echo BASE_URL()."order/detail/".$row->order_id; ?>" class="btn btn-sm bg-gray" alt="Lihat Order"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
-                                    <!-- <a href="<?php echo BASE_URL()."order/approve/".$row->order_id; ?>" class="btn btn-sm bg-green"><i class="fa fa-check"></i></a>&nbsp;&nbsp; -->
-                                    <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
-                                    <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a>
-                                </td>
-                                <td><?php echo $row->order_no; ?></td>
-                                <td><?php echo $row->customer_nama; ?></td>
-                                <td><?php echo $row->customer_phone; ?></td>
-                                <td><?php echo $row->product_name; ?></td>
-                                <td><?php echo $row->order_working_date; ?>(<?php echo $row->order_working_time; ?>)</td>
-                                <td><?php echo $row->confirmation_status; ?></td>
-                            </tr>
-                        <?php
-                            }  
+                                ?>
+                                <tr id="<?php echo $row->order_id; ?>">
+                                    <td width="12%">
+                                        <a href="<?php echo BASE_URL() . "order/detail/" . $row->order_id; ?>" class="btn btn-sm bg-gray" alt="Lihat Order"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+                                        <!-- <a href="<?php echo BASE_URL() . "order/approve/" . $row->order_id; ?>" class="btn btn-sm bg-green"><i class="fa fa-check"></i></a>&nbsp;&nbsp; -->
+                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
+                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a>
+                                    </td>
+                                    <td><?php echo $row->order_no; ?></td>
+                                    <td><?php echo $row->customer_nama; ?></td>
+                                    <td><?php echo $row->customer_phone; ?></td>
+                                    <td><?php echo $row->product_name; ?></td>
+                                    <td><?php echo date("d F y", strtotime($row->order_working_date)); ?> (<?php echo $row->order_working_time; ?>)</td>
+                                    <td><?php echo $row->confirmation_status; ?></td>
+                                </tr>
+                            <?php
+                        }
                         ?>
                         </tbody>
                     </table>
@@ -67,10 +67,10 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         var actions = 0;
         var new_row = $("<tr class='search-header'/>");
-        $('.data-table thead th').each(function(i){
+        $('.data-table thead th').each(function(i) {
             var title = $(this).text();
             var new_th = $('<th style ="' + $(this).attr('style') + '"/>');
 
@@ -90,107 +90,104 @@
         }
 
         var table = $('.data-table').DataTable({
-            paging:true,
-            ordering:true,
-            seraching:true,
-            info:true,
-            scrollX:true,
-            "order":[[ actions, "asc" ]],
-            "columnDefs": [
-                { "orderable" : orderable, "targets" : 0 }
-            ]
+            paging: true,
+            ordering: true,
+            seraching: true,
+            info: true,
+            scrollX: true,
+            "order": [
+                [actions, "asc"]
+            ],
+            "columnDefs": [{
+                "orderable": orderable,
+                "targets": 0
+            }]
         });
         $('.dataTables_filter').hide();
-        $('.dataTables_scrollHeadInner').css('width','100%');
-        $('.data-table').css('width','100%');
+        $('.dataTables_scrollHeadInner').css('width', '100%');
+        $('.data-table').css('width', '100%');
 
-        $(table.table().container()).on('keyup', 'thead input', function(){
+        $(table.table().container()).on('keyup', 'thead input', function() {
             table
-            .column($(this).data('index'))
-            .search(this.value)
-            .draw();
+                .column($(this).data('index'))
+                .search(this.value)
+                .draw();
         });
     });
 </script>
 
 <script type="text/javascript">
-    $(".reject").click(function(){
+    $(".reject").click(function() {
         var id = $(this).attr("id");
         swal({
-            title: "Are you sure?",
-            text: "Once reject, you will not be able to recover this order!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if(willDelete) {
-                $.ajax({
-                    url: '<?php BASE_URL()?>order/reject/'+id,
-                    type: 'DELETE',
-                    dataType: 'json',
-                    error: function(){
-                        alert('Something is wrong');
-                    },
-                    success: function(data) {
-                        if(data.status == 'success'){
-                            $("#"+id).remove();
-                            swal("Rejected!", "Your order has been rejected.", "success");
-                            
+                title: "Are you sure?",
+                text: "Once reject, you will not be able to recover this order!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '<?php BASE_URL() ?>order/reject/' + id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        error: function() {
+                            alert('Something is wrong');
+                        },
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                $("#" + id).remove();
+                                swal("Rejected!", "Your order has been rejected.", "success");
+
+                            } else {
+                                swal("Cancelled", "Error reject order", "error");
+                            }
+
                         }
-                        else {
-                            swal("Cancelled", "Error reject order", "error");
-                        }
-                        
-                    }
-                });
-            }
-            else {
-                swal("Cancelled", "Your order is safe :)", "error");
-            }
-        });
-     
+                    });
+                } else {
+                    swal("Cancelled", "Your order is safe :)", "error");
+                }
+            });
+
     });
-    
 </script>
 
 <script type="text/javascript">
-    $(".approve").click(function(){
+    $(".approve").click(function() {
         var id = $(this).attr("id");
         swal({
-            title: "Are you sure?",
-            text: "Once approve, you will not be able to recover this order!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if(willDelete) {
-                $.ajax({
-                    url: '<?php BASE_URL()?>order/approve/'+id,
-                    type: 'DELETE',
-                    dataType: 'json',
-                    error: function(){
-                        alert('Something is wrong');
-                    },
-                    success: function(data) {
-                        if(data.status == 'success'){
-                            $("#"+id).remove();
-                            swal("Approved!", "Your order has been approved.", "success");
-                            
+                title: "Are you sure?",
+                text: "Once approve, you will not be able to recover this order!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '<?php BASE_URL() ?>order/approve/' + id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        error: function() {
+                            alert('Something is wrong');
+                        },
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                $("#" + id).remove();
+                                swal("Approved!", "Your order has been approved.", "success");
+
+                            } else {
+                                swal("Cancelled", "Error approve order", "error");
+                            }
+
                         }
-                        else {
-                            swal("Cancelled", "Error approve order", "error");
-                        }
-                        
-                    }
-                });
-            }
-            else {
-                swal("Cancelled", "Your order is safe :)", "error");
-            }
-        });
-     
+                    });
+                } else {
+                    swal("Cancelled", "Your order is safe :)", "error");
+                }
+            });
+
     });
-    
 </script>
