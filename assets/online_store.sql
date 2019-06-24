@@ -10,10 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2019-06-04 11:07:36
+Date: 2019-06-22 14:20:32
 */
 
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for customer
@@ -31,13 +31,18 @@ CREATE TABLE `customer` (
   `customer_ip_address` varchar(20) DEFAULT NULL,
   `customer_registration_date` datetime DEFAULT NULL,
   PRIMARY KEY (`customer_id`,`customer_code`,`customer_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
-INSERT INTO `customer` VALUES ('1', 'CUST00001', 'amanda@gmail.com', 'active', '202cb962ac59075b964b07152d234b70', 'Amanda Putri', 'pria', '08123334455', '::1', '2019-05-28 15:00:09');
-INSERT INTO `customer` VALUES ('2', 'CUST00002', 'dewi@gmail.com', 'active', '202cb962ac59075b964b07152d234b70', 'Dewi Puspita', 'wanita', '123456789', '::1', '2019-05-28 15:01:03');
+INSERT INTO `customer` VALUES ('1', 'CUST00001', 'aaa@aaa.com', 'active', 'e99a18c428cb38d5f260853678922e03', 'Anggun Pribadi', 'pria', '5693529406', '::1', '2019-06-21 09:56:28');
+INSERT INTO `customer` VALUES ('2', 'CUST00002', 'aaa@aaa.comd', 'active', 'e99a18c428cb38d5f260853678922e03', 'Ari ferdian', 'pria', '1213132', '::1', '2019-06-21 21:54:16');
+INSERT INTO `customer` VALUES ('3', 'CUST00003', 'dd@zsf.dfd', 'active', 'e99a18c428cb38d5f260853678922e03', 'Dedi', 'pria', '213213213', '::1', '2019-06-21 21:58:06');
+INSERT INTO `customer` VALUES ('4', 'CUST00004', 'hjadhksa@asdklas.ck', 'active', 'e99a18c428cb38d5f260853678922e03', 'Amanda', 'wanita', '9798769', '::1', '2019-06-22 01:00:56');
+INSERT INTO `customer` VALUES ('5', 'CUST00005', 'sindi@dsd.cac', 'active', 'e99a18c428cb38d5f260853678922e03', 'Sindi', 'wanita', '54545435', '::1', '2019-06-22 01:07:52');
+INSERT INTO `customer` VALUES ('6', 'CUST00006', 'putri@gmail.com', 'active', 'e99a18c428cb38d5f260853678922e03', 'Putri', 'wanita', '321321412414', '::1', '2019-06-22 01:13:09');
+INSERT INTO `customer` VALUES ('7', 'CUST00007', 'hhh@ggg.com', 'active', 'e99a18c428cb38d5f260853678922e03', 'ABC', 'wanita', '23456778', '::1', '2019-06-22 14:09:06');
 
 -- ----------------------------
 -- Table structure for order_header
@@ -71,11 +76,18 @@ CREATE TABLE `order_header` (
   `order_working_time` int(5) DEFAULT NULL,
   `order_working_time_line` int(1) DEFAULT NULL,
   PRIMARY KEY (`order_id`,`order_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_header
 -- ----------------------------
+INSERT INTO `order_header` VALUES ('1', 'BOOK00001', '2019-06-21 09:56:29', '1', '350000', '1', '1', '3', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-22', '10', '1');
+INSERT INTO `order_header` VALUES ('2', 'BOOK00002', '2019-06-21 21:54:16', '0', '750000', '2', '1', '7', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-24', '11', '1');
+INSERT INTO `order_header` VALUES ('3', 'BOOK00003', '2019-06-21 21:58:06', '0', '400000', '3', '1', '5', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-22', '10', '2');
+INSERT INTO `order_header` VALUES ('4', 'BOOK00004', '2019-06-22 01:00:56', '0', '1000000', '4', '1', '4', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-26', '13', '1');
+INSERT INTO `order_header` VALUES ('5', 'BOOK00005', '2019-06-22 01:07:52', '0', '1000000', '5', '1', '4', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-26', '12', '1');
+INSERT INTO `order_header` VALUES ('6', 'BOOK00006', '2019-06-22 01:13:09', '0', '400000', '6', '1', '5', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-25', '15', '1');
+INSERT INTO `order_header` VALUES ('7', 'BOOK00007', '2019-06-22 14:09:06', '0', '1000000', '7', '1', '4', null, null, null, null, null, null, null, null, '0', null, null, '0', null, null, null, '2019-06-26', '13', '2');
 
 -- ----------------------------
 -- Table structure for payment
@@ -151,12 +163,12 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', '1', 'active', 'PROD0001', 'Facial', 'facial', '300000', 'Membersihkan wajah', 'PROD0001_Gambar5.png', '0', null, '0', null, '0', null, '1', '2019-05-31 10:21:53', '1', '2019-05-27 11:37:41', '1', '2019-05-27 16:50:43');
-INSERT INTO `product` VALUES ('3', '1', 'active', 'PROD0002', 'Penghilang Bulu', 'penghilang-bulu', '350000', 'Menghilangkan bulu ketek dan kemaluan', 'PROD0002_Gambar2.png', '0', null, '0', null, '0', null, '1', '2019-05-31 10:21:58', '1', '2019-05-27 14:35:50', null, null);
-INSERT INTO `product` VALUES ('4', '1', 'active', 'PROD0003', 'Active Acne Laser', 'active-acne-laser', '1000000', 'Jerawat laser', 'PROD0003_Biopori.png', '0', null, '0', null, '1', '2019-05-31 10:33:25', '1', '2019-05-31 10:22:06', '1', '2019-05-29 11:20:16', null, null);
-INSERT INTO `product` VALUES ('5', '1', 'active', 'PROD0004', 'Lifting', 'lifting', '400000', 'Ga tau apaan ini', 'PROD0004_Gedung.png', '0', null, '0', null, '0', null, '1', '2019-05-31 10:22:10', '1', '2019-05-29 11:23:21', null, null);
-INSERT INTO `product` VALUES ('6', '1', 'active', 'PROD0005', 'Infus Glowing', 'infus-glowing', '800000', 'Memutihkan Kulit', 'PROD0005_Singer.png', '0', null, '1', '2019-05-31 10:23:18', '1', '2019-05-31 10:33:28', '0', null, '1', '2019-05-29 11:30:14', null, null);
-INSERT INTO `product` VALUES ('7', '1', 'active', 'PROD0006', 'Tatto Removal', 'tatto-removal', '750000', 'Menghilangkan tatto', 'PROD0006_Optoma.png', '0', null, '1', '2019-05-31 10:23:23', '0', null, '0', null, '1', '2019-05-29 13:42:52', null, null);
+INSERT INTO `product` VALUES ('1', '1', 'active', 'PROD0001', 'Facial', 'facial', '300000', 'Membersihkan wajah', 'PROD0001_626152427-H.jpg', '0', null, '0', null, '0', null, '1', '2019-05-31 10:21:53', '1', '2019-06-21 13:41:19', '1', '2019-06-21 08:36:46');
+INSERT INTO `product` VALUES ('3', '1', 'active', 'PROD0002', 'Waxing', 'waxing', '350000', 'Menghilangkan rambut', 'PROD0002_waxing.jpg', '0', null, '0', null, '0', null, '1', '2019-05-31 10:21:58', '1', '2019-06-21 13:50:46', '1', '2019-06-21 13:51:30');
+INSERT INTO `product` VALUES ('4', '1', 'active', 'PROD0003', 'Active Acne Laser', 'active-acne-laser', '1000000', 'Jerawat laser', 'PROD0003_images-5.jpeg', '0', null, '0', null, '1', '2019-05-31 10:33:25', '1', '2019-05-31 10:22:06', '1', '2019-06-21 13:41:44', null, null);
+INSERT INTO `product` VALUES ('5', '1', 'active', 'PROD0004', 'Lifting', 'lifting', '400000', 'Mengencangkan kulit wajah', 'PROD0004_images.jpg', '0', null, '0', null, '0', null, '1', '2019-05-31 10:22:10', '1', '2019-06-21 13:44:05', '1', '2019-06-21 13:53:04');
+INSERT INTO `product` VALUES ('6', '1', 'active', 'PROD0005', 'Infus Glowing', 'infus-glowing', '800000', 'Memutihkan Kulit', 'PROD0005_xsxs.jpg', '0', null, '1', '2019-05-31 10:23:18', '1', '2019-05-31 10:33:28', '0', null, '1', '2019-06-21 13:48:55', '1', '2019-06-21 13:53:13');
+INSERT INTO `product` VALUES ('7', '1', 'active', 'PROD0006', 'Tatto Removal', 'tatto-removal', '750000', 'Menghilangkan tatto', 'PROD0006_download.jpg', '0', null, '1', '2019-05-31 10:23:23', '0', null, '0', null, '1', '2019-06-21 13:47:51', '1', '2019-06-21 13:53:22');
 
 -- ----------------------------
 -- Table structure for product_category
@@ -175,7 +187,7 @@ CREATE TABLE `product_category` (
   PRIMARY KEY (`product_category_id`),
   UNIQUE KEY `product_category_nama` (`product_category_name`) USING BTREE,
   UNIQUE KEY `product_category_url` (`product_category_url`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_category
@@ -183,6 +195,7 @@ CREATE TABLE `product_category` (
 INSERT INTO `product_category` VALUES ('1', '0', 'active', 'Treatment', 'treatment', '1', '2019-05-26 15:16:32', null, null);
 INSERT INTO `product_category` VALUES ('3', '0', 'active', 'About', 'about', '1', '2019-05-29 14:13:55', null, null);
 INSERT INTO `product_category` VALUES ('4', '0', 'active', 'Outlet', 'outlet', '1', '2019-05-29 14:24:21', null, null);
+INSERT INTO `product_category` VALUES ('5', '0', 'deactive', 'Payment', 'payment', '1', '2019-06-21 14:44:28', null, null);
 
 -- ----------------------------
 -- Table structure for user_admin
@@ -200,7 +213,7 @@ CREATE TABLE `user_admin` (
   `update_by` int(3) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   PRIMARY KEY (`admin_id`,`admin_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_admin
