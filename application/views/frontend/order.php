@@ -12,8 +12,8 @@
                             <div class="col-md-12">
                                 <h3>PERSONAL INFORMATION </h3>
                                 <div class="wrap-different-address">
-                                    <input class="input-form" type="text" placeholder="FULL NAME" id="fullname" name="fullname" autocomplete="off" required />
-                                    <div class="row">
+                                    <input class="input-form" type="text" id="fullname" name="fullname" autocomplete="off" value="<?php echo $this->session->userdata('nama'); ?>" required readonly />
+                                    <!-- <div class="row">
                                         <div class="col-md-6 pdr-5">
                                             <select name="gender" id="gender" class="custom-select">
                                                 <option value="pria" selected>PRIA</option>
@@ -21,10 +21,11 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 pdl-5">
-                                            <input class="input-form" type="number" placeholder="PHONE" id="phone" name="phone" autocomplete="off" required />
+                                            <input class="input-form" type="number" placeholder="PHONE" id="phone" name="phone" autocomplete="off" value="<?php echo $this->session->userdata('telp'); ?>" required readonly />
                                         </div>
-                                    </div>
-                                    <input class="input-form" type="email" placeholder="EMAIL" id="email" name="email" autocomplete="off" required />
+                                    </div> -->
+                                    <input class="input-form" type="number" placeholder="PHONE" id="phone" name="phone" autocomplete="off" value="<?php echo $this->session->userdata('telp'); ?>" required readonly />
+                                    <input class="input-form" type="email" placeholder="EMAIL" id="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email'); ?>" required readonly />
                                     <input class="input-form" type="hidden" name="product_id" value="<?php echo $produk->product_id; ?>" />
                                     <input class="input-form" type="hidden" name="product_harga" value="<?php echo $produk->product_harga; ?>" />
                                     <input class="input-form" type="hidden" name="product_name" value="<?php echo $produk->product_name; ?>" />

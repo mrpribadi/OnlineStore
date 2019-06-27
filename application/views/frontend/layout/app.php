@@ -55,30 +55,36 @@
     <div class="topbar">
         <div class="container">
             <div class="left-topbar">
-                WELCOME GUEST!
-                <!-- <a href="login-register.html">LOG IN</a> OR <a href="login-register.html">REGISTER</a> -->
+                <?php if ($this->session->userdata('id') == '') { ?>
+                    WELCOME GUEST!
+                    <a href="<?php echo base_url('login') ?>">LOG IN</a> OR <a href="<?php echo base_url('register') ?>">REGISTER</a>
+                <?php } else { ?>
+                    WELCOME <?php echo $this->session->userdata('nama'); ?>!
+                <?php } ?>
             </div>
             <!-- /.left-topbar -->
-            <div class="right-topbar">
-                <ul class="list-inline">
-                    <li>
-                        <!-- <div class="btn-group">
-                            <button class="dropdown dropdown-toggle" data-toggle="dropdown">
-                                <span>My Account</span>
-                                <i class="pe-7s-angle-down"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i> Shopping Cart</a>
-                                </li>
-                                <li>
-                                    <a href="check-out.html"><i class="fa fa-share"></i> Checkout</a>
-                                </li>
-                            </ul>
-                        </div> -->
-                    </li>
-                </ul>
-            </div>
+            <?php if ($this->session->userdata('id') != '') { ?>
+                <div class="right-topbar">
+                    <ul class="list-inline">
+                        <li>
+                            <div class="btn-group">
+                                <button class="dropdown dropdown-toggle" data-toggle="dropdown">
+                                    <span>My Account</span>
+                                    <i class="pe-7s-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i> Booking History</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('logout') ?>"><i class="fa fa-share"></i> Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
             <!-- /.right-topbar -->
         </div>
     </div>

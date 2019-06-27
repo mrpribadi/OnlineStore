@@ -30,7 +30,7 @@
                                         <?php echo $this->session->userdata('product_name'); ?>
                                     </a>
                                 </td>
-                                <td class="product-quantity"><span class="amount"><?php echo $this->session->userdata('tanggal'); ?></span></td>
+                                <td class="product-quantity"><span class="amount"><?php echo formatTanggal($this->session->userdata('tanggal')); ?></span></td>
                                 <td class="product-subtotal"><span class="amount"><?php echo $this->session->userdata('waktu'); ?></span></td>
                                 <td class="product-price"><span class="amount"><?php echo formatUang($this->session->userdata('harga')); ?></span></td>
                             </tr>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="shop-totals">
-                            <h3>CART TOTALS</h3>
+                            <h3>TOTAL</h3>
                             <table class="totals-table">
                                 <tr>
                                     <td>Order No:</td>

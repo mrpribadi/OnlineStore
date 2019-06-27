@@ -101,6 +101,9 @@ class Home extends CI_Controller
 
     function order()
     {
+        if ($this->session->userdata('id') == '') {
+            redirect('home/login');
+        }
         $url = $this->uri->segment(2);
         $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
         $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
@@ -112,6 +115,77 @@ class Home extends CI_Controller
             'submenu' => $submenu,
             'produk'  => $detail_product,
             'payment' => $payment
+        );
+
+        $this->load->view('frontend/layout/app', $data);
+    }
+
+    function login()
+    {
+        if ($this->session->userdata('id') != '') {
+            redirect('home');
+        }
+        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
+        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'content' => 'frontend/login',
+                'menu'    => $menu,
+                'submenu' => $submenu
+            );
+        } else {
+            $email = $this->input->post('email');
+            $password = md5($this->input->post('password'));
+            $key = array('customer_email' => $email, 'customer_status' => 'active');
+
+            $customer = $this->app_model->get_data('customer', $key, 'customer_email', 'ASC');
+            if ($customer->num_rows() != '') {
+                $cust = $customer->row();
+                if ($password == $cust->customer_password) {
+                    $data_session = array(
+                        'id' => $cust->customer_id,
+                        'code' => $cust->customer_code,
+                        'email' => $cust->customer_email,
+                        'nama' => $cust->customer_nama,
+                        'telp' => $cust->customer_phone,
+                    );
+                    $this->session->set_userdata($data_session);
+                    redirect('home');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger">Password salah</div>');
+                    redirect('home/login');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger">Email belum terdaftar</div>');
+                redirect('home/login');
+            }
+        }
+
+
+        $this->load->view('frontend/layout/app', $data);
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url('home'));
+    }
+
+    function register()
+    {
+        if ($this->session->userdata('id') != '') {
+            redirect('home');
+        }
+        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
+        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $data = array(
+            'content' => 'frontend/register',
+            'menu'    => $menu,
+            'submenu' => $submenu
         );
 
         $this->load->view('frontend/layout/app', $data);
