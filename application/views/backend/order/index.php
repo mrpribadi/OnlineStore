@@ -23,7 +23,7 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th></th>
+
                                 <th>No. Order</th>
                                 <th>Nama Lengkap</th>
                                 <th>Telp</th>
@@ -31,6 +31,7 @@
                                 <th>Tgl. Booking</th>
                                 <th>Status Pembayaran</th>
                                 <th>Status Booking</th>
+                                <th></th>
                                 <!-- <th>Jenis Kelamin</th> -->
 
                             </tr>
@@ -51,14 +52,7 @@
                                 }
                                 ?>
                                 <tr id="<?php echo $row->order_id; ?>">
-                                    <td width="12%">
-                                        <a href="<?php echo BASE_URL() . "order/detail/" . $row->order_id; ?>" class="btn btn-sm bg-gray" alt="Lihat Order"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
-                                        <!-- <a href="<?php echo BASE_URL() . "order/approve/" . $row->order_id; ?>" class="btn btn-sm bg-green"><i class="fa fa-check"></i></a>&nbsp;&nbsp; -->
-                                        <?php if ($row->confirmation_status == '1' && $row->order_status == '0') { ?>
-                                            <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
-                                        <?php } ?>
-                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a>
-                                    </td>
+
                                     <td><?php echo $row->order_no; ?></td>
                                     <td><?php echo $row->customer_nama; ?></td>
                                     <td><?php echo $row->customer_phone; ?></td>
@@ -66,6 +60,14 @@
                                     <td><?php echo date("d F y", strtotime($row->order_working_date)); ?> (<?php echo $row->order_working_time; ?>)</td>
                                     <td><?php echo $confirm; ?></td>
                                     <td><?php echo $status; ?></td>
+                                    <td width="12%" class="text-center">
+                                        <a href="<?php echo BASE_URL() . "order/detail/" . $row->order_id; ?>" class="btn btn-sm bg-purple" alt="Lihat Order">Detail Booking Order</a>
+                                        <!-- <a href="<?php echo BASE_URL() . "order/approve/" . $row->order_id; ?>" class="btn btn-sm bg-green"><i class="fa fa-check"></i></a>&nbsp;&nbsp; -->
+                                        <!-- <?php if ($row->confirmation_status == '1' && $row->order_status == '0') { ?>
+                                                                            <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
+                                                        <?php } ?>
+                                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a> -->
+                                    </td>
                                 </tr>
                             <?php
                         }

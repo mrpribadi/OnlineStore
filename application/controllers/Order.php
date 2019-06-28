@@ -32,6 +32,24 @@ class Order extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
+    function detail()
+    {
+        $id = $this->uri->segment(3);
+        $query = "SELECT a.*, b.*, d.*, c.payment_type_nama 
+                  FROM order_header AS a 
+                  LEFT JOIN customer AS b ON b.customer_id = a.customer_id 
+                  LEFT JOIN payment_type AS c ON c.payment_type_id = a.payment_type_id
+                  LEFT JOIN product AS d ON d.product_id = a.product_id 
+                  WHERE a.order_id = '" . $id . "'  
+                  ORDER BY a.order_no DESC";
+        $data_order = $this->app_model->get_data_query($query)->row();
+        $data = array(
+            'content'   => 'backend/order/detail',
+            'order'     => $data_order
+        );
+        $this->load->view('backend/layout/app', $data);
+    }
+
     function approve($id)
     {
         $key = array('order_id' => $id);
