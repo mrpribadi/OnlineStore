@@ -23,40 +23,31 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Status</th>
                                 <th>Nama Bank</th>
                                 <th>Nomor Rekening</th>
                                 <th>Nama Pemilik</th>
-                                
+                                <th></th>
+
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             foreach ($bank as $row) {
-                        ?>
-                            <tr id="<?php echo $row->payment_id; ?>">
-                                <td width="8%">
-                                    <!-- <div class="btn-group">
-                                        <button type="button" class="btn btn-sm dropdown-toggle bg-teal" data-toggle="dropdown">
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="<?php echo BASE_URL()."bank/detail/".$row->payment_id; ?>"><i class="fa fa-eye"></i> View</a></li>
-                                            <li><a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
-                                            <li><a href="#" class="delete" id="<?php echo $row->payment_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
-                                        </ul>
-                                    </div> -->
-                                    <a href="<?php echo BASE_URL()."bank/edit/".$row->payment_id; ?>" class="btn btn-sm bg-purple"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                                    <a href="#" id="<?php echo $row->payment_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td><?php echo $row->payment_status; ?></td>
-                                <td><?php echo $row->payment_bank_name; ?></td>
-                                <td><?php echo $row->payment_bank_account_no; ?></td>
-                                <td><?php echo $row->payment_bank_account_name; ?></td>
-                            </tr>
-                        <?php
-                            }  
+                                ?>
+                                <tr id="<?php echo $row->payment_id; ?>">
+
+                                    <td><?php echo $row->payment_status; ?></td>
+                                    <td><?php echo $row->payment_bank_name; ?></td>
+                                    <td><?php echo $row->payment_bank_account_no; ?></td>
+                                    <td><?php echo $row->payment_bank_account_name; ?></td>
+                                    <td width="8%" class="text-center">
+                                        <a href="<?php echo BASE_URL() . "bank/edit/" . $row->payment_id; ?>" class="btn btn-sm bg-purple">Detail Bank</a>
+                                        <!-- <a href="#" id="<?php echo $row->payment_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
+                                    </td>
+                                </tr>
+                            <?php
+                        }
                         ?>
                         </tbody>
                     </table>
@@ -70,10 +61,10 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         var actions = 0;
         var new_row = $("<tr class='search-header'/>");
-        $('.data-table thead th').each(function(i){
+        $('.data-table thead th').each(function(i) {
             var title = $(this).text();
             var new_th = $('<th style ="' + $(this).attr('style') + '"/>');
 
@@ -93,66 +84,66 @@
         }
 
         var table = $('.data-table').DataTable({
-            paging:true,
-            ordering:true,
-            seraching:true,
-            info:true,
-            scrollX:true,
-            "order":[[ actions, "asc" ]],
-            "columnDefs": [
-                { "orderable" : orderable, "targets" : 0 }
-            ]
+            paging: true,
+            ordering: true,
+            seraching: true,
+            info: true,
+            scrollX: true,
+            "order": [
+                [actions, "asc"]
+            ],
+            "columnDefs": [{
+                "orderable": orderable,
+                "targets": 0
+            }]
         });
         $('.dataTables_filter').hide();
-        $('.dataTables_scrollHeadInner').css('width','100%');
-        $('.data-table').css('width','100%');
+        $('.dataTables_scrollHeadInner').css('width', '100%');
+        $('.data-table').css('width', '100%');
 
-        $(table.table().container()).on('keyup', 'thead input', function(){
+        $(table.table().container()).on('keyup', 'thead input', function() {
             table
-            .column($(this).data('index'))
-            .search(this.value)
-            .draw();
+                .column($(this).data('index'))
+                .search(this.value)
+                .draw();
         });
     });
 </script>
 
 <script type="text/javascript">
-    $(".delete").click(function(){
+    $(".delete").click(function() {
         var id = $(this).attr("id");
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this bank!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if(willDelete) {
-                $.ajax({
-                    url: '<?php BASE_URL()?>bank/delete/'+id,
-                    type: 'DELETE',
-                    dataType: 'json',
-                    error: function(){
-                        alert('Something is wrong');
-                    },
-                    success: function(data) {
-                        if(data.status == 'success'){
-                            $("#"+id).remove();
-                            swal("Deleted!", "Your bank has been deleted.", "success");
-                            
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this bank!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '<?php BASE_URL() ?>bank/delete/' + id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        error: function() {
+                            alert('Something is wrong');
+                        },
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                $("#" + id).remove();
+                                swal("Deleted!", "Your bank has been deleted.", "success");
+
+                            } else {
+                                swal("Cancelled", "Error delete data", "error");
+                            }
+
                         }
-                        else {
-                            swal("Cancelled", "Error delete data", "error");
-                        }
-                        
-                    }
-                });
-            }
-            else {
-                swal("Cancelled", "Your bank is safe :)", "error");
-            }
-        });
-     
+                    });
+                } else {
+                    swal("Cancelled", "Your bank is safe :)", "error");
+                }
+            });
+
     });
-    
 </script>

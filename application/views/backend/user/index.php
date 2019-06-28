@@ -23,30 +23,29 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Status</th>
                                 <th>Email</th>
                                 <th>Nama Lengkap</th>
                                 <th>Level</th>
-                                
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             foreach ($user as $row) {
-                        ?>
-                            <tr id="<?php echo $row->admin_id; ?>">
-                                <td width="8%">
-                                    <a href="<?php echo BASE_URL()."user/edit/".$row->admin_id; ?>" class="btn btn-sm bg-purple"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                                    <a href="#" id="<?php echo $row->admin_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td><?php echo $row->admin_status; ?></td>
-                                <td><?php echo $row->admin_email; ?></td>
-                                <td><?php echo $row->admin_full_name; ?></td>
-                                <td><?php echo $row->admin_level; ?></td>
-                            </tr>
-                        <?php
-                            }  
+                                ?>
+                                <tr id="<?php echo $row->admin_id; ?>">
+                                    <td><?php echo $row->admin_status; ?></td>
+                                    <td><?php echo $row->admin_email; ?></td>
+                                    <td><?php echo $row->admin_full_name; ?></td>
+                                    <td><?php echo $row->admin_level; ?></td>
+                                    <td width="8%">
+                                        <a href="<?php echo BASE_URL() . "user/edit/" . $row->admin_id; ?>" class="btn btn-sm bg-purple">Detail Admin</a>&nbsp;&nbsp;
+                                        <!-- <a href="#" id="<?php echo $row->admin_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
+                                    </td>
+                                </tr>
+                            <?php
+                        }
                         ?>
                         </tbody>
                     </table>
@@ -60,10 +59,10 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         var actions = 0;
         var new_row = $("<tr class='search-header'/>");
-        $('.data-table thead th').each(function(i){
+        $('.data-table thead th').each(function(i) {
             var title = $(this).text();
             var new_th = $('<th style ="' + $(this).attr('style') + '"/>');
 
@@ -83,65 +82,65 @@
         }
 
         var table = $('.data-table').DataTable({
-            paging:true,
-            ordering:true,
-            seraching:true,
-            info:true,
-            scrollX:true,
-            "order":[[ actions, "asc" ]],
-            "columnDefs": [
-                { "orderable" : orderable, "targets" : 0 }
-            ]
+            paging: true,
+            ordering: true,
+            seraching: true,
+            info: true,
+            scrollX: true,
+            "order": [
+                [actions, "asc"]
+            ],
+            "columnDefs": [{
+                "orderable": orderable,
+                "targets": 0
+            }]
         });
         $('.dataTables_filter').hide();
-        $('.dataTables_scrollHeadInner').css('width','100%');
-        $('.data-table').css('width','100%');
+        $('.dataTables_scrollHeadInner').css('width', '100%');
+        $('.data-table').css('width', '100%');
 
-        $(table.table().container()).on('keyup', 'thead input', function(){
+        $(table.table().container()).on('keyup', 'thead input', function() {
             table
-            .column($(this).data('index'))
-            .search(this.value)
-            .draw();
+                .column($(this).data('index'))
+                .search(this.value)
+                .draw();
         });
     });
 </script>
 
 <script type="text/javascript">
-    $(".delete").click(function(){
+    $(".delete").click(function() {
         var id = $(this).attr("id");
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this user!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if(willDelete) {
-                $.ajax({
-                    url: '<?php BASE_URL()?>user/delete/'+id,
-                    type: 'DELETE',
-                    dataType: 'json',
-                    error: function(){
-                        alert('Something is wrong');
-                    },
-                    success: function(data) {
-                        if(data.status == 'success'){
-                            $("#"+id).remove();
-                            swal("Deleted!", "Your user has been deleted.", "success");
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this user!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '<?php BASE_URL() ?>user/delete/' + id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        error: function() {
+                            alert('Something is wrong');
+                        },
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                $("#" + id).remove();
+                                swal("Deleted!", "Your user has been deleted.", "success");
+                            } else {
+                                swal("Cancelled", "Error delete data", "error");
+                            }
+
                         }
-                        else {
-                            swal("Cancelled", "Error delete data", "error");
-                        }
-                        
-                    }
-                });
-            }
-            else {
-                swal("Cancelled", "Your user is safe :)", "error");
-            }
-        });
-     
+                    });
+                } else {
+                    swal("Cancelled", "Your user is safe :)", "error");
+                }
+            });
+
     });
-    
 </script>

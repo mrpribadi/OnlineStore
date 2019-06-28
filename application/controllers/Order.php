@@ -1,21 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Order extends CI_Controller
 {
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->library('session');
-		$s_userid   = $this->session->userdata('id');
-        if(empty($s_userid)){
-			echo '<script>
+        $s_userid   = $this->session->userdata('id');
+        if (empty($s_userid)) {
+            echo '<script>
 					alert("You dont have Login Session, please login first.");
-					window.location.href="'.base_url().'auth";
-				 </script>';        
-		}
+					window.location.href="' . base_url() . 'auth";
+				 </script>';
+        }
     }
 
-    function index() {
+    function index()
+    {
         $query = "SELECT a.*, b.customer_nama, b.customer_phone, c.payment_type_nama, d.product_name 
                   FROM order_header AS a 
                   LEFT JOIN customer AS b ON b.customer_id = a.customer_id 
@@ -30,7 +32,8 @@ class Order extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function approve($id) {
+    function approve($id)
+    {
         $key = array('order_id' => $id);
 
         $data = array('order_status' => '1');
@@ -43,7 +46,8 @@ class Order extends CI_Controller
         }
     }
 
-    function reject($id) {
+    function reject($id)
+    {
         $key = array('order_id' => $id);
 
         $data = array('order_status' => '2');
@@ -55,5 +59,4 @@ class Order extends CI_Controller
             echo json_encode(array('status' => 'failed'));
         }
     }
-    
 }

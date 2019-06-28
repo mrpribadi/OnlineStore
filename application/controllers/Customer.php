@@ -1,21 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Customer extends CI_Controller
 {
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->library('session');
-		$s_userid   = $this->session->userdata('id');
-        if(empty($s_userid)){
-			echo '<script>
+        $s_userid   = $this->session->userdata('id');
+        if (empty($s_userid)) {
+            echo '<script>
 					alert("You dont have Login Session, please login first.");
-					window.location.href="'.base_url().'auth";
-				 </script>';        
-		}
+					window.location.href="' . base_url() . 'auth";
+				 </script>';
+        }
     }
 
-    function index() {
+    function index()
+    {
         $query = "SELECT *
                   FROM customer  
                   ORDER BY customer_id";
@@ -27,21 +29,24 @@ class Customer extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function detail() {
+    function detail()
+    {
         $data = array(
             'content'   => 'backend/customer/detail'
         );
         $this->load->view('backend/layout/app', $data);
     }
 
-    function create() {
+    function create()
+    {
         $data = array(
             'content'       => 'backend/customer/create'
         );
         $this->load->view('backend/layout/app', $data);
     }
 
-    function edit() {
+    function edit()
+    {
         $id = $this->uri->segment(3);
         $key = array('customer_id' => $id);
         $data_row    = $this->app_model->get_data("customer", $key, "customer_id", "ASC")->row();
@@ -52,8 +57,9 @@ class Customer extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function delete($id) {
-        // $id = $this->uri->segment(3);
+    function delete()
+    {
+        $id = $this->input->post('id');
         $key = array('customer_id' => $id);
 
         $delete = $this->app_model->delete_data("customer", $key);
@@ -62,10 +68,10 @@ class Customer extends CI_Controller
         } else {
             echo json_encode(array('status' => 'failed'));
         }
-        
     }
 
-    function post() {
+    function post()
+    {
         $nama = $this->input->post('nama');
         $email = $this->input->post('email');
         $phone = $this->input->post('phone');
@@ -76,12 +82,10 @@ class Customer extends CI_Controller
         $status = $this->input->post('status');
 
         if ($id == "") {
-            $get_email_exist = $this->app_model->get_data_query("SELECT customer_email FROM customer WHERE customer_email = '".$email."'");
+            $get_email_exist = $this->app_model->get_data_query("SELECT customer_email FROM customer WHERE customer_email = '" . $email . "'");
             if ($get_email_exist->num_rows() > 0) {
                 echo json_encode(array('status' => 'failed', 'message' => 'Email sudah terdaftar..!'));
-            }
-            else 
-            {
+            } else {
                 // NEW CODE
                 $get_last_id = "SELECT MAX(customer_code) AS last_code FROM customer";
                 $query_last = $this->app_model->get_data_query($get_last_id)->row();
@@ -89,22 +93,19 @@ class Customer extends CI_Controller
                     $new_code = "CUST00001";
                 } else {
                     $nourut   = substr($query_last->last_code, 4, 9);
-                    $inc      = (int) $nourut;
+                    $inc      = (int)$nourut;
                     $inc      = $inc + 1;
-                    $new_code = "CUST".sprintf("%05s", $inc); 
+                    $new_code = "CUST" . sprintf("%05s", $inc);
                 }
 
                 // GET IP ADDRESS
                 if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
                 {
                     $ip = $_SERVER['HTTP_CLIENT_IP'];
-                }
-                elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+                } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
                 {
                     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                }
-                else
-                {
+                } else {
                     $ip = $_SERVER['REMOTE_ADDR'];
                 }
 
@@ -117,17 +118,16 @@ class Customer extends CI_Controller
                     'customer_password'         => $password,
                     'customer_code'             => $new_code,
                     'customer_ip_address'       => $ip,
-                    'customer_registration_date'=> date('Y-m-d H:i:s')
+                    'customer_registration_date' => date('Y-m-d H:i:s')
                 );
                 $save = $this->app_model->insert_data('customer', $data_insert);
-    
+
                 if ($save) {
                     echo json_encode(array('status' => 'success'));
                 } else {
                     echo json_encode(array('status' => 'failed', 'message' => 'Gagal simpan data..!'));
                 }
             }
-        
         } else {
             $key = array('customer_id' => $id);
             if ($password == '') {
@@ -146,8 +146,8 @@ class Customer extends CI_Controller
                     'customer_password'         => $password,
                 );
             }
-            
-            
+
+
             $update = $this->app_model->update_data('customer', $data_update, $key);
 
             if ($update) {
@@ -157,5 +157,4 @@ class Customer extends CI_Controller
             }
         }
     }
-    
 }

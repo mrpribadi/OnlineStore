@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Kategori <br>
-        <small>Kategori Produk</small>
+        Menu <br>
+        <small>Menu Produk</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
@@ -23,38 +23,27 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Status</th>
-                                <th>Nama Kategori</th>
+                                <th>Nama Menu</th>
                                 <th>Parent</th>
-                                
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             foreach ($kategori as $row) {
-                        ?>
-                            <tr id="<?php echo $row->product_category_id; ?>">
-                                <td width="8%">
-                                    <!-- <div class="btn-group">
-                                        <button type="button" class="btn btn-sm dropdown-toggle bg-teal" data-toggle="dropdown">
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="<?php echo BASE_URL()."kategori/detail/".$row->product_category_id; ?>"><i class="fa fa-eye"></i> View</a></li>
-                                            <li><a href="<?php echo BASE_URL()."kategori/edit/".$row->product_category_id; ?>"><i class="fa fa-pencil"></i> Edit</a></li>
-                                            <li><a href="#" class="delete" id="<?php echo $row->product_category_id; ?>"><i class="fa fa-trash"></i> Delete</a></li>
-                                        </ul>
-                                    </div> -->
-                                    <a href="<?php echo BASE_URL()."kategori/edit/".$row->product_category_id; ?>" class="btn btn-sm bg-purple"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                                    <a href="#" id="<?php echo $row->product_category_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a>
-                                </td>
-                                <td><?php echo $row->product_category_status; ?></td>
-                                <td><?php echo $row->product_category_name; ?></td>
-                                <td><?php echo $row->parent_name; ?></td>
-                            </tr>
-                        <?php
-                            }  
+                                ?>
+                                <tr id="<?php echo $row->product_category_id; ?>">
+                                    <td><?php echo $row->product_category_status; ?></td>
+                                    <td><?php echo $row->product_category_name; ?></td>
+                                    <td><?php echo $row->parent_name; ?></td>
+                                    <td width="8%" class="text-center">
+                                        <a href="<?php echo BASE_URL() . "kategori/edit/" . $row->product_category_id; ?>" class="btn btn-sm bg-purple">Detail Menu</a>
+                                        <!-- <a href="#" id="<?php echo $row->product_category_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
+                                    </td>
+                                </tr>
+                            <?php
+                        }
                         ?>
                         </tbody>
                     </table>
@@ -68,10 +57,10 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         var actions = 0;
         var new_row = $("<tr class='search-header'/>");
-        $('.data-table thead th').each(function(i){
+        $('.data-table thead th').each(function(i) {
             var title = $(this).text();
             var new_th = $('<th style ="' + $(this).attr('style') + '"/>');
 
@@ -91,68 +80,69 @@
         }
 
         var table = $('.data-table').DataTable({
-            paging:true,
-            ordering:true,
-            seraching:true,
-            info:true,
-            scrollX:true,
-            "order":[[ actions, "asc" ]],
-            "columnDefs": [
-                { "orderable" : orderable, "targets" : 0 }
-            ]
+            paging: true,
+            ordering: true,
+            seraching: true,
+            info: true,
+            scrollX: true,
+            "order": [
+                [actions, "asc"]
+            ],
+            "columnDefs": [{
+                "orderable": orderable,
+                "targets": 0
+            }]
         });
         $('.dataTables_filter').hide();
-        $('.dataTables_scrollHeadInner').css('width','100%');
-        $('.data-table').css('width','100%');
+        $('.dataTables_scrollHeadInner').css('width', '100%');
+        $('.data-table').css('width', '100%');
 
-        $(table.table().container()).on('keyup', 'thead input', function(){
+        $(table.table().container()).on('keyup', 'thead input', function() {
             table
-            .column($(this).data('index'))
-            .search(this.value)
-            .draw();
+                .column($(this).data('index'))
+                .search(this.value)
+                .draw();
         });
     });
 </script>
 
 <script type="text/javascript">
-    $(".delete").click(function(){
+    $(".delete").click(function() {
         var id = $(this).attr("id");
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this category!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if(willDelete) {
-                $.ajax({
-                    url: '<?php BASE_URL()?>kategori/delete/'+id,
-                    type: 'DELETE',
-                    dataType: 'json',
-                    error: function(){
-                        alert('Something is wrong');
-                    },
-                    success: function(data) {
-                        if(data.status == 'success'){
-                            $("#"+id).remove();
-                            swal("Deleted!", "Your category has been deleted.", "success");
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this category!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '<?php BASE_URL() ?>kategori/delete/' + id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        error: function() {
+                            alert('Something is wrong');
+                        },
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                $("#" + id).remove();
+                                swal("Deleted!", "Your category has been deleted.", "success");
+                            } else {
+                                swal("Cancelled", "Error delete data", "error");
+                            }
+
                         }
-                        else {
-                            swal("Cancelled", "Error delete data", "error");
-                        }
-                        
-                    }
-                });
-            }
-            else {
-                swal("Cancelled", "Your category is safe :)", "error");
-            }
-        });
+                    });
+                } else {
+                    swal("Cancelled", "Your category is safe :)", "error");
+                }
+            });
         // function(isConfirm) {
         //     if(isConfirm) {
         //         $.ajax({
-        //             url: '<?php BASE_URL()?>kategori/delete'+id,
+        //             url: '<?php BASE_URL() ?>kategori/delete'+id,
         //             type: 'DELETE',
         //             error: function(){
         //                 alert('Something is wrong');
@@ -175,37 +165,36 @@
         // } else {
         //     swal("Your imaginary file is safe!");
         // }
-    //     var id = $(this).parents("tr").attr("id");
-    
-    //    swal({
-    //     title: "Are you sure?",
-    //     text: "You will not be able to recover this imaginary file!",
-    //     type: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonClass: "btn-danger",
-    //     confirmButtonText: "Yes, delete it!",
-    //     cancelButtonText: "No, cancel plx!",
-    //     closeOnConfirm: false,
-    //     closeOnCancel: false
-    //   },
-    //   function(isConfirm) {
-    //     if (isConfirm) {
-    //       $.ajax({
-    //          url: '/item-list/'+id,
-    //          type: 'DELETE',
-    //          error: function() {
-    //             alert('Something is wrong');
-    //          },
-    //          success: function(data) {
-    //               $("#"+id).remove();
-    //               swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    //          }
-    //       });
-    //     } else {
-    //       swal("Cancelled", "Your imaginary file is safe :)", "error");
-    //     }
-    //   });
-     
+        //     var id = $(this).parents("tr").attr("id");
+
+        //    swal({
+        //     title: "Are you sure?",
+        //     text: "You will not be able to recover this imaginary file!",
+        //     type: "warning",
+        //     showCancelButton: true,
+        //     confirmButtonClass: "btn-danger",
+        //     confirmButtonText: "Yes, delete it!",
+        //     cancelButtonText: "No, cancel plx!",
+        //     closeOnConfirm: false,
+        //     closeOnCancel: false
+        //   },
+        //   function(isConfirm) {
+        //     if (isConfirm) {
+        //       $.ajax({
+        //          url: '/item-list/'+id,
+        //          type: 'DELETE',
+        //          error: function() {
+        //             alert('Something is wrong');
+        //          },
+        //          success: function(data) {
+        //               $("#"+id).remove();
+        //               swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        //          }
+        //       });
+        //     } else {
+        //       swal("Cancelled", "Your imaginary file is safe :)", "error");
+        //     }
+        //   });
+
     });
-    
 </script>

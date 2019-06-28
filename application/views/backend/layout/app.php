@@ -109,7 +109,7 @@
 
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="treeview">
+                    <!-- <li class="treeview">
                         <a href="#" class="">
                             <i class="fa fa-cubes"></i> <span>Produk</span>
                             <span class="pull-right-container">
@@ -120,9 +120,10 @@
                             <li class=""><a href="<?php echo BASE_URL('kategori') ?>"> <i class="fa fa-folder"></i> Produk Kategori</a></li>
                             <li class=""><a href="<?php echo BASE_URL('item') ?>"> <i class="fa fa-cube"></i> Produk Item</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
-
+                    <li class=""><a href="<?php echo BASE_URL('kategori') ?>"> <i class="fa fa-folder"></i> Menu</a></li>
+                    <li class=""><a href="<?php echo BASE_URL('item') ?>"> <i class="fa fa-cube"></i> Produk Item</a></li>
                     <li class=""><a href="<?php echo BASE_URL('customer') ?>"> <i class="fa fa-users"></i> Customer</a></li>
                     <li class=""><a href="<?php echo BASE_URL('bank') ?>"> <i class="fa fa-credit-card"></i> Bank</a></li>
                     <li class=""><a href="<?php echo BASE_URL('order') ?>"> <i class="fa fa-shopping-cart"></i> Order</a></li>

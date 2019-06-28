@@ -1,21 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Kategori extends CI_Controller
 {
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->library('session');
-		$s_userid   = $this->session->userdata('id');
-        if(empty($s_userid)){
-			echo '<script>
+        $s_userid   = $this->session->userdata('id');
+        if (empty($s_userid)) {
+            echo '<script>
 					alert("You dont have Login Session, please login first.");
-					window.location.href="'.base_url().'auth";
-				 </script>';        
-		}
+					window.location.href="' . base_url() . 'auth";
+				 </script>';
+        }
     }
 
-    function index() {
+    function index()
+    {
         $query = "SELECT a.*, b.product_category_name AS parent_name FROM product_category AS a 
                   LEFT JOIN product_category AS b ON b.product_category_id = a.product_category_parent ";
         $data_kategory = $this->app_model->get_data_query($query)->result();
@@ -26,14 +28,16 @@ class Kategori extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function detail() {
+    function detail()
+    {
         $data = array(
             'content'   => 'backend/kategori/detail'
         );
         $this->load->view('backend/layout/app', $data);
     }
 
-    function create() {
+    function create()
+    {
         $query = "SELECT product_category_id, product_category_name FROM product_category
                   WHERE product_category_status ='active'";
         $data_parent = $this->app_model->get_data_query($query)->result();
@@ -44,7 +48,8 @@ class Kategori extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function edit() {
+    function edit()
+    {
         $id = $this->uri->segment(3);
         $key = array('product_category_id' => $id);
         $query = "SELECT product_category_id, product_category_name FROM product_category
@@ -59,8 +64,9 @@ class Kategori extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function delete($id) {
-        // $id = $this->uri->segment(3);
+    function delete()
+    {
+        $id = $this->input->post('id');
         $key = array('product_category_id' => $id);
 
         $delete = $this->app_model->delete_data("product_category", $key);
@@ -69,10 +75,10 @@ class Kategori extends CI_Controller
         } else {
             echo json_encode(array('status' => 'failed'));
         }
-        
     }
 
-    function post() {
+    function post()
+    {
         $nama = $this->input->post('nama');
         $parent = $this->input->post('parent');
         $url = $this->input->post('url');
@@ -81,12 +87,10 @@ class Kategori extends CI_Controller
         $status = $this->input->post('status');
 
         if ($id == "") {
-            $get_url_exist = $this->app_model->get_data_query("SELECT product_category_url FROM product_category WHERE product_category_url = '".$url."'");
+            $get_url_exist = $this->app_model->get_data_query("SELECT product_category_url FROM product_category WHERE product_category_url = '" . $url . "'");
             if ($get_url_exist->num_rows() > 0) {
                 echo json_encode(array('status' => 'failed', 'message' => 'Nama kategori sudah ada..!'));
-            }
-            else 
-            {
+            } else {
                 $data_insert = array(
                     'product_category_name'     => $nama,
                     'product_category_url'      => $url,
@@ -96,14 +100,13 @@ class Kategori extends CI_Controller
                     'product_category_status'   => $status
                 );
                 $save = $this->app_model->insert_data('product_category', $data_insert);
-    
+
                 if ($save) {
                     echo json_encode(array('status' => 'success'));
                 } else {
                     echo json_encode(array('status' => 'failed', 'message' => 'Gagal simpan data..!'));
                 }
             }
-        
         } else {
             $key = array('product_category_id' => $id);
             $data_update = array(
@@ -123,5 +126,4 @@ class Kategori extends CI_Controller
             }
         }
     }
-    
 }

@@ -74,7 +74,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i> Booking History</a>
+                                        <a href="<?php echo base_url('home/member') ?>"><i class="fa fa-shopping-cart"></i> Booking History</a>
                                     </li>
                                     <li>
                                         <a href="<?php echo base_url('logout') ?>"><i class="fa fa-share"></i> Logout</a>

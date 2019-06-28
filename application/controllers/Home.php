@@ -120,6 +120,78 @@ class Home extends CI_Controller
         $this->load->view('frontend/layout/app', $data);
     }
 
+    function member()
+    {
+        if ($this->session->userdata('id') == '') {
+            redirect('home');
+        }
+        $id = $this->session->userdata('id');
+        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
+        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $data_history = $this->app_model->get_data_query("SELECT a.*, c.product_name FROM order_header AS a
+                                                            INNER JOIN customer AS b ON b.customer_id = a.customer_id
+                                                            INNER JOIN product AS c ON c.product_id = a.product_id
+                                                            WHERE a.customer_id = '" . $id . "'")->result();
+        $data = array(
+            'content' => 'frontend/history',
+            'menu'    => $menu,
+            'submenu' => $submenu,
+            'history' => $data_history
+        );
+        $this->load->view('frontend/layout/app', $data);
+    }
+
+    function confirm()
+    {
+        if ($this->session->userdata('id') == '') {
+            redirect('home');
+        }
+        $id = $this->uri->segment(3);
+        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
+        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $where = array('order_id' => $id);
+        $order = $this->app_model->get_data('order_header', $where, 'order_id', 'ASC')->row();
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('bank_name', 'Bank name', 'trim|required');
+        $this->form_validation->set_rules('bank_account_no', 'Bank account', 'trim|required');
+        $this->form_validation->set_rules('bank_account_name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('amount', 'Amount', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'content' => 'frontend/confirm',
+                'menu'    => $menu,
+                'submenu' => $submenu,
+                'order'   => $order
+            );
+        } else {
+            $bank_name = $this->input->post('bank_name');
+            $bank_account_no = $this->input->post('bank_account_no');
+            $bank_account_name = $this->input->post('bank_account_name');
+            $amount = $this->input->post('amount');
+            $notes = $this->input->post('notes');
+            $order_id = $this->input->post('idorder');
+            $where = array('order_id' => $order_id);
+            $data_update = array(
+                'confirmation_status' => '1',
+                'confirmation_date' => date("Y-m-d H:i:s"),
+                'confirmation_notes' => $notes,
+                'confirmation_bank_from' => $bank_name,
+                'confirmation_bank_from_account_no' => $bank_account_no,
+                'confirmation_bank_from_account_name' => $bank_account_name,
+                'confirmation_bank_from_amount' => $amount
+
+            );
+            $do_confirm = $this->app_model->update_data('order_header', $data_update, $where);
+            if ($do_confirm) {
+                redirect('home/member');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger">Konfirmasi gagal</div>');
+            }
+        }
+        $this->load->view('frontend/layout/app', $data);
+    }
+
     function login()
     {
         if ($this->session->userdata('id') != '') {
@@ -169,12 +241,6 @@ class Home extends CI_Controller
         $this->load->view('frontend/layout/app', $data);
     }
 
-    function logout()
-    {
-        $this->session->sess_destroy();
-        redirect(base_url('home'));
-    }
-
     function register()
     {
         if ($this->session->userdata('id') != '') {
@@ -189,5 +255,11 @@ class Home extends CI_Controller
         );
 
         $this->load->view('frontend/layout/app', $data);
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url('home'));
     }
 }

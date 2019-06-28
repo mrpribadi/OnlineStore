@@ -1,21 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Controller
 {
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->library('session');
-		$s_userid   = $this->session->userdata('id');
-        if(empty($s_userid)){
-			echo '<script>
+        $s_userid   = $this->session->userdata('id');
+        if (empty($s_userid)) {
+            echo '<script>
 					alert("You dont have Login Session, please login first.");
-					window.location.href="'.base_url().'auth";
-				 </script>';        
-		}
+					window.location.href="' . base_url() . 'auth";
+				 </script>';
+        }
     }
 
-    function index() {
+    function index()
+    {
         $query = "SELECT * 
                   FROM user_admin  
                   ORDER BY admin_email";
@@ -27,21 +29,24 @@ class User extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function detail() {
+    function detail()
+    {
         $data = array(
             'content'   => 'backend/user/detail'
         );
         $this->load->view('backend/layout/app', $data);
     }
 
-    function create() {
+    function create()
+    {
         $data = array(
             'content'   => 'backend/user/create',
         );
         $this->load->view('backend/layout/app', $data);
     }
 
-    function edit() {
+    function edit()
+    {
         $id = $this->uri->segment(3);
         $key = array('admin_id' => $id);
         $data_row    = $this->app_model->get_data("user_admin", $key, "admin_id", "ASC")->row();
@@ -52,8 +57,9 @@ class User extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function delete($id) {
-        // $id = $this->uri->segment(3);
+    function delete()
+    {
+        $id = $this->input->post('id');
         $key = array('admin_id' => $id);
 
         $delete = $this->app_model->delete_data("user_admin", $key);
@@ -62,10 +68,10 @@ class User extends CI_Controller
         } else {
             echo json_encode(array('status' => 'failed'));
         }
-        
     }
 
-    function post() {
+    function post()
+    {
         $nama = $this->input->post('nama');
         $email = $this->input->post('email');
         $level = $this->input->post('level');
@@ -75,12 +81,10 @@ class User extends CI_Controller
         $status = $this->input->post('status');
 
         if ($id == "") {
-            $get_email_exist = $this->app_model->get_data_query("SELECT admin_email FROM user_admin WHERE admin_email = '".$email."'");
+            $get_email_exist = $this->app_model->get_data_query("SELECT admin_email FROM user_admin WHERE admin_email = '" . $email . "'");
             if ($get_email_exist->num_rows() > 0) {
                 echo json_encode(array('status' => 'failed', 'message' => 'Email sudah terdaftar..!'));
-            }
-            else 
-            {
+            } else {
                 $data_insert = array(
                     'admin_full_name'   => $nama,
                     'admin_email'       => $email,
@@ -91,14 +95,13 @@ class User extends CI_Controller
                     'admin_password'    => $password
                 );
                 $save = $this->app_model->insert_data('user_admin', $data_insert);
-    
+
                 if ($save) {
                     echo json_encode(array('status' => 'success'));
                 } else {
                     echo json_encode(array('status' => 'failed', 'message' => 'Gagal simpan data..!'));
                 }
             }
-        
         } else {
             $key = array('admin_id' => $id);
             if ($password == '') {
@@ -121,7 +124,7 @@ class User extends CI_Controller
                     'admin_password'    => $password
                 );
             }
-            
+
             $update = $this->app_model->update_data('user_admin', $data_update, $key);
 
             if ($update) {
@@ -131,5 +134,4 @@ class User extends CI_Controller
             }
         }
     }
-    
 }
