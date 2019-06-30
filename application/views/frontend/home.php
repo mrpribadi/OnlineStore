@@ -1,10 +1,10 @@
 <div class="slideshow">
     <div id="slideshow1">
         <ul class="allinone_bannerRotator_list">
-            <li data-text-id="#content_ss_1"><img src="assets/themes/frontend/zorka/assets/images/slideshoww1.jpg" alt="img" /></li> 
+            <li data-text-id="#content_ss_1"><img src="assets/themes/frontend/zorka/assets/images/slideshoww1.jpg" alt="img" /></li>
             <li data-text-id="#content_ss_2"><img src="assets/themes/frontend/zorka/assets/images/slideshoww2.jpg" alt="img" /></li>
             <li data-text-id="#content_ss_3"><img src="assets/themes/frontend/zorka/assets/images/slideshoww3.jpg" alt="img" /></li>
-            
+
         </ul>
         <div id="content_ss_1" class="allinone_bannerRotator_texts">
             <div class="content-slideshow" data-initial-left="50" data-initial-top="280" data-final-left="0" data-final-top="280" data-duration="0.7" data-fade-start="0" data-delay="0.2">

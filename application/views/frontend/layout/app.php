@@ -139,8 +139,8 @@
                         <li class="hidden-xs">
                             <div class="wrap-search">
                                 <form action="#" class="search-form">
-                                    <input type="text" placeholder="Search.." />
-                                    <button type="submit"><i class="pe-7s-search"></i></button>
+                                    <input type="text" placeholder="(021) 8884885875" value="(021) 8884885875" readonly />
+                                    <button type="submit"><i class="pe-7s-phone"></i></button>
                                 </form>
                             </div>
                             <!-- /.search-form -->
@@ -188,7 +188,7 @@
             </div>
             <div class="bottom-footer">
                 <div class="copyright">
-                    ©COPYRIGHT 2017-2018.BELIKADO.CO.ID. ALL RIGHTS RESERVED.
+                    ©COPYRIGHT <?php echo date("Y") ?>.
                 </div>
                 <!-- /.copyright -->
             </div>
