@@ -1,4 +1,4 @@
-<!-- <div class="slideshow">
+<div class="slideshow">
     <div id="slideshow1">
         <ul class="allinone_bannerRotator_list">
             <li data-text-id="#content_ss_1"><img src="assets/themes/frontend/zorka/assets/images/slideshoww1.jpg" alt="img" /></li> 
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- /.slideshow -->
 
 <!-- 
