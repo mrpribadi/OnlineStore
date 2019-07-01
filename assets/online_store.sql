@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2019-07-01 16:33:41
+Date: 2019-07-01 16:52:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -73,6 +73,24 @@ CREATE TABLE `order_header` (
 
 -- ----------------------------
 -- Records of order_header
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for outlet
+-- ----------------------------
+DROP TABLE IF EXISTS `outlet`;
+CREATE TABLE `outlet` (
+  `outlet_id` int(11) NOT NULL AUTO_INCREMENT,
+  `outlet_name` varchar(50) DEFAULT NULL,
+  `outlet_address` varchar(100) DEFAULT NULL,
+  `longitude` varchar(20) DEFAULT NULL,
+  `latitude` varchar(20) DEFAULT NULL,
+  `status` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`outlet_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of outlet
 -- ----------------------------
 
 -- ----------------------------
