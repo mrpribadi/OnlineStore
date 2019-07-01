@@ -260,22 +260,28 @@ class Home extends CI_Controller
             $amount = $this->input->post('amount');
             $notes = $this->input->post('notes');
             $order_id = $this->input->post('idorder');
-            $where = array('order_id' => $order_id);
-            $data_update = array(
-                'confirmation_status' => '1',
-                'confirmation_date' => date("Y-m-d H:i:s"),
-                'confirmation_notes' => $notes,
-                'confirmation_bank_from' => $bank_name,
-                'confirmation_bank_from_account_no' => $bank_account_no,
-                'confirmation_bank_from_account_name' => $bank_account_name,
-                'confirmation_bank_from_amount' => $amount
+            $files = $_FILES;
+            if ($files['foto']['error'] == '0') {
+                $img_name = $order_id . "_" . $files['foto']['name'];
+                move_uploaded_file($files['foto']['tmp_name'], realpath('assets/images') . '/' . $img_name);
+                $where = array('order_id' => $order_id);
+                $data_update = array(
+                    'confirmation_status' => '1',
+                    'confirmation_date' => date("Y-m-d H:i:s"),
+                    'confirmation_notes' => $notes,
+                    'confirmation_bank_from' => $bank_name,
+                    'confirmation_bank_from_account_no' => $bank_account_no,
+                    'confirmation_bank_from_account_name' => $bank_account_name,
+                    'confirmation_bank_from_amount' => $amount,
+                    'confirmation_bank_from_image' => $img_name
 
-            );
-            $do_confirm = $this->app_model->update_data('order_header', $data_update, $where);
-            if ($do_confirm) {
-                redirect('home/member');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger">Konfirmasi gagal</div>');
+                );
+                $do_confirm = $this->app_model->update_data('order_header', $data_update, $where);
+                if ($do_confirm) {
+                    redirect('home/member');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger">Konfirmasi gagal</div>');
+                }
             }
         }
         $this->load->view('frontend/layout/app', $data);

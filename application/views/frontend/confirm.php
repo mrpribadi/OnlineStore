@@ -18,6 +18,13 @@
                     <?php echo  form_error('amount', '<small class="text-danger">', '</small>'); ?>
                     <label for="notes">NOTES</label>
                     <textarea class="input-form" name="notes" id="notes" rows="30"></textarea>
+                    <div class="form-group">
+                        <label for="foto" class="col-sm-2 control-label">Foto</label>
+
+                        <div class="col-sm-4 col-sm-4">
+                            <input id="foto" type="file" name="foto" required>
+                        </div>
+                    </div>
                     <input type="hidden" name="idorder" id="idorder" value="<?php echo $order->order_id; ?>">
 
                     <button class="submit-btn" type="submit">CONFIRM</button>
