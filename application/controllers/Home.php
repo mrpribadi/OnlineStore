@@ -79,10 +79,16 @@ class Home extends CI_Controller
                 );
                 break;
             case 'about':
+                $dokter = $this->app_model->get_data_query("SELECT * FROM user_admin WHERE admin_level = 'dokter' AND admin_status = 'active' ")->result();
+                $beauty = $this->app_model->get_data_query("SELECT * FROM user_admin WHERE admin_level = 'beautician' AND admin_status = 'active' ")->result();
+                $kasir = $this->app_model->get_data_query("SELECT * FROM user_admin WHERE admin_level = 'kasir' AND admin_status = 'active' ")->result();
                 $data = array(
                     'content' => 'frontend/about',
                     'menu'    => $menu,
-                    'submenu' => $submenu
+                    'submenu' => $submenu,
+                    'dokter'  => $dokter,
+                    'beauty'  => $beauty,
+                    'kasir'   => $kasir
                 );
                 break;
             case 'outlet':
