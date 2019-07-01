@@ -41,8 +41,10 @@
                             foreach ($order as $row) {
                                 if ($row->order_status == '0') {
                                     $status = '<span class="text-danger">Belum disetujui</span>';
-                                } else {
+                                } else if ($row->order_status == '1') {
                                     $status = '<span class="text-success">Sudah disetujui</span>';
+                                } else {
+                                    $status = '<span class="text-warning">Ditolak</span>';
                                 }
 
                                 if ($row->confirmation_status == '') {
@@ -64,14 +66,14 @@
                                         <a href="<?php echo BASE_URL() . "order/detail/" . $row->order_id; ?>" class="btn btn-sm bg-purple" alt="Lihat Order">Detail Booking Order</a>
                                         <!-- <a href="<?php echo BASE_URL() . "order/approve/" . $row->order_id; ?>" class="btn btn-sm bg-green"><i class="fa fa-check"></i></a>&nbsp;&nbsp; -->
                                         <!-- <?php if ($row->confirmation_status == '1' && $row->order_status == '0') { ?>
-                                                                            <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
-                                                        <?php } ?>
-                                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a> -->
+                                                                                                                                            <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
+                                                                                        <?php } ?>
+                                                                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

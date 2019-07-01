@@ -89,11 +89,42 @@ class Item extends CI_Controller
         $url = $this->input->post('url');
         $id = $this->input->post('id');
         $harga = $this->input->post('harga');
+        $harga_promo = '0';
         $user = $this->session->userdata('id');
         $status = $this->input->post('status');
+        $promo = $this->input->post('promo');
+        $new = $this->input->post('new');
+        $popular = $this->input->post('popular');
         $files = $_FILES;
 
-        print_r($files);
+        if ($promo == '1') {
+            $value_promo = '1';
+            $date_promo = date("Y-m-d H:i:s");
+            $harga_promo = $this->input->post('harga_promo');
+        } else {
+            $value_promo = '0';
+            $date_promo = '';
+        }
+
+        if ($popular == '1') {
+            $value_popular = '1';
+            $date_popular = date("Y-m-d H:i:s");
+        } else {
+            $value_popular = '0';
+            $date_popular = '';
+        }
+
+        if ($new == '1') {
+            $value_new = '1';
+            $date_new = date("Y-m-d H:i:s");
+        } else {
+            $value_new = '0';
+            $date_new = '';
+        }
+
+        //print_r($files);
+        //print_r($_POST);
+        //die();
 
         if ($id == "") {
             $get_url_exist = $this->app_model->get_data_query("SELECT product_url FROM product WHERE product_url = '" . $url . "'");
@@ -107,7 +138,7 @@ class Item extends CI_Controller
                         $new_code = "PROD0001";
                     } else {
                         $nourut   = substr($query_last->last_code, 4, 8);
-                        $inc      = (int)$nourut;
+                        $inc      = (int) $nourut;
                         $inc      = $inc + 1;
                         $new_code = "PROD" . sprintf("%04s", $inc);
                     }
@@ -119,12 +150,20 @@ class Item extends CI_Controller
                         'product_url'           => $url,
                         'product_category_id'   => $kategori,
                         'product_harga'         => $harga,
+                        'product_harga_promo'   => $harga_promo,
                         'product_deskripsi'     => $deskripsi,
                         'create_by'             => $user,
                         'create_date'           => date('Y-m-d H:i:s'),
                         'product_status'        => $status,
                         'product_image'         => $img_name,
-                        'product_reff_code'     => $new_code
+                        'product_reff_code'     => $new_code,
+                        'product_promo_list'    => $value_promo,
+                        'product_promo_list_date' => $date_promo,
+                        'product_new_in'        => $value_new,
+                        'product_new_in_date'   => $date_new,
+                        'product_most_popular'  => $value_popular,
+                        'product_most_popular_date' => $date_popular
+
                     );
 
                     $save = $this->app_model->insert_data('product', $data_insert);
@@ -142,11 +181,18 @@ class Item extends CI_Controller
                     'product_url'           => $url,
                     'product_category_id'   => $kategori,
                     'product_harga'         => $harga,
+                    'product_harga_promo'   => $harga_promo,
                     'product_deskripsi'     => $deskripsi,
                     'create_by'             => $user,
                     'create_date'           => date('Y-m-d H:i:s'),
                     'product_status'        => $status,
-                    'product_image'         => $img_name
+                    'product_image'         => $img_name,
+                    'product_promo_list'    => $value_promo,
+                    'product_promo_list_date' => $date_promo,
+                    'product_new_in'        => $value_new,
+                    'product_new_in_date'   => $date_new,
+                    'product_most_popular'  => $value_popular,
+                    'product_most_popular_date' => $date_popular
                 );
 
                 $update = $this->app_model->update_data('product', $data_update, $key);
@@ -157,10 +203,17 @@ class Item extends CI_Controller
                     'product_url'           => $url,
                     'product_category_id'   => $kategori,
                     'product_harga'         => $harga,
+                    'product_harga_promo'   => $harga_promo,
                     'product_deskripsi'     => $deskripsi,
                     'update_by'             => $user,
                     'update_date'           => date('Y-m-d H:i:s'),
-                    'product_status'        => $status
+                    'product_status'        => $status,
+                    'product_promo_list'    => $value_promo,
+                    'product_promo_list_date' => $date_promo,
+                    'product_new_in'        => $value_new,
+                    'product_new_in_date'   => $date_new,
+                    'product_most_popular'  => $value_popular,
+                    'product_most_popular_date' => $date_popular
                 );
 
                 $update = $this->app_model->update_data('product', $data_update, $key);

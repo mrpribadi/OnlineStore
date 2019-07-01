@@ -50,8 +50,9 @@ class Order extends CI_Controller
         $this->load->view('backend/layout/app', $data);
     }
 
-    function approve($id)
+    function approve()
     {
+        $id = $this->input->post('id');
         $key = array('order_id' => $id);
 
         $data = array('order_status' => '1');
@@ -64,8 +65,9 @@ class Order extends CI_Controller
         }
     }
 
-    function reject($id)
+    function reject()
     {
+        $id = $this->input->post('id');
         $key = array('order_id' => $id);
 
         $data = array('order_status' => '2');

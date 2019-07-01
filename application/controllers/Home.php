@@ -44,57 +44,140 @@ class Home extends CI_Controller
     function pages()
     {
         $url = $this->uri->segment(2);
-        $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
-        $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
         $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
         $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
 
-        if ($url == 'about') {
-            $data = array(
-                'content' => 'frontend/about',
-                'menu'    => $menu,
-                'submenu' => $submenu
-            );
-        } else if ($url == 'outlet') {
-            $this->load->library('googlemaps');
-            $config = array();
-            $config['center'] = "-6.2449033, 106.9658942";
-            $config['zoom'] = 16;
-            $config['map_height'] = "400px";
-            $this->googlemaps->initialize($config);
+        switch ($url) {
+            case 'treatment':
+                $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
+                $data = array(
+                    'content' => 'frontend/pages',
+                    'menu'    => $menu,
+                    'submenu' => $submenu,
+                    'product' => $list_product
+                );
+                break;
+            case 'produk':
+                $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
+                $data = array(
+                    'content' => 'frontend/pages_produk',
+                    'menu'    => $menu,
+                    'submenu' => $submenu,
+                    'product' => $list_product
+                );
+                break;
+            case 'promo':
+                $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_promo_list = 1 ORDER BY product_promo_list_date DESC")->result();
+                $data = array(
+                    'content' => 'frontend/pages',
+                    'menu'    => $menu,
+                    'submenu' => $submenu,
+                    'product' => $list_product
+                );
+                break;
+            case 'about':
+                $data = array(
+                    'content' => 'frontend/about',
+                    'menu'    => $menu,
+                    'submenu' => $submenu
+                );
+                break;
+            case 'outlet':
+                $this->load->library('googlemaps');
+                $config = array();
+                $config['center'] = "-6.2449033, 106.9658942";
+                $config['zoom'] = 16;
+                $config['map_height'] = "400px";
+                $this->googlemaps->initialize($config);
 
-            $marker = array();
-            $marker['position'] = "-6.242900, 106.965417";
-            $marker['infowindow_content'] = "xxxdahdasdhska";
-            $this->googlemaps->add_marker($marker);
-            $data = array(
-                'content' => 'frontend/outlet',
-                'menu'    => $menu,
-                'submenu' => $submenu,
-                'map'     => $this->googlemaps->create_map()
-            );
-        } else if ($url == 'payment') {
-            $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
-            $data = array(
-                'content' => 'frontend/payment',
-                'menu'    => $menu,
-                'submenu' => $submenu,
-                'payment' => $payment
-            );
-        } else if ($url == 'confirm') {
-            $data = array(
-                'content' => 'frontend/confirm',
-                'menu'    => $menu,
-                'submenu' => $submenu
-            );
-        } else {
-            $data = array(
-                'content' => 'frontend/pages',
-                'menu'    => $menu,
-                'submenu' => $submenu,
-                'product' => $list_product
-            );
+                $marker = array();
+                $marker['position'] = "-6.242900, 106.965417";
+                $marker['infowindow_content'] = "xxxdahdasdhska";
+                $this->googlemaps->add_marker($marker);
+                $data = array(
+                    'content' => 'frontend/outlet',
+                    'menu'    => $menu,
+                    'submenu' => $submenu,
+                    'map'     => $this->googlemaps->create_map()
+                );
+                break;
+            case 'payment':
+                $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
+                $data = array(
+                    'content' => 'frontend/payment',
+                    'menu'    => $menu,
+                    'submenu' => $submenu,
+                    'payment' => $payment
+                );
+                break;
+            case 'confirm':
+                $data = array(
+                    'content' => 'frontend/confirm',
+                    'menu'    => $menu,
+                    'submenu' => $submenu
+                );
+                break;
+
+            default:
+                $data = array(
+                    'content' => 'frontend/home',
+                    'menu'    => $menu,
+                    'submenu' => $submenu,
+                    'product' => $list_product
+                );
+                break;
         }
+        // if ($url == 'about') {
+        //     $data = array(
+        //         'content' => 'frontend/about',
+        //         'menu'    => $menu,
+        //         'submenu' => $submenu
+        //     );
+        // } else if ($url == 'outlet') {
+        //     $this->load->library('googlemaps');
+        //     $config = array();
+        //     $config['center'] = "-6.2449033, 106.9658942";
+        //     $config['zoom'] = 16;
+        //     $config['map_height'] = "400px";
+        //     $this->googlemaps->initialize($config);
+
+        //     $marker = array();
+        //     $marker['position'] = "-6.242900, 106.965417";
+        //     $marker['infowindow_content'] = "xxxdahdasdhska";
+        //     $this->googlemaps->add_marker($marker);
+        //     $data = array(
+        //         'content' => 'frontend/outlet',
+        //         'menu'    => $menu,
+        //         'submenu' => $submenu,
+        //         'map'     => $this->googlemaps->create_map()
+        //     );
+        // } else if ($url == 'payment') {
+        //     $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
+        //     $data = array(
+        //         'content' => 'frontend/payment',
+        //         'menu'    => $menu,
+        //         'submenu' => $submenu,
+        //         'payment' => $payment
+        //     );
+        // } else if ($url == 'confirm') {
+        //     $data = array(
+        //         'content' => 'frontend/confirm',
+        //         'menu'    => $menu,
+        //         'submenu' => $submenu
+        //     );
+        // } else {
+        //     $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
+        //     $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
+        //     $data = array(
+        //         'content' => 'frontend/pages',
+        //         'menu'    => $menu,
+        //         'submenu' => $submenu,
+        //         'product' => $list_product
+        //     );
+        // }
 
         $this->load->view('frontend/layout/app', $data);
     }
@@ -104,7 +187,7 @@ class Home extends CI_Controller
         if ($this->session->userdata('id') == '') {
             redirect('home/login');
         }
-        $url = $this->uri->segment(2);
+        $url = $this->uri->segment(3);
         $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
         $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
         $detail_product = $this->app_model->get_data_query("SELECT a.*, b.product_category_name, b.product_category_url  FROM product a LEFT JOIN product_category b ON b.product_category_id = a.product_category_id WHERE a.product_url = '" . $url . "' ")->row();

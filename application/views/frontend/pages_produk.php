@@ -21,23 +21,9 @@
                                 <a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>" class="details"><i class="pe-7s-search"></i></a>
                             </div>
                             <h4 class="product-name"><a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>"><?php echo $row->product_name; ?></a></h4>
-                            <?php if ($row->product_harga_promo == '') { ?>
-                                <p class="product-price">
-                                    Rp. <?php echo formatUang($row->product_harga); ?>
-                                </p>
-                            <?php } else { ?>
-                                <p class="product-price">
-                                    <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga_promo); ?></span></ins>
-                                    <del><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></del>
-                                </p>
-                            <?php } ?>
-                            <div class="group-buttons">
-                                <a href="<?php echo BASE_URL() ?>home/order/<?php echo $row->product_url; ?>">
-                                    <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
-                                        <i class="pe-7s-cart"></i>
-                                    </button>
-                                </a>
-                            </div>
+                            <p class="product-price">
+                                Rp. <?php echo formatUang($row->product_harga); ?>
+                            </p>
                         </div>
                     </div>
                 <?php endforeach; ?>

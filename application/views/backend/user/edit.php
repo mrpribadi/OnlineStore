@@ -62,10 +62,34 @@
                             <?php
                             if ($row->admin_level == 'admin_super') {
                                 echo '<option value="admin_super" selected>Super Admin</option>
-                                  <option value="admin_web">Admin Web</option>';
+                                      <option value="admin_web">Admin Web</option>
+                                      <option value="beautician">Beautician</option>
+                                      <option value="dokter">Dokter</option>
+                                      <option value="kasir">Kasir</option>';
+                            } else if ($row->admin_level == 'admin_web') {
+                                echo '<option value="admin_super">Super Admin</option>
+                                      <option value="admin_web" selected>Admin Web</option>
+                                      <option value="beautician">Beautician</option>
+                                      <option value="dokter">Dokter</option>
+                                      <option value="kasir">Kasir</option>';
+                            } else if ($row->admin_level == 'beautician') {
+                                echo '<option value="admin_super">Super Admin</option>
+                                      <option value="admin_web">Admin Web</option>
+                                      <option value="beautician" selected>Beautician</option>
+                                      <option value="dokter">Dokter</option>
+                                      <option value="kasir">Kasir</option>';
+                            } else if ($row->admin_level == 'dokter') {
+                                echo '<option value="admin_super">Super Admin</option>
+                                      <option value="admin_web">Admin Web</option>
+                                      <option value="beautician">Beautician</option>
+                                      <option value="dokter" selected>Dokter</option>
+                                      <option value="kasir">Kasir</option>';
                             } else {
                                 echo '<option value="admin_super">Super Admin</option>
-                                  <option value="admin_web" selected>Admin Web</option>';
+                                      <option value="admin_web">Admin Web</option>
+                                      <option value="beautician">Beautician</option>
+                                      <option value="dokter">Dokter</option>
+                                      <option value="kasir" selected>Kasir</option>';
                             }
                             ?>
                         </select>

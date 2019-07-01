@@ -72,6 +72,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="harga_promo" class="col-sm-2 control-label">Harga Promo</label>
+
+                    <div class="col-sm-4 col-sm-4">
+                        <input type="number" class="form-control" name="harga_promo" id="harga_promo" placeholder="Harga Promo" autocomplete="off">
+                        <div id="harga_promo_error"></div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="status" class="col-sm-2 control-label">Status</label>
 
                     <div class="col-sm-4 col-sm-4">
@@ -82,24 +90,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            PROMO
-                        </label>
-                    </div>
+                    <div class="col-sm-4 col-sm-4" style="margin-left:200px">
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            NEW IN
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            POPULAR
-                        </label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="promo" name="promo" value="1">
+                                PROMO
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="new" name="new" value="1">
+                                NEW IN
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="popular" name="popular" value="1">
+                                POPULAR
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">

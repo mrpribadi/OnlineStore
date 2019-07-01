@@ -1,3 +1,22 @@
+<?php
+if ($row->product_promo_list == '1') {
+    $cek_promo = 'checked';
+} else {
+    $cek_promo = '';
+}
+
+if ($row->product_new_in == '1') {
+    $cek_new = 'checked';
+} else {
+    $cek_new = '';
+}
+
+if ($row->product_most_popular == '1') {
+    $cek_popular = 'checked';
+} else {
+    $cek_popular = '';
+}
+?>
 <section class="content-header">
     <div class="content-header-icon">
         <i class="fa fa-list"></i>
@@ -75,6 +94,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="harga_promo" class="col-sm-2 control-label">Harga Promo</label>
+
+                    <div class="col-sm-4 col-sm-4">
+                        <input type="number" class="form-control" name="harga_promo" id="harga_promo" placeholder="Harga Promo" autocomplete="off" value="<?php echo $row->product_harga_promo; ?>">
+                        <div id="harga_promo_error"></div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="status" class="col-sm-2 control-label">Status</label>
 
                     <div class="col-sm-4 col-sm-4">
@@ -89,6 +116,30 @@
                             }
                             ?>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-4" style="margin-left:200px">
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="promo" name="promo" value="1" <?php echo $cek_promo; ?>>
+                                PROMO
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="new" name="new" value="1" <?php echo $cek_new; ?>>
+                                NEW IN
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="popular" name="popular" value="1" <?php echo $cek_popular; ?>>
+                                POPULAR
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">

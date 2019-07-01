@@ -8,7 +8,7 @@
                             <div id="product-showcase">
                                 <div class="gallery">
                                     <div class="full">
-                                        <img src="<?php echo BASE_URL();?>assets/images/<?php echo $product->product_image; ?>" />
+                                        <img src="<?php echo BASE_URL(); ?>assets/images/<?php echo $product->product_image; ?>" />
                                         <a href="#" class="details"><i class="pe-7s-search"></i></a>
                                     </div>
                                     <!-- <div class="previews">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-6">
                         <nav class="breadcrumb">
-                            <a href="<?php echo BASE_URL(); ?>">HOME</a> <i class="fa fa-angle-right"></i> <a href="<?php echo BASE_URL().'pages/'.$product->product_category_url; ?>"><?php echo strtoupper($product->product_category_name); ?></a>
+                            <a href="<?php echo BASE_URL(); ?>">HOME</a> <i class="fa fa-angle-right"></i> <a href="<?php echo BASE_URL() . 'pages/' . $product->product_category_url; ?>"><?php echo strtoupper($product->product_category_name); ?></a>
                         </nav>
                         <!-- /.breadcrumb -->
                         <div class="summary">
@@ -66,19 +66,16 @@
                             </div>
                             <div class="product-action">
                                 <div class="clearfix">
-                                    <!-- <div class="quantity">
-                                        <button class="minus-btn"><i class="fa fa-minus"></i></button>
-                                        <input type="text" value="1" />
-                                        <button class="plus-btn"><i class="fa fa-plus"></i></button>
-                                    </div> -->
-                                    <a href="<?php echo BASE_URL()?>order/<?php echo $product->product_url; ?>"> <button type="submit" class="add-to-cart-btn"> BOOK NOW </button></a>
+                                    <?php if ($product->product_category_id == '1') : ?>
+                                        <a href="<?php echo BASE_URL() ?>home/order/<?php echo $product->product_url; ?>"> <button type="submit" class="add-to-cart-btn"> BOOK NOW </button></a>
+                                    <?php endif; ?>
                                 </div>
                                 <!-- <a href="wishlist.html" class="wishlist-link"><i class="pe-7s-like"></i>ADD TO WISHLIST</a> -->
                             </div>
                             <br>
                             <ul class="ul-product">
                                 <li>Code Barang: <?php echo $product->product_reff_code; ?></li>
-                                <li>Categories: <a href="<?php echo BASE_URL().'pages/'.$product->product_category_url; ?>"><?php echo $product->product_category_name; ?></a></li>
+                                <li>Categories: <a href="<?php echo BASE_URL() . 'pages/' . $product->product_category_url; ?>"><?php echo $product->product_category_name; ?></a></li>
                                 <!-- <li>Tags: <a href="parallax-category-shop.html">Shop</a>, <a href="parallax-category-shop.html">Theme</a>, <a href="parallax-category-shop.html">WooCommerce</a>.</li> -->
                             </ul>
                         </div>

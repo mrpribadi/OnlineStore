@@ -198,7 +198,7 @@
                                             <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
                                         </p>
                                         <div class="group-buttons">
-                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                            <a href="<?php echo BASE_URL() ?>home/order/<?php echo $row->product_url; ?>">
                                                 <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
                                                     <i class="pe-7s-cart"></i>
                                                 </button>
@@ -235,7 +235,7 @@
                                             <ins><span class="amount">Rp. <?php echo formatUang($row->product_harga); ?></span></ins>
                                         </p>
                                         <div class="group-buttons">
-                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                            <a href="<?php echo BASE_URL() ?>home/order/<?php echo $row->product_url; ?>">
                                                 <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
                                                     <i class="pe-7s-cart"></i>
                                                 </button>
@@ -306,7 +306,7 @@
                                         <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
 
                                         <div class="group-buttons">
-                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                            <a href="<?php echo BASE_URL() ?>home/order/<?php echo $row->product_url; ?>">
                                                 <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
                                                     <i class="pe-7s-cart"></i>
                                                 </button>
@@ -347,7 +347,7 @@
                                         <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
 
                                         <div class="group-buttons">
-                                            <a href="<?php echo BASE_URL() ?>order/<?php echo $row->product_url; ?>">
+                                            <a href="<?php echo BASE_URL() ?>home/order/<?php echo $row->product_url; ?>">
                                                 <button type="button" data-toggle="tooltip" data-placement="top" title="Book Now">
                                                     <i class="pe-7s-cart"></i>
                                                 </button>

@@ -77,6 +77,9 @@ if ($order->order_status == '0') {
         <!-- /.col -->
     </div>
     <!-- /.row -->
+    <form class="form-horizontal" id="form_order">
+        <input type="hidden" id="id" name="id" value="<?php echo $order->order_id ?>">
+    </form>
 
     <div class="row">
         <!-- accepted payments column -->
@@ -129,4 +132,83 @@ if ($order->order_status == '0') {
     function back() {
         window.location.href = '<?= base_url() ?>order';
     }
+</script>
+<script>
+    $(document).ready(function() {
+
+        $("#btn-approve").click(function() {
+            var data = $("#form_order").serialize();
+            //swal(data);
+            swal({
+                    title: "Are you sure?",
+                    text: "Once approve, you will not be able to recover this order!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            url: '<?php echo BASE_URL() ?>order/approve',
+                            data: data,
+                            error: function() {
+                                alert('Something is wrong');
+                            },
+                            success: function(data) {
+                                if (data.status == 'success') {
+                                    swal("Approved!", "Your order has been approved.", "success");
+                                    window.location.href = '<?= base_url() ?>order';
+
+                                } else {
+                                    swal("Cancelled", "Error approve order", "error");
+                                }
+
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Your order is not approved :)", "error");
+                    }
+                });
+        });
+
+        $("#btn-reject").click(function() {
+            var data = $("#form_order").serialize();
+            //swal(data);
+            swal({
+                    title: "Are you sure?",
+                    text: "Once rejected, you will not be able to recover this order!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            url: '<?php echo BASE_URL() ?>order/reject',
+                            data: data,
+                            error: function() {
+                                alert('Something is wrong');
+                            },
+                            success: function(data) {
+                                if (data.status == 'success') {
+                                    swal("Rejected!", "Your order has been rejected.", "success");
+                                    window.location.href = '<?= base_url() ?>order';
+
+                                } else {
+                                    swal("Cancelled", "Error reject data", "error");
+                                }
+
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Your order is not rejected :)", "error");
+                    }
+                });
+        });
+
+    })
 </script>
