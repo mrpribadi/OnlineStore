@@ -207,7 +207,7 @@
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.countdown.min.js"></script>
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.waypoints.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/gmaps.js"></script>
+    <!-- <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/gmaps.js"></script> -->
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/easyResponsiveTabs.js"></script>
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/libs/jquery.raty-fa.js"></script>
     <script src="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/scripts/functions.js"></script>

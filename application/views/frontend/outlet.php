@@ -1,4 +1,3 @@
-<?php echo $map['js']; ?>
 <div class="main">
     <div class="header-page">
         <div class="container">
@@ -8,6 +7,7 @@
     </div>
     <!-- /.header-page -->
     <!-- <div id="map"></div> -->
+    <?php echo $map['js']; ?>
     <?php echo $map['html']; ?>
 </div>
 <!-- /.main -->

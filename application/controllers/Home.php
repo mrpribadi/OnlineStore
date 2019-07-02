@@ -93,22 +93,41 @@ class Home extends CI_Controller
                 break;
             case 'outlet':
                 $this->load->library('googlemaps');
-                $config = array();
-                $config['center'] = "-6.2449033, 106.9658942";
-                $config['zoom'] = 16;
-                $config['map_height'] = "400px";
+                // $config = array();
+                // $config['center'] = "-6.2449033, 106.9658942";
+                // $config['zoom'] = 16;
+                // $config['map_height'] = "400px";
+                // $this->googlemaps->initialize($config);
+
+                // $marker = array();
+                // $marker['position'] = "-6.242900, 106.965417";
+                // $marker['infowindow_content'] = "xxxdahdasdhska";
+                // $this->googlemaps->add_marker($marker);
+                //$config['center']   = '-6.156325136604412,106.84186880608218';//$this->input->post('CompanyAddress');
+                $where = array('status' => 'active');
+                $outlet = $this->app_model->get_data('outlet', $where, 'outlet_id', 'ASC')->result();
+
+                $config['zoom']     = 'auto';
                 $this->googlemaps->initialize($config);
 
-                $marker = array();
-                $marker['position'] = "-6.242900, 106.965417";
-                $marker['infowindow_content'] = "xxxdahdasdhska";
-                $this->googlemaps->add_marker($marker);
+                foreach ($outlet as $row_marker) :
+                    $marker = array();
+                    $marker['position']  = '' . $row_marker->latitude . ',' . $row_marker->longitude . '';
+                    $marker['draggable'] = false;
+                    // $marker['infowindow_content'] = '<table><tr><td colspan="3" nowrap style="padding-bottom:10px;padding-top:10px"><strong>' . $row_marker->outlet_name . '</strong></td></tr><tr><td colspan="3">' . $row_marker->outlet_address . '</td></tr></table>';
+                    $marker['infowindow_content'] = "fsdfs";
+                    $this->googlemaps->add_marker($marker);
+                endforeach;
+
+                $map = $this->googlemaps->create_map();
                 $data = array(
                     'content' => 'frontend/outlet',
                     'menu'    => $menu,
                     'submenu' => $submenu,
-                    'map'     => $this->googlemaps->create_map()
+                    'map'     => $map
                 );
+                // $where = array('status' => 'active');
+                // $outlet = $this->app_model->get_data('outlet', $where, 'outlet_id', 'ASC')->result();
                 break;
             case 'payment':
                 $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
