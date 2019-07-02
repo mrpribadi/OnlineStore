@@ -35,12 +35,12 @@ class Proses extends CI_Controller
             $get_last_order_id = "SELECT MAX(order_no) AS last_code FROM order_header";
             $query_last = $this->app_model->get_data_query($get_last_order_id)->row();
             if ($query_last->last_code == "") {
-                $new_code = "BOOK00001";
+                $new_code = "CUST00001";
             } else {
                 $nourut   = substr($query_last->last_code, 4, 9);
-                $inc      = (int)$nourut;
+                $inc      = (int) $nourut;
                 $inc      = $inc + 1;
-                $new_code = "BOOK" . sprintf("%05s", $inc);
+                $new_code = "CUST" . sprintf("%05s", $inc);
             }
 
             $get_last_line = "SELECT MAX(order_working_time_line) AS last_line FROM order_header WHERE order_working_date = '" . $date . "' AND order_working_time = '" . $time . "'";
@@ -96,12 +96,12 @@ class Proses extends CI_Controller
             $get_last_id = "SELECT MAX(customer_code) AS last_code FROM customer";
             $query_last = $this->app_model->get_data_query($get_last_id)->row();
             if ($query_last->last_code == "") {
-                $new_code = "CUST00001";
+                $new_code = "USER00001";
             } else {
                 $nourut   = substr($query_last->last_code, 4, 9);
-                $inc      = (int)$nourut;
+                $inc      = (int) $nourut;
                 $inc      = $inc + 1;
-                $new_code = "CUST" . sprintf("%05s", $inc);
+                $new_code = "USER" . sprintf("%05s", $inc);
             }
 
             // GET IP ADDRESS
@@ -168,7 +168,7 @@ class Proses extends CI_Controller
                     $new_code = "CUST00001";
                 } else {
                     $nourut   = substr($query_last->last_code, 4, 9);
-                    $inc      = (int)$nourut;
+                    $inc      = (int) $nourut;
                     $inc      = $inc + 1;
                     $new_code = "CUST" . sprintf("%05s", $inc);
                 }
@@ -205,7 +205,7 @@ class Proses extends CI_Controller
                         $new_code = "BOOK00001";
                     } else {
                         $nourut   = substr($query_last->last_code, 4, 9);
-                        $inc      = (int)$nourut;
+                        $inc      = (int) $nourut;
                         $inc      = $inc + 1;
                         $new_code = "BOOK" . sprintf("%05s", $inc);
                     }

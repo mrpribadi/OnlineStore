@@ -263,7 +263,7 @@ class Home extends CI_Controller
             $files = $_FILES;
             if ($files['foto']['error'] == '0') {
                 $img_name = $order_id . "_" . $files['foto']['name'];
-                move_uploaded_file($files['foto']['tmp_name'], realpath('assets/images') . '/' . $img_name);
+                move_uploaded_file($files['foto']['tmp_name'], realpath('assets/confirm') . '/' . $img_name);
                 $where = array('order_id' => $order_id);
                 $data_update = array(
                     'confirmation_status' => '1',

@@ -7,15 +7,15 @@
 
         </ul>
         <div id="content_ss_1" class="allinone_bannerRotator_texts">
-            <div class="content-slideshow" data-initial-left="50" data-initial-top="280" data-final-left="0" data-final-top="280" data-duration="0.7" data-fade-start="0" data-delay="0.2">
+            <!-- <div class="content-slideshow" data-initial-left="50" data-initial-top="280" data-final-left="0" data-final-top="280" data-duration="0.7" data-fade-start="0" data-delay="0.2">
                 <img class="content-img" src="assets/themes/frontend/zorka/assets/images/slide1-content-11.png" alt="img" />
-            </div>
+            </div> -->
             <div class="content-slideshow" data-initial-left="50" data-initial-top="320" data-final-left="0" data-final-top="320" data-duration="0.6" data-fade-start="0" data-delay="0.6">
-                <img class="content-img" src="assets/themes/frontend/zorka/assets/images/slide1-content-12.png" alt="img" />
+                <img class="content-img" src="assets/banner/banner.png" alt="img" />
             </div>
-            <div class="content-link" data-initial-top="440" data-final-top="440" data-duration="10" data-fade-start="0" data-delay="1">
+            <!-- <div class="content-link" data-initial-top="440" data-final-top="440" data-duration="10" data-fade-start="0" data-delay="1">
                 <a class="link" href="#">Shop now</a>
-            </div>
+            </div> -->
         </div>
         <div id="content_ss_2" class="allinone_bannerRotator_texts">
             <div class="content-slideshow" data-initial-top="0" data-final-top="270" data-duration="5" data-fade-start="0" data-delay="0.2">
@@ -29,9 +29,9 @@
             <div class="content-slideshow" data-initial-top="0" data-final-top="270" data-duration="5" data-fade-start="0" data-delay="0.2">
                 <img class="content-img" src="assets/themes/frontend/zorka/assets/images/slide3-content-31.png" alt="img" />
             </div>
-            <div class="content-slideshow" data-initial-top="380" data-final-top="380" data-final-left="16" data-duration="10" data-fade-start="0" data-delay="0.8">
+            <!-- <div class="content-slideshow" data-initial-top="380" data-final-top="380" data-final-left="16" data-duration="10" data-fade-start="0" data-delay="0.8">
                 <img class="content-img" src="assets/themes/frontend/zorka/assets/images/slide3-content-32.png" alt="img" />
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -344,7 +344,15 @@
                                     </div>
                                     <div class="media-body">
                                         <h4><a href="<?php echo BASE_URL('detail') . '/' . $row->product_url; ?>"><?php echo strtoupper($row->product_name); ?></a></h4>
-                                        <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
+                                        <?php if ($row->product_harga_promo == '0') { ?>
+                                            <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
+                                        <?php } else { ?>
+                                            <p class="price">Rp. <?php echo formatUang($row->product_harga_promo); ?></p>
+                                            <del>
+                                                <p class="price">Rp. <?php echo formatUang($row->product_harga); ?></p>
+                                            </del>
+
+                                        <?php } ?>
 
                                         <div class="group-buttons">
                                             <a href="<?php echo BASE_URL() ?>home/order/<?php echo $row->product_url; ?>">

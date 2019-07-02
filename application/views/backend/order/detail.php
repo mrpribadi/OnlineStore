@@ -12,7 +12,7 @@ if ($order->order_status == '0') {
     <div class="row">
         <div class="col-xs-12">
             <h2 class="page-header">
-                <i class="fa fa-globe"></i> My Clinic
+                <i class="fa fa-globe"></i> Ratna Dewi Clinic
                 <small class="pull-right">Date: <?php echo formatTanggal($order->order_date); ?></small>
             </h2>
         </div>
@@ -33,7 +33,7 @@ if ($order->order_status == '0') {
         <div class="col-sm-4 invoice-col">
             To
             <address>
-                <strong><?php echo $this->session->userdata('fullname') ?></strong><br>
+                <strong>Ratna Dewi Clinic</strong><br>
                 Email: <?php echo $this->session->userdata('email') ?>
             </address>
         </div>
@@ -66,7 +66,7 @@ if ($order->order_status == '0') {
                     <tr>
                         <td><?php echo $order->product_name ?></td>
                         <td><?php echo $order->product_reff_code ?></td>
-                        <td><?php echo $order->product_deskripsi ?></td>
+                        <td><?php echo substr($order->product_deskripsi, 0, 100) . "...."; ?></td>
                         <td><?php echo formatTanggal($order->order_working_date) ?> (<?php echo $order->order_working_time ?>)</td>
                         <td class="text-right"><?php echo formatUang($order->order_total) ?></td>
                     </tr>
@@ -88,7 +88,11 @@ if ($order->order_status == '0') {
 
             <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                 <?php echo $order->payment_type_nama ?>
+                <div class="text-center">
+                    <img src="<?php echo base_url() ?>assets/confirm/<?php echo $order->confirmation_bank_from_image; ?>" class="img-responsive img-thumbnail" width="30%">
+                </div>
             </p>
+
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
@@ -104,7 +108,7 @@ if ($order->order_status == '0') {
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
+    <br><br>
     <!-- this row will not appear when printing -->
     <div class="row no-print">
         <div class="col-xs-12">

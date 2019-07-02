@@ -2,8 +2,8 @@
     <div class="wrapper">
         <div class="middle">
             <div>
-                <img class="content-img" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/about-company-banner-title-1.png" alt="img" />
-                <!-- <img class="content-img" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/about-company-banner-title-2.png" alt="img" /> -->
+                <img class="content-img" src="<?php echo BASE_URL() ?>assets/banner/about.png" alt="img" />
+                <img class="content-img" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/about-company-banner-title-2.png" alt="img" />
             </div>
         </div>
     </div>
@@ -15,20 +15,20 @@
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="feature-item pe-7s-star">
-                    <h4>TREATMENT</h4>
-                    <p>Ditangani oleh ahli kecantikan</p>
+                    <h4>CREAM PROGRAM</h4>
+                    <p>Apakah yang dimaksud dengan Cream Program (Program Krim) ? Program perawatan kulit sehari-hari dengan menggunakan berbagai macam bahan aktif dengan tujuan untuk mencapai kesehatan kulit</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="feature-item pe-7s-gift">
-                    <h4>INFORMASI PRODUK</h4>
-                    <p>Menyediakan produk-produk berkualitas</p>
+                    <h4>CHEMICAL PEELING</h4>
+                    <p>Apakah yang dimaksud dengan Chemical Peeling? Pengelupasan kulit sampai kedalaman tertentu dengan cara mengoleskan sejumlah larutan kimia tertentu untuk mengatasi berbagai problem kulit</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="feature-item pe-7s-mail-open-file">
-                    <h4>KONSULTASI</h4>
-                    <p>Bertanya dengan ahli kecantikan</p>
+                    <h4>AESTHETIC SURGERY</h4>
+                    <p>Apakah yang dimaksud dengan Aesthetic Surgery? Prosedur bedah estetik untuk menyempurnakan penampilan wajah dan bentuk tubuh</p>
                 </div>
             </div>
         </div>
@@ -44,16 +44,16 @@
                 <div class="office-item">
                     <div class="office-thumb">
                         <div class="main-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-1.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office1.jpg" alt="img" />
                             </a>
                         </div>
                         <div class="overlay-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-1.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office1.jpg" alt="img" />
                             </a>
                         </div>
-                        <a href="single-post.html" class="details"><i class="pe-7s-search"></i></a>
+                        <a href="#" class="details"><i class="pe-7s-search"></i></a>
                     </div>
                 </div>
             </div>
@@ -61,16 +61,16 @@
                 <div class="office-item">
                     <div class="office-thumb">
                         <div class="main-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-2.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office2.jpg" alt="img" />
                             </a>
                         </div>
                         <div class="overlay-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-2.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office2.jpg" alt="img" />
                             </a>
                         </div>
-                        <a href="single-post.html" class="details"><i class="pe-7s-search"></i></a>
+                        <a href="#" class="details"><i class="pe-7s-search"></i></a>
                     </div>
                 </div>
             </div>
@@ -78,16 +78,16 @@
                 <div class="office-item">
                     <div class="office-thumb">
                         <div class="main-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-3.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office3.jpg" alt="img" />
                             </a>
                         </div>
                         <div class="overlay-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-3.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office3.jpg" alt="img" />
                             </a>
                         </div>
-                        <a href="single-post.html" class="details"><i class="pe-7s-search"></i></a>
+                        <a href="#" class="details"><i class="pe-7s-search"></i></a>
                     </div>
                 </div>
             </div>
@@ -95,16 +95,16 @@
                 <div class="office-item">
                     <div class="office-thumb">
                         <div class="main-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-4.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office4.jpg" alt="img" />
                             </a>
                         </div>
                         <div class="overlay-img">
-                            <a href="single-post.html">
-                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/themes/frontend/zorka/assets/images/office-4.jpg" alt="img" />
+                            <a href="#">
+                                <img class="img-responsive" src="<?php echo BASE_URL() ?>assets/banner/office4.jpg" alt="img" />
                             </a>
                         </div>
-                        <a href="single-post.html" class="details"><i class="pe-7s-search"></i></a>
+                        <a href="#" class="details"><i class="pe-7s-search"></i></a>
                     </div>
                 </div>
             </div>

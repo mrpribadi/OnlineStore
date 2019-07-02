@@ -70,7 +70,7 @@
             <a href="<?php echo BASE_URL('home') ?>" class="logo">
                 <!-- <span class="logo-mini"> <img src="<?php echo BASE_URL('assets/themes/backend/adminlte/dist/img/logo_small.png') ?>"> </span> -->
                 <!-- <span class="logo-lg"> <img src="<?php echo BASE_URL('assets/themes/backend/adminlte/dist/img/logo_small.png') ?>"> Klinik ABC</span> -->
-                <span class="logo-lg"> Klinik ABC</span>
+                <span class="logo-lg"> Ratna Dewi Clinic</span>
             </a>
 
             <nav class="navbar navbar-static-top">

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>CONFIRMATION</h3>
-                <form action="" class="register-form" method="post">
+                <form action="" class="register-form" method="post" enctype="multipart/form-data">
                     <label for="bank_name">BANK NAME</label>
                     <input class="input-form" type="text" id="bank_name" name="bank_name" />
                     <?php echo  form_error('bank_name', '<small class="text-danger">', '</small>'); ?>
@@ -18,15 +18,11 @@
                     <?php echo  form_error('amount', '<small class="text-danger">', '</small>'); ?>
                     <label for="notes">NOTES</label>
                     <textarea class="input-form" name="notes" id="notes" rows="30"></textarea>
-                    <div class="form-group">
-                        <label for="foto" class="col-sm-2 control-label">Foto</label>
-
-                        <div class="col-sm-4 col-sm-4">
-                            <input id="foto" type="file" name="foto" required>
-                        </div>
-                    </div>
+                    <label for="foto">IMAGE</label>
+                    <input id="foto" type="file" name="foto" id="foto">
+                    <?php echo  form_error('foto', '<small class="text-danger">', '</small>'); ?>
                     <input type="hidden" name="idorder" id="idorder" value="<?php echo $order->order_id; ?>">
-
+                    <br><br>
                     <button class="submit-btn" type="submit">CONFIRM</button>
                 </form>
             </div>

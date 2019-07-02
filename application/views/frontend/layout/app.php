@@ -16,7 +16,7 @@
     <meta name="keywords" content="keywords" />
     <meta name="description" content="description" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/images/favico.ico" />
+    <link rel="shortcut icon" href="<?php echo BASE_URL(); ?>assets/images/favico.ico" />
     <link href="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/styles/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo BASE_URL(); ?>assets/themes/frontend/zorka/assets/pe-icon-7-stroke/css/helper.css" rel="stylesheet" type="text/css" />
@@ -174,7 +174,7 @@
                 <div class="col-md-4 col-sm-6">
                     <h3>ABOUT US</h3>
                     <div class="address">
-                        Klinik ini adalah klinik kecantikan<br> pertama di bekasi
+                        Merupakan salah satu klinik kecantikan di Indonesia yang terdapat di beberapa cabang di Jakarta, Bekasi, dan Yogyakarta. Menggabungkan perawatan kecantikan yang dilakukan oleh dokter dan beauty therapist secara terpadu untuk seluruh tubuh anda. Berupaya memberikan hasil yang prima juga kenyamanan, keamanan, keramahan dan privasi.
                     </div>
                 </div>
 
@@ -182,7 +182,7 @@
                     <h3>HELP</h3>
                     <ul class="list-link">
                         <li><a href="how-to-buy.html">HOW TO BOOK</a></li>
-                        <li><a href="<?php echo BASE_URL('pages/confirm') ?>">CONFIRMATION</a></li>
+                        <!-- <li><a href="<?php echo BASE_URL('pages/confirm') ?>">CONFIRMATION</a></li> -->
                     </ul>
                 </div>
             </div>

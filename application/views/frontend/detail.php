@@ -62,7 +62,13 @@
                                 <!-- <span class="review-star-read star-rating" data-score="4"></span> -->
                             </div>
                             <div class="price">
-                                Rp. <?php echo formatUang($product->product_harga); ?>
+                                <?php if ($product->product_harga_promo == '0') { ?>
+                                    Rp. <?php echo formatUang($product->product_harga); ?>
+                                <?php } else { ?>
+                                    Rp. <?php echo formatUang($product->product_harga_promo); ?>
+                                    <p>Rp. <del><?php echo formatUang($product->product_harga); ?></del></p>
+                                <?php } ?>
+
                             </div>
                             <div class="product-action">
                                 <div class="clearfix">
