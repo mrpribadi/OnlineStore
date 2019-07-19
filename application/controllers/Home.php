@@ -114,7 +114,7 @@ class Home extends CI_Controller
                 );
                 break;
             case 'payment':
-                $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
+                $payment = $this->app_model->get_data_all('bank', 'bank_nama', 'ASC')->result();
                 $data = array(
                     'content' => 'frontend/payment',
                     'pelayanan' => $pelayanan,
@@ -181,7 +181,7 @@ class Home extends CI_Controller
                                                                 Pemesanan AS a
                                                             INNER JOIN pemesanan_detail AS b ON b.pemesanan_id = a.pemesanan_id
                                                             INNER JOIN pelayanan AS c ON c.pelayanan_id = b.pelayanan_id
-                                                            LEFT JOIN konfirmasi AS d ON d.pemesanan_id = a.pemesanan_id
+                                                            LEFT JOIN pembayaran AS d ON d.pemesanan_id = a.pemesanan_id
                                                             WHERE a.pelanggan_id = '" . $id . "'")->result();
         $data = array(
             'content' => 'frontend/history',
@@ -240,7 +240,7 @@ class Home extends CI_Controller
                 $img_name = $order_id . "_" . $files['foto']['name'];
                 move_uploaded_file($files['foto']['tmp_name'], realpath('assets/confirm') . '/' . $img_name);
                 $data_konfirmasi = array(
-                    'pemesanan_id' => '1',
+                    'pemesanan_id' => $order_id,
                     'konfirmasi_tanggal' => date("Y-m-d H:i:s"),
                     'konfirmasi_nama_bank' => $bank_name,
                     'konfirmasi_nomor_rekening' => $bank_account_no,
@@ -251,7 +251,7 @@ class Home extends CI_Controller
                     'konfirmasi_status' => '1'
 
                 );
-                $do_confirm = $this->app_model->insert_data('konfirmasi', $data_konfirmasi);
+                $do_confirm = $this->app_model->insert_data('pembayaran', $data_konfirmasi);
                 if ($do_confirm) {
                     redirect('home/member');
                 } else {

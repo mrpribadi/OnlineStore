@@ -1,5 +1,5 @@
 <?php
-if ($order->pemesanan_status == '0') {
+if ($order->konfirmasi_status == '') {
     $status = '<span class="text-danger"><b>Belum Dibayar</b></span>';
 } else {
     $status = '<span class="text-green"><b>Sudah Dibayar</b></span>';
@@ -119,7 +119,7 @@ if ($order->pemesanan_status == '0') {
             <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
                 <i class="fa fa-download"></i> Generate PDF
             </button> -->
-            <?php if ($order->konfirmasi_status == '') : ?>
+            <?php if ($order->pemesanan_status == '0') : ?>
                 <button class="btn btn-success pull-right" id="btn-approve">
                     <i class="fa fa-check"></i> Setujui
                 </button>

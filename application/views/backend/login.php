@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
+    <title>Ratna Dewi Klinik | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -28,32 +29,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <style>
         .color-palette {
-        height: 35px;
-        line-height: 35px;
-        text-align: center;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
         }
 
         .color-palette-set {
-        margin-bottom: 15px;
+            margin-bottom: 15px;
         }
 
         .color-palette span {
-        font-size: 12px;
+            font-size: 12px;
         }
 
         .color-palette:hover span {
-        display: block;
+            display: block;
         }
 
         .color-palette-box h4 {
-        position: absolute;
-        top: 100%;
-        left: 25px;
-        margin-top: -40px;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 12px;
-        display: block;
-        z-index: 7;
+            position: absolute;
+            top: 100%;
+            left: 25px;
+            margin-top: -40px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            display: block;
+            z-index: 7;
         }
     </style>
 </head>
@@ -61,7 +62,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Online</b>Store</a>
+            <a href="#"><b>Admin</b>Page</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -70,7 +71,7 @@
                     <div id="msg_error"></div>
                 </div>
             </div>
-                    
+
 
             <form id="form_login" action="#">
                 <div class="form-group has-feedback">
@@ -101,7 +102,7 @@
     <!-- iCheck -->
     <script src="<?php echo BASE_URL('assets/themes/backend/adminlte/plugins/iCheck/icheck.min.js') ?>"></script>
     <script>
-        $(function () {
+        $(function() {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-purple',
                 radioClass: 'iradio_square-purple',
@@ -115,28 +116,28 @@
             document.getElementById("uid").focus();
         };
 
-        $(document).ready(function(){
-            $('#btn_login').click(function(e){
-                if($.trim($('#uid').val())==''){
+        $(document).ready(function() {
+            $('#btn_login').click(function(e) {
+                if ($.trim($('#uid').val()) == '') {
                     $('#msg_error').html('<div class="bg-maroon disabled color-palette"><span>Username harus diisi</span></div><br>');
                     $('#uid').focus();
-                }else if($.trim($('#passw').val())==''){
+                } else if ($.trim($('#passw').val()) == '') {
                     $('#msg_error').html('<div class="bg-maroon disabled color-palette"><span>Password harus diisi</span></div><br>');
                     $('#passw').focus();
-                }else{
+                } else {
                     $('#btn_login').hide();
                     var data = $('#form_login').serialize();
-                    $.post('<?php echo base_url()?>auth/login', data, function(result){
-                        if(result.status=='success'){
-                            window.location.href='<?php echo base_url()?>user';
-                        }else{
-                            $('#msg_error').html('<div class="bg-maroon disabled color-palette"><span>'+result.msg+'</span></div><br>');            
+                    $.post('<?php echo base_url() ?>auth/login', data, function(result) {
+                        if (result.status == 'success') {
+                            window.location.href = '<?php echo base_url() ?>user';
+                        } else {
+                            $('#msg_error').html('<div class="bg-maroon disabled color-palette"><span>' + result.msg + '</span></div><br>');
                             $('#uid').val("");
                             $('#passw').val("");
-                            $('#uid').focus();                         
-                            $('#btn_login').show();   
+                            $('#uid').focus();
+                            $('#btn_login').show();
                         }
-                    },'json');
+                    }, 'json');
                 }
                 return false;
             });
@@ -164,4 +165,5 @@
         // }
     </script>
 </body>
+
 </html>

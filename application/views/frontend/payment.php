@@ -12,10 +12,10 @@
                         <thead>
                             <tr>
                                 <th class="product-thumbnail"></th>
-                                <th class="product-name">Treatment</th>
-                                <th class="product-quantity">Date</th>
-                                <th class="product-subtotal">Time</th>
-                                <th class="product-price">Price</th>
+                                <th class="product-name">Pelayanan</th>
+                                <th class="product-quantity">Tgl. Pemesanan</th>
+                                <th class="product-subtotal">Jam</th>
+                                <th class="product-price">Harga</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,7 @@
                             <br><br>
                             <?php foreach ($payment as $row) : ?>
 
-                                <h5>No. Rek. <?php echo $row->payment_bank_account_no . " " . $row->payment_bank_name . " A/N " . $row->payment_bank_account_name ?></h5>
+                                <h5>No. Rek. <?php echo $row->bank_nomor_rekening . " " . $row->bank_nama . " A/N " . $row->bank_nama_rekening ?></h5>
                             <?php endforeach; ?>
                         </p>
                     </div>

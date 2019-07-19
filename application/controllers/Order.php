@@ -24,7 +24,7 @@ class Order extends CI_Controller
                   INNER JOIN pemesanan_detail AS b ON b.pemesanan_id = a.pemesanan_id
                   LEFT JOIN pelanggan AS c ON c.pelanggan_id = a.pelanggan_id 
                   LEFT JOIN pelayanan AS d ON d.pelayanan_id = b.pelayanan_id 
-                  LEFT JOIN konfirmasi AS e ON e.pemesanan_id = a.pemesanan_id 
+                  LEFT JOIN pembayaran AS e ON e.pemesanan_id = a.pemesanan_id 
                   ORDER BY a.pemesanan_nomer DESC";
         $data_order = $this->app_model->get_data_query($query)->result();
         $data = array(
@@ -45,7 +45,7 @@ class Order extends CI_Controller
                   INNER JOIN pemesanan_detail AS b ON b.pemesanan_id = a.pemesanan_id
                   LEFT JOIN pelanggan AS c ON c.pelanggan_id = a.pelanggan_id 
                   LEFT JOIN pelayanan AS d ON d.pelayanan_id = b.pelayanan_id 
-                  LEFT JOIN konfirmasi AS e ON e.pemesanan_id = a.pemesanan_id 
+                  LEFT JOIN pembayaran AS e ON e.pemesanan_id = a.pemesanan_id 
                   WHERE a.pemesanan_id = '" . $id . "'  
                   ORDER BY a.pemesanan_nomer DESC";
         $data_order = $this->app_model->get_data_query($query)->row();
