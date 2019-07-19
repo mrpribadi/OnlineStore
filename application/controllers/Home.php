@@ -10,18 +10,18 @@ class Home extends CI_Controller
 
     function index()
     {
-        $treatment_popular = $this->app_model->get_data_query("SELECT * FROM product WHERE product_most_popular = 1 ORDER BY  product_most_popular_date DESC LIMIT 4")->result();
-        $treatment_promo = $this->app_model->get_data_query("SELECT * FROM product WHERE product_promo_list = 1 ORDER BY product_promo_list_date DESC LIMIT 2")->result();
-        $treatment_new = $this->app_model->get_data_query("SELECT * FROM product WHERE product_new_in = 1 ORDER BY product_new_in_date DESC LIMIT 2")->result();
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $treatment_popular = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_populer = 1 ORDER BY  pelayanan_populer_tanggal DESC LIMIT 4")->result();
+        $treatment_promo = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_promo = 1 ORDER BY pelayanan_promo_tanggal DESC LIMIT 2")->result();
+        $treatment_new = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_baru = 1 ORDER BY pelayanan_baru_tanggal DESC LIMIT 2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
         $data = array(
             'content' => 'frontend/home',
             'popular' => $treatment_popular,
             'promo'   => $treatment_promo,
             'newin'   => $treatment_new,
-            'menu'    => $menu,
-            'submenu' => $submenu
+            'pelayanan' => $pelayanan,
+            'produk' => $produk
         );
         $this->load->view('frontend/layout/app', $data);
     }
@@ -29,13 +29,13 @@ class Home extends CI_Controller
     function detail()
     {
         $url = $this->uri->segment(2);
-        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.product_category_name, b.product_category_url  FROM product a LEFT JOIN product_category b ON b.product_category_id = a.product_category_id WHERE a.product_url = '" . $url . "' ")->row();
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.kategori_nama  FROM Pelayanan a LEFT JOIN Kategori b ON b.kategori_id = a.kategori_id WHERE a.pelayanan_url = '" . $url . "' ")->row();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
         $data = array(
             'content' => 'frontend/detail',
-            'menu'    => $menu,
-            'submenu' => $submenu,
+            'pelayanan' => $pelayanan,
+            'produk' => $produk,
             'product' => $detail_product
         );
         $this->load->view('frontend/layout/app', $data);
@@ -44,37 +44,34 @@ class Home extends CI_Controller
     function pages()
     {
         $url = $this->uri->segment(2);
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
 
         switch ($url) {
-            case 'treatment':
-                $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
-                $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
+            case 'pelayanan':
+                $list_product = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE kategori_id = '1' ")->result();
                 $data = array(
                     'content' => 'frontend/pages',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'product' => $list_product
                 );
                 break;
             case 'produk':
-                $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
-                $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE kategori_id = '2' ")->result();
                 $data = array(
                     'content' => 'frontend/pages_produk',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'product' => $list_product
                 );
                 break;
             case 'promo':
-                $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
-                $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_promo_list = 1 ORDER BY product_promo_list_date DESC")->result();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_promo = 1 ORDER BY pelayanan_promo_tanggal DESC")->result();
                 $data = array(
                     'content' => 'frontend/pages',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'product' => $list_product
                 );
                 break;
@@ -84,8 +81,8 @@ class Home extends CI_Controller
                 $kasir = $this->app_model->get_data_query("SELECT * FROM user_admin WHERE admin_level = 'kasir' AND admin_status = 'active' ")->result();
                 $data = array(
                     'content' => 'frontend/about',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'dokter'  => $dokter,
                     'beauty'  => $beauty,
                     'kasir'   => $kasir
@@ -93,17 +90,6 @@ class Home extends CI_Controller
                 break;
             case 'outlet':
                 $this->load->library('googlemaps');
-                // $config = array();
-                // $config['center'] = "-6.2449033, 106.9658942";
-                // $config['zoom'] = 16;
-                // $config['map_height'] = "400px";
-                // $this->googlemaps->initialize($config);
-
-                // $marker = array();
-                // $marker['position'] = "-6.242900, 106.965417";
-                // $marker['infowindow_content'] = "xxxdahdasdhska";
-                // $this->googlemaps->add_marker($marker);
-                //$config['center']   = '-6.156325136604412,106.84186880608218';//$this->input->post('CompanyAddress');
                 $where = array('status' => 'active');
                 $outlet = $this->app_model->get_data('outlet', $where, 'outlet_id', 'ASC')->result();
 
@@ -122,88 +108,36 @@ class Home extends CI_Controller
                 $map = $this->googlemaps->create_map();
                 $data = array(
                     'content' => 'frontend/outlet',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'map'     => $map
                 );
-                // $where = array('status' => 'active');
-                // $outlet = $this->app_model->get_data('outlet', $where, 'outlet_id', 'ASC')->result();
                 break;
             case 'payment':
                 $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
                 $data = array(
                     'content' => 'frontend/payment',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'payment' => $payment
                 );
                 break;
             case 'confirm':
                 $data = array(
                     'content' => 'frontend/confirm',
-                    'menu'    => $menu,
-                    'submenu' => $submenu
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                 );
                 break;
-
             default:
                 $data = array(
                     'content' => 'frontend/home',
-                    'menu'    => $menu,
-                    'submenu' => $submenu,
+                    'pelayanan' => $pelayanan,
+                    'produk' => $produk,
                     'product' => $list_product
                 );
                 break;
         }
-        // if ($url == 'about') {
-        //     $data = array(
-        //         'content' => 'frontend/about',
-        //         'menu'    => $menu,
-        //         'submenu' => $submenu
-        //     );
-        // } else if ($url == 'outlet') {
-        //     $this->load->library('googlemaps');
-        //     $config = array();
-        //     $config['center'] = "-6.2449033, 106.9658942";
-        //     $config['zoom'] = 16;
-        //     $config['map_height'] = "400px";
-        //     $this->googlemaps->initialize($config);
-
-        //     $marker = array();
-        //     $marker['position'] = "-6.242900, 106.965417";
-        //     $marker['infowindow_content'] = "xxxdahdasdhska";
-        //     $this->googlemaps->add_marker($marker);
-        //     $data = array(
-        //         'content' => 'frontend/outlet',
-        //         'menu'    => $menu,
-        //         'submenu' => $submenu,
-        //         'map'     => $this->googlemaps->create_map()
-        //     );
-        // } else if ($url == 'payment') {
-        //     $payment = $this->app_model->get_data_all('payment', 'payment_bank_name', 'ASC')->result();
-        //     $data = array(
-        //         'content' => 'frontend/payment',
-        //         'menu'    => $menu,
-        //         'submenu' => $submenu,
-        //         'payment' => $payment
-        //     );
-        // } else if ($url == 'confirm') {
-        //     $data = array(
-        //         'content' => 'frontend/confirm',
-        //         'menu'    => $menu,
-        //         'submenu' => $submenu
-        //     );
-        // } else {
-        //     $row_id = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_url = '" . $url . "' ")->row();
-        //     $list_product = $this->app_model->get_data_query("SELECT * FROM product WHERE product_category_id = '" . $row_id->product_category_id . "' ")->result();
-        //     $data = array(
-        //         'content' => 'frontend/pages',
-        //         'menu'    => $menu,
-        //         'submenu' => $submenu,
-        //         'product' => $list_product
-        //     );
-        // }
-
         $this->load->view('frontend/layout/app', $data);
     }
 
@@ -213,16 +147,16 @@ class Home extends CI_Controller
             redirect('home/login');
         }
         $url = $this->uri->segment(3);
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
-        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.product_category_name, b.product_category_url  FROM product a LEFT JOIN product_category b ON b.product_category_id = a.product_category_id WHERE a.product_url = '" . $url . "' ")->row();
-        $payment = $this->app_model->get_data_query("SELECT * FROM payment_type WHERE payment_type_status = 'active' ")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.kategori_nama  FROM Pelayanan a LEFT JOIN Kategori b ON b.kategori_id = a.kategori_id WHERE a.pelayanan_url = '" . $url . "' ")->row();
+        //$payment = $this->app_model->get_data_query("SELECT * FROM payment_type WHERE payment_type_status = 'active' ")->result();
         $data = array(
             'content' => 'frontend/order',
-            'menu'    => $menu,
-            'submenu' => $submenu,
-            'produk'  => $detail_product,
-            'payment' => $payment
+            'pelayanan' => $pelayanan,
+            'produk' => $produk,
+            'produk_detail'  => $detail_product
+            //'payment' => $payment
         );
 
         $this->load->view('frontend/layout/app', $data);
@@ -234,17 +168,39 @@ class Home extends CI_Controller
             redirect('home');
         }
         $id = $this->session->userdata('id');
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
-        $data_history = $this->app_model->get_data_query("SELECT a.*, c.product_name FROM order_header AS a
-                                                            INNER JOIN customer AS b ON b.customer_id = a.customer_id
-                                                            INNER JOIN product AS c ON c.product_id = a.product_id
-                                                            WHERE a.customer_id = '" . $id . "'")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $data_history = $this->app_model->get_data_query("  SELECT
+                                                                a.*, b.pelayanan_id,
+                                                                b.pemesanan_detail_tanggal,
+                                                                b.pemesanan_detail_jam,
+                                                                b.pemesanan_detail_nomor_ruangan,
+                                                                c.pelayanan_nama,
+                                                                d.konfirmasi_status
+                                                            FROM
+                                                                Pemesanan AS a
+                                                            INNER JOIN pemesanan_detail AS b ON b.pemesanan_id = a.pemesanan_id
+                                                            INNER JOIN pelayanan AS c ON c.pelayanan_id = b.pelayanan_id
+                                                            LEFT JOIN konfirmasi AS d ON d.pemesanan_id = a.pemesanan_id
+                                                            WHERE a.pelanggan_id = '" . $id . "'")->result();
         $data = array(
             'content' => 'frontend/history',
-            'menu'    => $menu,
-            'submenu' => $submenu,
+            'pelayanan' => $pelayanan,
+            'produk' => $produk,
             'history' => $data_history
+        );
+        $this->load->view('frontend/layout/app', $data);
+    }
+
+    function profile()
+    {
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+
+        $data = array(
+            'content' => 'frontend/profile',
+            'pelayanan' => $pelayanan,
+            'produk' => $produk,
         );
         $this->load->view('frontend/layout/app', $data);
     }
@@ -255,10 +211,10 @@ class Home extends CI_Controller
             redirect('home');
         }
         $id = $this->uri->segment(3);
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
-        $where = array('order_id' => $id);
-        $order = $this->app_model->get_data('order_header', $where, 'order_id', 'ASC')->row();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $where = array('pemesanan_id' => $id);
+        $order = $this->app_model->get_data('pemesanan', $where, 'pemesanan_id', 'ASC')->row();
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('bank_name', 'Bank name', 'trim|required');
@@ -268,8 +224,8 @@ class Home extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data = array(
                 'content' => 'frontend/confirm',
-                'menu'    => $menu,
-                'submenu' => $submenu,
+                'pelayanan' => $pelayanan,
+                'produk' => $produk,
                 'order'   => $order
             );
         } else {
@@ -283,19 +239,19 @@ class Home extends CI_Controller
             if ($files['foto']['error'] == '0') {
                 $img_name = $order_id . "_" . $files['foto']['name'];
                 move_uploaded_file($files['foto']['tmp_name'], realpath('assets/confirm') . '/' . $img_name);
-                $where = array('order_id' => $order_id);
-                $data_update = array(
-                    'confirmation_status' => '1',
-                    'confirmation_date' => date("Y-m-d H:i:s"),
-                    'confirmation_notes' => $notes,
-                    'confirmation_bank_from' => $bank_name,
-                    'confirmation_bank_from_account_no' => $bank_account_no,
-                    'confirmation_bank_from_account_name' => $bank_account_name,
-                    'confirmation_bank_from_amount' => $amount,
-                    'confirmation_bank_from_image' => $img_name
+                $data_konfirmasi = array(
+                    'pemesanan_id' => '1',
+                    'konfirmasi_tanggal' => date("Y-m-d H:i:s"),
+                    'konfirmasi_nama_bank' => $bank_name,
+                    'konfirmasi_nomor_rekening' => $bank_account_no,
+                    'konfirmasi_nama_rekening' => $bank_account_name,
+                    'konfirmasi_jumlah_transfer' => $amount,
+                    'konfirmasi_catatan' => $notes,
+                    'konfirmasi_gambar' => $img_name,
+                    'konfirmasi_status' => '1'
 
                 );
-                $do_confirm = $this->app_model->update_data('order_header', $data_update, $where);
+                $do_confirm = $this->app_model->insert_data('konfirmasi', $data_konfirmasi);
                 if ($do_confirm) {
                     redirect('home/member');
                 } else {
@@ -311,8 +267,8 @@ class Home extends CI_Controller
         if ($this->session->userdata('id') != '') {
             redirect('home');
         }
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -320,24 +276,24 @@ class Home extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data = array(
                 'content' => 'frontend/login',
-                'menu'    => $menu,
-                'submenu' => $submenu
+                'pelayanan' => $pelayanan,
+                'produk' => $produk
             );
         } else {
             $email = $this->input->post('email');
             $password = md5($this->input->post('password'));
-            $key = array('customer_email' => $email, 'customer_status' => 'active');
+            $key = array('pelanggan_email' => $email);
 
-            $customer = $this->app_model->get_data('customer', $key, 'customer_email', 'ASC');
+            $customer = $this->app_model->get_data('Pelanggan', $key, 'pelanggan_email', 'ASC');
             if ($customer->num_rows() != '') {
                 $cust = $customer->row();
-                if ($password == $cust->customer_password) {
+                if ($password == $cust->pelanggan_password) {
                     $data_session = array(
-                        'id' => $cust->customer_id,
-                        'code' => $cust->customer_code,
-                        'email' => $cust->customer_email,
-                        'nama' => $cust->customer_nama,
-                        'telp' => $cust->customer_phone,
+                        'id' => $cust->pelanggan_id,
+                        'code' => $cust->pelanggan_kode_member,
+                        'email' => $cust->pelanggan_email,
+                        'nama' => $cust->pelanggan_nama,
+                        'telp' => $cust->pelanggan_telepon,
                     );
                     $this->session->set_userdata($data_session);
                     redirect('home');
@@ -360,12 +316,12 @@ class Home extends CI_Controller
         if ($this->session->userdata('id') != '') {
             redirect('home');
         }
-        $menu = $this->app_model->get_data_query("SELECT * FROM product_category WHERE product_category_parent = 0 AND product_category_status = 'active'")->result();
-        $submenu = $this->app_model->get_data_query("SELECT product_id, product_category_id, product_name, product_url FROM product WHERE product_status = 'active'")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
         $data = array(
             'content' => 'frontend/register',
-            'menu'    => $menu,
-            'submenu' => $submenu
+            'pelayanan' => $pelayanan,
+            'produk' => $produk
         );
 
         $this->load->view('frontend/layout/app', $data);

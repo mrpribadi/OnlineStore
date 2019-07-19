@@ -70,7 +70,7 @@
             <a href="<?php echo BASE_URL('home') ?>" class="logo">
                 <!-- <span class="logo-mini"> <img src="<?php echo BASE_URL('assets/themes/backend/adminlte/dist/img/logo_small.png') ?>"> </span> -->
                 <!-- <span class="logo-lg"> <img src="<?php echo BASE_URL('assets/themes/backend/adminlte/dist/img/logo_small.png') ?>"> Klinik ABC</span> -->
-                <span class="logo-lg"> Ratna Dewi Clinic</span>
+                <span class="logo-lg"> Ratna Dewi Klinik</span>
             </a>
 
             <nav class="navbar navbar-static-top">
@@ -85,7 +85,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="<?php echo BASE_URL('auth/logout') ?>">
-                                <i class="fa fa-power-off" style="margin-right: 5px"></i> Logout
+                                <i class="fa fa-power-off" style="margin-right: 5px"></i> Keluar
                             </a>
                         </li>
                     </ul>
@@ -108,7 +108,7 @@
                 </div>
 
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">NAVIGASI UTAMA</li>
                     <!-- <li class="treeview">
                         <a href="#" class="">
                             <i class="fa fa-cubes"></i> <span>Produk</span>
@@ -122,11 +122,11 @@
                         </ul>
                     </li> -->
 
-                    <li class=""><a href="<?php echo BASE_URL('kategori') ?>"> <i class="fa fa-folder"></i> Menu</a></li>
-                    <li class=""><a href="<?php echo BASE_URL('item') ?>"> <i class="fa fa-cube"></i> Produk Item</a></li>
-                    <li class=""><a href="<?php echo BASE_URL('customer') ?>"> <i class="fa fa-users"></i> Customer</a></li>
-                    <li class=""><a href="<?php echo BASE_URL('bank') ?>"> <i class="fa fa-credit-card"></i> Bank</a></li>
-                    <li class=""><a href="<?php echo BASE_URL('order') ?>"> <i class="fa fa-shopping-cart"></i> Order</a></li>
+                    <li class=""><a href="<?php echo BASE_URL('kategori') ?>"> <i class="fa fa-folder"></i> Kategori</a></li>
+                    <li class=""><a href="<?php echo BASE_URL('item') ?>"> <i class="fa fa-cube"></i> Pelayanan & Produk</a></li>
+                    <li class=""><a href="<?php echo BASE_URL('customer') ?>"> <i class="fa fa-users"></i> Pelanggan</a></li>
+                    <li class=""><a href="<?php echo BASE_URL('bank') ?>"> <i class="fa fa-credit-card"></i> Data Bank</a></li>
+                    <li class=""><a href="<?php echo BASE_URL('order') ?>"> <i class="fa fa-shopping-cart"></i> Pemesanan</a></li>
                     <li class=""><a href="<?php echo BASE_URL('user') ?>"> <i class="fa fa-lock"></i> Administrator</a></li>
 
                     </li>

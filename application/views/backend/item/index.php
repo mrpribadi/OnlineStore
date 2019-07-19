@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Product <br>
-        <small>List of Product</small>
+        Pelayanan & Produk <br>
+        <small>Data Pelayanan & Produk</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
@@ -15,7 +15,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List</h3>
+            <h3 class="box-title">Daftar</h3>
         </div>
         <div class="box-body">
             <div class="row">
@@ -23,9 +23,8 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th>Status</th>
-                                <th>Kode Produk</th>
-                                <th>Nama Produk</th>
+                                <th>Kode</th>
+                                <th>Nama</th>
                                 <th>Kategori</th>
                                 <th>Harga</th>
                                 <th></th>
@@ -35,21 +34,20 @@
                             <?php
                             foreach ($item as $row) {
                                 ?>
-                                <tr id="<?php echo $row->product_id; ?>">
-                                    <td><?php echo $row->product_status; ?></td>
-                                    <td><?php echo $row->product_reff_code; ?></td>
-                                    <td><?php echo $row->product_name; ?></td>
-                                    <td><?php echo $row->product_category_name; ?></td>
-                                    <td align="right"><?php echo formatUang($row->product_harga); ?></td>
+                                <tr id="<?php echo $row->pelayanan_id; ?>">
+                                    <td><?php echo $row->pelayanan_kode; ?></td>
+                                    <td><?php echo $row->pelayanan_nama; ?></td>
+                                    <td><?php echo $row->kategori_nama; ?></td>
+                                    <td align="right"><?php echo formatUang($row->pelayanan_harga); ?></td>
                                     <td width="12%" class="text-center">
-                                        <!-- <a href="<?php echo BASE_URL() . "item/detail/" . $row->product_id; ?>" class="btn btn-sm bg-gray" alt="Lihat Produk"><i class="fa fa-eye"></i></a>&nbsp;&nbsp; -->
-                                        <a href="<?php echo BASE_URL() . "item/edit/" . $row->product_id; ?>" class="btn btn-sm bg-purple">Detail Produk</a>
-                                        <!-- <a href="#" id="<?php echo $row->product_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
+                                        <!-- <a href="<?php echo BASE_URL() . "item/detail/" . $row->pelayanan_id; ?>" class="btn btn-sm bg-gray" alt="Lihat Produk"><i class="fa fa-eye"></i></a>&nbsp;&nbsp; -->
+                                        <a href="<?php echo BASE_URL() . "item/edit/" . $row->pelayanan_id; ?>" class="btn btn-sm bg-purple">Detail Produk</a>
+                                        <!-- <a href="#" id="<?php echo $row->pelayanan_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

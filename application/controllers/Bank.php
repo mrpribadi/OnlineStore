@@ -18,11 +18,7 @@ class Bank extends CI_Controller
 
     function index()
     {
-        $query = "SELECT a.*, b.payment_type_nama 
-                  FROM payment a 
-                  LEFT JOIN payment_type b ON b.payment_type_id = a.payment_type_id 
-                  WHERE a.payment_type_id = '1' 
-                  ORDER BY a.payment_bank_name";
+        $query = "SELECT * FROM bank ";
         $data_bank = $this->app_model->get_data_query($query)->result();
         $data = array(
             'content'   => 'backend/bank/index',
@@ -41,12 +37,8 @@ class Bank extends CI_Controller
 
     function create()
     {
-        $query = "SELECT payment_type_id, payment_type_nama FROM payment_type
-                  WHERE payment_type_status ='active'";
-        $data_type = $this->app_model->get_data_query($query)->result();
         $data = array(
-            'content'       => 'backend/bank/create',
-            'payment_type'  => $data_type
+            'content'       => 'backend/bank/create'
         );
         $this->load->view('backend/layout/app', $data);
     }
@@ -54,14 +46,10 @@ class Bank extends CI_Controller
     function edit()
     {
         $id = $this->uri->segment(3);
-        $key = array('payment_id' => $id);
-        $query = "SELECT payment_type_id, payment_type_nama FROM payment_type
-                  WHERE payment_type_status ='active'";
-        $data_type = $this->app_model->get_data_query($query)->result();
-        $data_row    = $this->app_model->get_data("payment", $key, "payment_id", "ASC")->row();
+        $key = array('bank_id' => $id);
+        $data_row    = $this->app_model->get_data("bank", $key, "bank_id", "ASC")->row();
         $data = array(
             'content'       => 'backend/bank/edit',
-            'payment_type'  => $data_type,
             'row'           => $data_row
         );
         $this->load->view('backend/layout/app', $data);
@@ -70,9 +58,9 @@ class Bank extends CI_Controller
     function delete()
     {
         $id = $this->input->post('id');
-        $key = array('payment_id' => $id);
+        $key = array('bank_id' => $id);
 
-        $delete = $this->app_model->delete_data("payment", $key);
+        $delete = $this->app_model->delete_data("bank", $key);
         if ($delete) {
             echo json_encode(array('status' => 'success'));
         } else {
@@ -85,26 +73,19 @@ class Bank extends CI_Controller
         $nama_bank = $this->input->post('nama_bank');
         $norek = $this->input->post('rek');
         $pemilik = $this->input->post('pemilik');
-        $tipe = $this->input->post('tipe');
         $id = $this->input->post('id');
-        $user = $this->session->userdata('id');
-        $status = $this->input->post('status');
 
         if ($id == "") {
-            $get_rek_exist = $this->app_model->get_data_query("SELECT payment_bank_account_no FROM payment WHERE payment_bank_account_no = '" . $norek . "'");
+            $get_rek_exist = $this->app_model->get_data_query("SELECT bank_nomor_rekening FROM bank WHERE bank_nomor_rekening = '" . $norek . "'");
             if ($get_rek_exist->num_rows() > 0) {
                 echo json_encode(array('status' => 'failed', 'message' => 'Nomor rekening sudah terdaftar..!'));
             } else {
                 $data_insert = array(
-                    'payment_bank_name'         => $nama_bank,
-                    'payment_bank_account_no'   => $norek,
-                    'payment_bank_account_name' => $pemilik,
-                    'create_by'                 => $user,
-                    'create_date'               => date('Y-m-d H:i:s'),
-                    'payment_status'     => $status,
-                    'payment_type_id'           => $tipe
+                    'bank_nama'         => $nama_bank,
+                    'bank_nomor_rekening'   => $norek,
+                    'bank_nama_rekening' => $pemilik
                 );
-                $save = $this->app_model->insert_data('payment', $data_insert);
+                $save = $this->app_model->insert_data('bank', $data_insert);
 
                 if ($save) {
                     echo json_encode(array('status' => 'success'));
@@ -113,17 +94,13 @@ class Bank extends CI_Controller
                 }
             }
         } else {
-            $key = array('payment_id' => $id);
+            $key = array('bank_id' => $id);
             $data_update = array(
-                'payment_bank_name'         => $nama_bank,
-                'payment_bank_account_no'   => $norek,
-                'payment_bank_account_name' => $pemilik,
-                'update_by'                 => $user,
-                'update_date'               => date('Y-m-d H:i:s'),
-                'payment_status'     => $status,
-                'payment_type_id'           => $tipe
+                'bank_nama'         => $nama_bank,
+                'bank_nomor_rekening'   => $norek,
+                'bank_nama_rekening' => $pemilik
             );
-            $update = $this->app_model->update_data('payment', $data_update, $key);
+            $update = $this->app_model->update_data('bank', $data_update, $key);
 
             if ($update) {
                 echo json_encode(array('status' => 'success'));

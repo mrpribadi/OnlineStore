@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Produk <br>
-        <small>Tambah Produk</small>
+        Pelayanan & Produk <br>
+        <small>Tambah Pelayanan / Produk</small>
     </h1>
     <div class="content-header-action">
 
@@ -39,7 +39,7 @@
                             <?php
                             foreach ($parent as $pr) {
                                 ?>
-                                <option value="<?= $pr->product_category_id ?>"><?= $pr->product_category_name ?></option>
+                                <option value="<?= $pr->kategori_id ?>"><?= $pr->kategori_nama ?></option>
                             <?php
                             }
                             ?>
@@ -77,16 +77,6 @@
                     <div class="col-sm-4 col-sm-4">
                         <input type="number" class="form-control" name="harga_promo" id="harga_promo" placeholder="Harga Promo" autocomplete="off">
                         <div id="harga_promo_error"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="status" id="status" class="form-control">
-                            <option value="active">Aktif</option>
-                            <option value="deactive">Tidak Aktif</option>
-                        </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -132,9 +122,9 @@
 
 
             <div class="box-footer">
-                <button class="btn btn-default" onclick="return back()">Cancel</button>
+                <button class="btn btn-default" onclick="return back()">Batal</button>
                 <button class="btn btn-info pull-right" id="btn-save">
-                    <i class="fa fa-save"></i> Save
+                    <i class="fa fa-save"></i> Simpan
                 </button>
             </div>
         </form>

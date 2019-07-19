@@ -1,17 +1,17 @@
 <?php
-if ($row->product_promo_list == '1') {
+if ($row->pelayanan_promo == '1') {
     $cek_promo = 'checked';
 } else {
     $cek_promo = '';
 }
 
-if ($row->product_new_in == '1') {
+if ($row->pelayanan_baru == '1') {
     $cek_new = 'checked';
 } else {
     $cek_new = '';
 }
 
-if ($row->product_most_popular == '1') {
+if ($row->pelayanan_populer == '1') {
     $cek_popular = 'checked';
 } else {
     $cek_popular = '';
@@ -22,8 +22,8 @@ if ($row->product_most_popular == '1') {
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Produk <br>
-        <small>Tambah Produk</small>
+        Pelayanan & Produk <br>
+        <small>Edit Pelayanan / Produk</small>
     </h1>
     <div class="content-header-action">
 
@@ -44,9 +44,9 @@ if ($row->product_most_popular == '1') {
                     <label for="nama" class="col-sm-2 control-label">Nama Produk</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->product_id; ?>">
-                        <input type="hidden" class="form-control" name="reff_code" id="reff_code" value="<?php echo $row->product_reff_code; ?>">
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Produk" autocomplete="off" value="<?php echo $row->product_name; ?>" onkeyup="create_url()">
+                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->pelayanan_id; ?>">
+                        <input type="hidden" class="form-control" name="reff_code" id="reff_code" value="<?php echo $row->pelayanan_kode; ?>">
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Produk" autocomplete="off" value="<?php echo $row->pelayanan_nama; ?>" onkeyup="create_url()">
                         <div id="name_error"></div>
                     </div>
                 </div>
@@ -58,10 +58,10 @@ if ($row->product_most_popular == '1') {
                             <option value="">--- Pilih Kategori ---</option>
                             <?php
                             foreach ($parent as $pr) {
-                                if ($row->product_category_id == $pr->product_category_id) {
-                                    echo '<option value="' . $pr->product_category_id . '" selected>' . $pr->product_category_name . '</option>';
+                                if ($row->kategori_id == $pr->kategori_id) {
+                                    echo '<option value="' . $pr->kategori_id . '" selected>' . $pr->kategori_nama . '</option>';
                                 } else {
-                                    echo '<option value="' . $pr->product_category_id . '">' . $pr->product_category_name . '</option>';
+                                    echo '<option value="' . $pr->kategori_id . '">' . $pr->kategori_nama . '</option>';
                                 }
                             }
                             ?>
@@ -73,7 +73,7 @@ if ($row->product_most_popular == '1') {
 
                     <div class="col-sm-4 col-sm-4">
 
-                        <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi Produk" autocomplete="off"><?php echo $row->product_deskripsi; ?></textarea>
+                        <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi Produk" autocomplete="off"><?php echo $row->pelayanan_deskripsi; ?></textarea>
                         <div id="deskripsi_error"></div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ if ($row->product_most_popular == '1') {
                     <label for="url" class="col-sm-2 control-label">URL</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" autocomplete="off" value="<?php echo $row->product_url; ?>" readonly>
+                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" autocomplete="off" value="<?php echo $row->pelayanan_url; ?>" readonly>
                         <div id="url_error"></div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ if ($row->product_most_popular == '1') {
                     <label for="harga" class="col-sm-2 control-label">Harga</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="number" class="form-control" name="harga" id="harga" placeholder="Harga" autocomplete="off" value="<?php echo $row->product_harga; ?>">
+                        <input type="number" class="form-control" name="harga" id="harga" placeholder="Harga" autocomplete="off" value="<?php echo $row->pelayanan_harga; ?>">
                         <div id="harga_error"></div>
                     </div>
                 </div>
@@ -97,25 +97,8 @@ if ($row->product_most_popular == '1') {
                     <label for="harga_promo" class="col-sm-2 control-label">Harga Promo</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="number" class="form-control" name="harga_promo" id="harga_promo" placeholder="Harga Promo" autocomplete="off" value="<?php echo $row->product_harga_promo; ?>">
+                        <input type="number" class="form-control" name="harga_promo" id="harga_promo" placeholder="Harga Promo" autocomplete="off" value="<?php echo $row->pelayanan_harga_promo; ?>">
                         <div id="harga_promo_error"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="status" id="status" class="form-control">
-                            <?php
-                            if ($row->product_status == 'active') {
-                                echo '<option value="active" selected>Aktif</option>
-                                  <option value="deactive">Tidak Aktif</option>';
-                            } else {
-                                echo '<option value="active">Aktif</option>
-                                  <option value="deactive" selected>Tidak Aktif</option>';
-                            }
-                            ?>
-                        </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -160,19 +143,19 @@ if ($row->product_most_popular == '1') {
                     </div>
                 </div>
                 <div class="text-center">
-                    <img src="<?php echo base_url() ?>assets/images/<?php echo $row->product_image; ?>" class="img-responsive img-thumbnail">
+                    <img src="<?php echo base_url() ?>assets/images/<?php echo $row->pelayanan_gambar; ?>" class="img-responsive img-thumbnail">
                 </div>
 
             </div>
 
 
             <div class="box-footer">
-                <button class="btn btn-default" onclick="return back()">Cancel</button>
+                <button class="btn btn-default" onclick="return back()">Batal</button>
                 <button class="btn btn-info pull-right" id="btn-save">
-                    <i class="fa fa-save"></i> Save
+                    <i class="fa fa-save"></i> Simpan
                 </button>
                 <button class="btn btn-danger pull-right" id="btn-delete" style="margin-right:20px" onclick="return delete_item()">
-                    <i class="fa fa-trash"></i> Delete
+                    <i class="fa fa-trash"></i> Hapus
                 </button>
             </div>
         </form>
@@ -249,8 +232,8 @@ if ($row->product_most_popular == '1') {
     function delete_item() {
         var data = $("#form_produk").serialize();
         swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this item!",
+                title: "Apakah anda yakin?",
+                text: "",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -267,17 +250,15 @@ if ($row->product_most_popular == '1') {
                         },
                         success: function(data) {
                             if (data.status == 'success') {
-                                swal("Deleted!", "Your item has been deleted.", "success");
+                                swal("Berhasil!", "Data berhasil dihapus", "success");
                                 window.location.href = '<?= base_url() ?>item';
 
                             } else {
-                                swal("Cancelled", "Error delete data", "error");
+                                swal("Gagal", "Gagal hapus data", "error");
                             }
 
                         }
                     });
-                } else {
-                    swal("Cancelled", "Your item is safe :)", "error");
                 }
             });
     }

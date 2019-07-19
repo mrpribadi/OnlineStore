@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Order <br>
-        <small>Order List</small>
+        Pemesanan <br>
+        <small>Daftar Pemesanan</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
@@ -15,7 +15,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List</h3>
+            <h3 class="box-title">Data</h3>
         </div>
         <div class="box-body">
             <div class="row">
@@ -23,52 +23,44 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-
-                                <th>No. Order</th>
+                                <th>No. Pemesanan</th>
                                 <th>Nama Lengkap</th>
                                 <th>Telp</th>
                                 <th>Treatment</th>
-                                <th>Tgl. Booking</th>
+                                <th>Tgl. Booking (Jam)</th>
                                 <th>Status Pembayaran</th>
                                 <th>Status Booking</th>
                                 <th></th>
                                 <!-- <th>Jenis Kelamin</th> -->
-
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             foreach ($order as $row) {
-                                if ($row->order_status == '0') {
+                                if ($row->pemesanan_status == '0') {
                                     $status = '<span class="text-danger">Belum disetujui</span>';
-                                } else if ($row->order_status == '1') {
+                                } else if ($row->pemesanan_status == '1') {
                                     $status = '<span class="text-success">Sudah disetujui</span>';
                                 } else {
                                     $status = '<span class="text-warning">Ditolak</span>';
                                 }
 
-                                if ($row->confirmation_status == '') {
-                                    $confirm = '<span class="text-danger">Belum Konfirmasi</span>';
+                                if ($row->konfirmasi_status == '') {
+                                    $confirm = '<span class="text-danger">Belum Bayar</span>';
                                 } else {
-                                    $confirm = '<span class="text-success">Sudah Konfirmasi</span>';
+                                    $confirm = '<span class="text-success">Sudah Bayar</span>';
                                 }
                                 ?>
-                                <tr id="<?php echo $row->order_id; ?>">
-
-                                    <td><?php echo $row->order_no; ?></td>
-                                    <td><?php echo $row->customer_nama; ?></td>
-                                    <td><?php echo $row->customer_phone; ?></td>
-                                    <td><?php echo $row->product_name; ?></td>
-                                    <td><?php echo date("d F y", strtotime($row->order_working_date)); ?> (<?php echo $row->order_working_time; ?>)</td>
+                                <tr id="<?php echo $row->pemesanan_id; ?>">
+                                    <td><?php echo $row->pemesanan_nomer; ?></td>
+                                    <td><?php echo $row->pelanggan_nama; ?></td>
+                                    <td><?php echo $row->pelanggan_telepon; ?></td>
+                                    <td><?php echo $row->pelayanan_nama; ?></td>
+                                    <td><?php echo date("d F y", strtotime($row->pemesanan_detail_tanggal)); ?> (<?php echo $row->pemesanan_detail_jam; ?>)</td>
                                     <td><?php echo $confirm; ?></td>
                                     <td><?php echo $status; ?></td>
                                     <td width="12%" class="text-center">
-                                        <a href="<?php echo BASE_URL() . "order/detail/" . $row->order_id; ?>" class="btn btn-sm bg-purple" alt="Lihat Order">Detail Booking Order</a>
-                                        <!-- <a href="<?php echo BASE_URL() . "order/approve/" . $row->order_id; ?>" class="btn btn-sm bg-green"><i class="fa fa-check"></i></a>&nbsp;&nbsp; -->
-                                        <!-- <?php if ($row->confirmation_status == '1' && $row->order_status == '0') { ?>
-                                                                                                                                            <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-green approve"><i class="fa fa-check"></i></a>&nbsp;&nbsp;
-                                                                                        <?php } ?>
-                                                                                        <a href="#" id="<?php echo $row->order_id; ?>" class="btn btn-sm bg-red reject"><i class="fa fa-times"></i></a> -->
+                                        <a href="<?php echo BASE_URL() . "order/detail/" . $row->pemesanan_id; ?>" class="btn btn-sm bg-purple" alt="Lihat Order">Detail Pemesanan</a>
                                     </td>
                                 </tr>
                             <?php

@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Customer <br>
-        <small>Customer List</small>
+        Pelanggan <br>
+        <small>Daftar Pelanggan</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
@@ -15,7 +15,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List</h3>
+            <h3 class="box-title">Daftar</h3>
         </div>
         <div class="box-body">
             <div class="row">
@@ -23,9 +23,7 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-
-                                <th>Status</th>
-                                <th>Kode</th>
+                                <th>Kode Member</th>
                                 <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>No. Telp</th>
@@ -38,20 +36,19 @@
                             <?php
                             foreach ($customer as $row) {
                                 ?>
-                                <tr id="<?php echo $row->customer_id; ?>">
-                                    <td><?php echo $row->customer_status; ?></td>
-                                    <td><?php echo $row->customer_code; ?></td>
-                                    <td><?php echo $row->customer_nama; ?></td>
-                                    <td><?php echo $row->customer_email; ?></td>
-                                    <td><?php echo $row->customer_phone; ?></td>
+                                <tr id="<?php echo $row->pelanggan_id; ?>">
+                                    <td><?php echo $row->pelanggan_kode_member; ?></td>
+                                    <td><?php echo $row->pelanggan_nama; ?></td>
+                                    <td><?php echo $row->pelanggan_email; ?></td>
+                                    <td><?php echo $row->pelanggan_telepon; ?></td>
                                     <td width="8%" class="text-center">
-                                        <a href="<?php echo BASE_URL() . "customer/edit/" . $row->customer_id; ?>" class="btn btn-sm bg-purple">Detail Customer</a>
-                                        <!-- <a href="#" id="<?php echo $row->customer_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
+                                        <a href="<?php echo BASE_URL() . "customer/edit/" . $row->pelanggan_id; ?>" class="btn btn-sm bg-purple">Detail Pelanggan</a>
+                                        <!-- <a href="#" id="<?php echo $row->pelanggan_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

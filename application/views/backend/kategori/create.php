@@ -25,50 +25,17 @@
                     <label for="nama" class="col-sm-2 control-label">Nama Kategori</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="hidden" class="form-control" name="id" id="id">
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Kategori" autocomplete="off" onkeyup="create_url()">
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Kategori" autocomplete="off">
                         <div id="name_error"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="parent" class="col-sm-2 control-label">Parent Kategori</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="parent" id="parent" class="form-control">
-                            <option value="">--- Select Parent ---</option>
-                            <?php
-                            foreach ($parent as $pr) {
-                                echo '<option value="' . $pr->product_category_id . '">' . $pr->product_category_name . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="url" class="col-sm-2 control-label">URL</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" autocomplete="off" readonly>
-                        <div id="url_error"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="status" id="status" class="form-control">
-                            <option value="active">Aktif</option>
-                            <option value="deactive">Tidak Aktif</option>
-                        </select>
                     </div>
                 </div>
             </div>
         </form>
 
         <div class="box-footer">
-            <button class="btn btn-default" onclick="return back()">Cancel</button>
+            <button class="btn btn-default" onclick="return back()">Batal</button>
             <button class="btn btn-info pull-right" id="btn-save">
-                <i class="fa fa-save"></i> Save
+                <i class="fa fa-save"></i> Simpan
             </button>
         </div>
     </div>
@@ -87,10 +54,6 @@
                 var msg = '<p class="text-red">Nama kategori harus diisi..!</p>';
                 $('#app_error').html(msg);
                 $('#nama').focus();
-            } else if ($.trim($('#url').val()) == '') {
-                var msg = '<p class="text-red">URL harus diisi..!</p>';
-                $('#app_error').html(msg);
-                $('#url').focus();
             } else {
                 var data = $("#form_kategori").serialize();
                 $.ajax({
@@ -106,7 +69,7 @@
                         }
                     },
                     error: function() {
-                        alert('Check Your internet connection..!')
+                        alert('Cek internet kamu...!');
                     }
                 });
             }
@@ -121,10 +84,10 @@
         window.location.href = '<?= base_url() ?>kategori';
     }
 
-    function create_url() {
-        var name = document.getElementById('nama');
-        var url = document.getElementById('url');
+    // function create_url() {
+    //     var name = document.getElementById('nama');
+    //     var url = document.getElementById('url');
 
-        url.value = name.value.replace(/ /g, "-").toLowerCase();
-    }
+    //     url.value = name.value.replace(/ /g, "-").toLowerCase();
+    // }
 </script>

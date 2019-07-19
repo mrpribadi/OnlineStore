@@ -1,7 +1,7 @@
 <div class="main">
     <div class="header-page">
         <div class="container">
-            <h1>OUR OUTLET</h1>
+            <h1>OUTLET KAMI</h1>
         </div>
     </div>
     <!-- /.header-page -->

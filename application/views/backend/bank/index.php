@@ -4,7 +4,7 @@
     </div>
     <h1>
         Bank <br>
-        <small>Bank Account</small>
+        <small>Data Bank</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
@@ -15,7 +15,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List</h3>
+            <h3 class="box-title">Daftar Bank</h3>
         </div>
         <div class="box-body">
             <div class="row">
@@ -23,7 +23,6 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th>Status</th>
                                 <th>Nama Bank</th>
                                 <th>Nomor Rekening</th>
                                 <th>Nama Pemilik</th>
@@ -35,20 +34,18 @@
                             <?php
                             foreach ($bank as $row) {
                                 ?>
-                                <tr id="<?php echo $row->payment_id; ?>">
-
-                                    <td><?php echo $row->payment_status; ?></td>
-                                    <td><?php echo $row->payment_bank_name; ?></td>
-                                    <td><?php echo $row->payment_bank_account_no; ?></td>
-                                    <td><?php echo $row->payment_bank_account_name; ?></td>
+                                <tr id="<?php echo $row->bank_id; ?>">
+                                    <td><?php echo $row->bank_nama; ?></td>
+                                    <td><?php echo $row->bank_nomor_rekening; ?></td>
+                                    <td><?php echo $row->bank_nama_rekening; ?></td>
                                     <td width="8%" class="text-center">
-                                        <a href="<?php echo BASE_URL() . "bank/edit/" . $row->payment_id; ?>" class="btn btn-sm bg-purple">Detail Bank</a>
-                                        <!-- <a href="#" id="<?php echo $row->payment_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
+                                        <a href="<?php echo BASE_URL() . "bank/edit/" . $row->bank_id; ?>" class="btn btn-sm bg-purple">Detail Bank</a>
+                                        <!-- <a href="#" id="<?php echo $row->bank_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

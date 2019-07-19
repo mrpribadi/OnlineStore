@@ -18,8 +18,8 @@ class Item extends CI_Controller
 
     function index()
     {
-        $query = "SELECT a.*, b.product_category_name FROM product AS a
-                  LEFT JOIN product_category AS b ON b.product_category_id = a.product_category_id ";
+        $query = "SELECT a.*, b.kategori_nama FROM pelayanan AS a
+                  LEFT JOIN kategori AS b ON b.kategori_id = a.kategori_id ";
         $data_item = $this->app_model->get_data_query($query)->result();
         $data = array(
             'content'   => 'backend/item/index',
@@ -31,8 +31,8 @@ class Item extends CI_Controller
     function detail()
     {
         $id = $this->uri->segment(3);
-        $key = array('product_id' => $id);
-        $data_row    = $this->app_model->get_data("product", $key, "product_id", "ASC")->row();
+        $key = array('pelayanan_id' => $id);
+        $data_row    = $this->app_model->get_data("product", $key, "pelayanan_id", "ASC")->row();
         $data = array(
             'content'   => 'backend/item/detail',
             'row'       => $data_row
@@ -42,8 +42,7 @@ class Item extends CI_Controller
 
     function create()
     {
-        $query = "SELECT product_category_id, product_category_name FROM product_category
-                  WHERE product_category_status ='active'";
+        $query = "SELECT kategori_id, kategori_nama FROM kategori";
         $data_parent = $this->app_model->get_data_query($query)->result();
         $data = array(
             'content'   => 'backend/item/create',
@@ -55,11 +54,10 @@ class Item extends CI_Controller
     function edit()
     {
         $id = $this->uri->segment(3);
-        $key = array('product_id' => $id);
-        $query = "SELECT product_category_id, product_category_name FROM product_category
-                  WHERE product_category_status ='active'";
+        $key = array('pelayanan_id' => $id);
+        $query = "SELECT kategori_id, kategori_nama FROM kategori";
         $data_parent = $this->app_model->get_data_query($query)->result();
-        $data_row    = $this->app_model->get_data("product", $key, "product_id", "ASC")->row();
+        $data_row    = $this->app_model->get_data("pelayanan", $key, "pelayanan_id", "ASC")->row();
         $data = array(
             'content'   => 'backend/item/edit',
             'parent'    => $data_parent,
@@ -71,9 +69,9 @@ class Item extends CI_Controller
     function delete()
     {
         $id = $this->input->post('id');
-        $key = array('product_id' => $id);
+        $key = array('pelayanan_id' => $id);
 
-        $delete = $this->app_model->delete_data("product", $key);
+        $delete = $this->app_model->delete_data("pelayanan", $key);
         if ($delete) {
             echo json_encode(array('status' => 'success'));
         } else {
@@ -90,8 +88,6 @@ class Item extends CI_Controller
         $id = $this->input->post('id');
         $harga = $this->input->post('harga');
         $harga_promo = '0';
-        $user = $this->session->userdata('id');
-        $status = $this->input->post('status');
         $promo = $this->input->post('promo');
         $new = $this->input->post('new');
         $popular = $this->input->post('popular');
@@ -127,12 +123,12 @@ class Item extends CI_Controller
         //die();
 
         if ($id == "") {
-            $get_url_exist = $this->app_model->get_data_query("SELECT product_url FROM product WHERE product_url = '" . $url . "'");
+            $get_url_exist = $this->app_model->get_data_query("SELECT pelayanan_url FROM pelayanan WHERE pelayanan_url = '" . $url . "'");
             if ($get_url_exist->num_rows() > 0) {
                 echo json_encode(array('status' => 'failed', 'message' => 'Nama produk sudah ada..!'));
             } else {
                 if ($files['foto']['error'] == '0') {
-                    $get_last_id = "SELECT MAX(product_reff_code) AS last_code FROM product";
+                    $get_last_id = "SELECT MAX(pelayanan_kode) AS last_code FROM pelayanan";
                     $query_last = $this->app_model->get_data_query($get_last_id)->row();
                     if ($query_last->last_code == "") {
                         $new_code = "PROD0001";
@@ -146,98 +142,88 @@ class Item extends CI_Controller
                     $img_name = $new_code . "_" . $files['foto']['name'];
                     move_uploaded_file($files['foto']['tmp_name'], realpath('assets/images') . '/' . $img_name);
                     $data_insert = array(
-                        'product_name'          => $nama,
-                        'product_url'           => $url,
-                        'product_category_id'   => $kategori,
-                        'product_harga'         => $harga,
-                        'product_harga_promo'   => $harga_promo,
-                        'product_deskripsi'     => $deskripsi,
-                        'create_by'             => $user,
-                        'create_date'           => date('Y-m-d H:i:s'),
-                        'product_status'        => $status,
-                        'product_image'         => $img_name,
-                        'product_reff_code'     => $new_code,
-                        'product_promo_list'    => $value_promo,
-                        'product_promo_list_date' => $date_promo,
-                        'product_new_in'        => $value_new,
-                        'product_new_in_date'   => $date_new,
-                        'product_most_popular'  => $value_popular,
-                        'product_most_popular_date' => $date_popular
-
+                        'kategori_id'   => $kategori,
+                        'pelayanan_kode'     => $new_code,
+                        'pelayanan_nama'          => $nama,
+                        'pelayanan_url'           => $url,
+                        'pelayanan_harga'         => $harga,
+                        'pelayanan_harga_promo'   => $harga_promo,
+                        'pelayanan_deskripsi'     => $deskripsi,
+                        'pelayanan_gambar'         => $img_name,
+                        'pelayanan_promo'    => $value_promo,
+                        'pelayanan_promo_tanggal' => $date_promo,
+                        'pelayanan_baru'        => $value_new,
+                        'pelayanan_baru_tanggal'   => $date_new,
+                        'pelayanan_populer'  => $value_popular,
+                        'pelayanan_populer_tanggal' => $date_popular
                     );
 
-                    $save = $this->app_model->insert_data('product', $data_insert);
+                    $save = $this->app_model->insert_data('pelayanan', $data_insert);
                     redirect('item');
                 }
             }
         } else {
-            $key = array('product_id' => $id);
+            $key = array('pelayanan_id' => $id);
             if ($files['foto']['error'] == '0') {
 
-                $img_name = $this->input->post('reff_code') . "_" . $files['foto']['name'];
+                $img_name = $this->input->post('pelayanan_kode') . "_" . $files['foto']['name'];
                 move_uploaded_file($files['foto']['tmp_name'], realpath('assets/images') . '/' . $img_name);
                 $data_update = array(
-                    'product_name'          => $nama,
-                    'product_url'           => $url,
-                    'product_category_id'   => $kategori,
-                    'product_harga'         => $harga,
-                    'product_harga_promo'   => $harga_promo,
-                    'product_deskripsi'     => $deskripsi,
-                    'create_by'             => $user,
-                    'create_date'           => date('Y-m-d H:i:s'),
-                    'product_status'        => $status,
-                    'product_image'         => $img_name,
-                    'product_promo_list'    => $value_promo,
-                    'product_promo_list_date' => $date_promo,
-                    'product_new_in'        => $value_new,
-                    'product_new_in_date'   => $date_new,
-                    'product_most_popular'  => $value_popular,
-                    'product_most_popular_date' => $date_popular
+                    'kategori_id'   => $kategori,
+                    'pelayanan_nama'          => $nama,
+                    'pelayanan_url'           => $url,
+                    'pelayanan_harga'         => $harga,
+                    'pelayanan_harga_promo'   => $harga_promo,
+                    'pelayanan_deskripsi'     => $deskripsi,
+                    'pelayanan_gambar'         => $img_name,
+                    'pelayanan_promo'    => $value_promo,
+                    'pelayanan_promo_tanggal' => $date_promo,
+                    'pelayanan_baru'        => $value_new,
+                    'pelayanan_baru_tanggal'   => $date_new,
+                    'pelayanan_populer'  => $value_popular,
+                    'pelayanan_populer_tanggal' => $date_popular
                 );
 
-                $update = $this->app_model->update_data('product', $data_update, $key);
+                $update = $this->app_model->update_data('pelayanan', $data_update, $key);
                 redirect('item');
             } else {
                 $data_update = array(
-                    'product_name'          => $nama,
-                    'product_url'           => $url,
-                    'product_category_id'   => $kategori,
-                    'product_harga'         => $harga,
-                    'product_harga_promo'   => $harga_promo,
-                    'product_deskripsi'     => $deskripsi,
-                    'update_by'             => $user,
-                    'update_date'           => date('Y-m-d H:i:s'),
-                    'product_status'        => $status,
-                    'product_promo_list'    => $value_promo,
-                    'product_promo_list_date' => $date_promo,
-                    'product_new_in'        => $value_new,
-                    'product_new_in_date'   => $date_new,
-                    'product_most_popular'  => $value_popular,
-                    'product_most_popular_date' => $date_popular
+                    'kategori_id'   => $kategori,
+                    'pelayanan_nama'          => $nama,
+                    'pelayanan_url'           => $url,
+                    'pelayanan_harga'         => $harga,
+                    'pelayanan_harga_promo'   => $harga_promo,
+                    'pelayanan_deskripsi'     => $deskripsi,
+                    'pelayanan_promo'    => $value_promo,
+                    'pelayanan_promo_tanggal' => $date_promo,
+                    'pelayanan_baru'        => $value_new,
+                    'pelayanan_baru_tanggal'   => $date_new,
+                    'pelayanan_populer'  => $value_popular,
+                    'pelayanan_populer_tanggal' => $date_popular
                 );
 
-                $update = $this->app_model->update_data('product', $data_update, $key);
+                $update = $this->app_model->update_data('pelayanan', $data_update, $key);
                 redirect('item');
             }
         }
 
 
         // if ($id == "") {
-        //     $get_url_exist = $this->app_model->get_data_query("SELECT product_url FROM product WHERE product_url = '".$url."'");
+        //     $get_url_exist = $this->app_model->get_data_query("SELECT pelayanan_url FROM pelayanan WHERE pelayanan_url = '".$url."'");
         //     if ($get_url_exist->num_rows() > 0) {
         //         echo json_encode(array('status' => 'failed', 'message' => 'Nama produk sudah ada..!'));
         //     }
         //     else 
         //     {
         //         $data_insert = array(
-        //             'product_name'          => $nama,
-        //             'product_url'           => $url,
-        //             'product_category_id'   => $kategori,
-        //             'product_harga'         => $harga,
-        //             'product_deskripsi'     => $deskripsi,
+        //             'pelayanan_name'          => $nama,
+        //             'pelayanan_url'           => $url,
+        //             'kategori_id'   => $kategori,
+        //             'pelayanan_harga'         => $harga,
+        //             'pelayanan_deskripsi'     => $deskripsi,
         //             'create_by'             => $user,
-        //             'create_date'           => date('Y-m-d H:i:s'),
-        //             'product_status'        => $status
+        //             'create_tanggal'           => date('Y-m-d H:i:s'),
+        //             'pelayanan_status'        => $status
         //         );
         //         $save = $this->app_model->insert_data('product', $data_insert);
 
@@ -249,16 +235,16 @@ class Item extends CI_Controller
         //     }
 
         // } else {
-        //     $key = array('product_id' => $id);
+        //     $key = array('pelayanan_id' => $id);
         //     $data_update = array(
-        //         'product_name'          => $nama,
-        //         'product_url'           => $url,
-        //         'product_category_id'   => $kategori,
-        //         'product_harga'         => $harga,
-        //         'product_deskripsi'     => $deskripsi,
+        //         'pelayanan_name'          => $nama,
+        //         'pelayanan_url'           => $url,
+        //         'kategori_id'   => $kategori,
+        //         'pelayanan_harga'         => $harga,
+        //         'pelayanan_deskripsi'     => $deskripsi,
         //         'update_by'             => $user,
-        //         'update_date'           => date('Y-m-d H:i:s'),
-        //         'product_status'        => $status
+        //         'update_tanggal'           => date('Y-m-d H:i:s'),
+        //         'pelayanan_status'        => $status
         //     );
         //     $update = $this->app_model->update_data('product', $data_update, $key);
 

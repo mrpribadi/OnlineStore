@@ -56,10 +56,10 @@
         <div class="container">
             <div class="left-topbar">
                 <?php if ($this->session->userdata('id') == '') { ?>
-                    WELCOME GUEST!
-                    <a href="<?php echo base_url('login') ?>">LOG IN</a> OR <a href="<?php echo base_url('register') ?>">REGISTER</a>
+                    SELAMAT DATANG PENGUNJUNG!
+                    <a href="<?php echo base_url('login') ?>">MASUK</a> ATAU <a href="<?php echo base_url('register') ?>">DAFTAR</a>
                 <?php } else { ?>
-                    WELCOME <?php echo $this->session->userdata('nama'); ?>!
+                    SELAMAT DATANG <?php echo $this->session->userdata('nama'); ?>!
                 <?php } ?>
             </div>
             <!-- /.left-topbar -->
@@ -69,15 +69,18 @@
                         <li>
                             <div class="btn-group">
                                 <button class="dropdown dropdown-toggle" data-toggle="dropdown">
-                                    <span>My Account</span>
+                                    <span>Akun Saya</span>
                                     <i class="pe-7s-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="<?php echo base_url('home/member') ?>"><i class="fa fa-shopping-cart"></i> Booking History</a>
+                                        <a href="<?php echo base_url('home/profile/') ?>"><i class="fa fa-user"></i> Profil</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url('logout') ?>"><i class="fa fa-share"></i> Logout</a>
+                                        <a href="<?php echo base_url('home/member/') ?>"><i class="fa fa-shopping-cart"></i> Konfirmasi Pemesanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('logout') ?>"><i class="fa fa-share"></i> Keluar</a>
                                     </li>
                                 </ul>
                             </div>
@@ -120,21 +123,35 @@
                         <li class="current-menu-item">
                             <a href="<?php echo BASE_URL(); ?>">HOME</a>
                         </li>
-
-                        <?php foreach ($menu as $row) : ?>
-                            <li>
-                                <a href="<?php echo BASE_URL('pages') . "/" . $row->product_category_url ?>"><?php echo strtoupper($row->product_category_name); ?></a>
-                                <ul class="sub-menu">
-                                    <?php
-                                    foreach ($submenu as $sb) {
-                                        if ($sb->product_category_id == $row->product_category_id) {
-                                            echo '<li><a href="' . BASE_URL('detail') . '/' . $sb->product_url . '">' . strtoupper($sb->product_name) . '</a></li>';
-                                        }
-                                    }
-                                    ?>
-                                </ul>
-                            </li>
-                        <?php endforeach; ?>
+                        <li>
+                            <a href="<?php echo BASE_URL('pages/pelayanan/') ?>">PELAYANAN</a>
+                            <ul class="sub-menu">
+                                <?php
+                                foreach ($pelayanan as $sb) {
+                                    echo '<li><a href="' . BASE_URL('detail') . '/' . $sb->pelayanan_url . '">' . strtoupper($sb->pelayanan_nama) . '</a></li>';
+                                }
+                                ?>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo BASE_URL('pages/produk/') ?>">PRODUK</a>
+                            <ul class="sub-menu">
+                                <?php
+                                foreach ($produk as $sb) {
+                                    echo '<li><a href="' . BASE_URL('detail') . '/' . $sb->pelayanan_url . '">' . strtoupper($sb->pelayanan_nama) . '</a></li>';
+                                }
+                                ?>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo BASE_URL('pages/promo'); ?>">PROMO</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo BASE_URL('pages/outlet'); ?>">OUTLET</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo BASE_URL('pages/about'); ?>">TENTANG KAMI</a>
+                        </li>
 
                         <li class="hidden-xs">
                             <div class="wrap-search">
@@ -163,27 +180,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <h3>MENU LINKS</h3>
+                    <h3>TAUTAN</h3>
                     <ul class="list-link">
-                        <?php foreach ($menu as $row) : ?>
-                            <li><a href="<?php echo BASE_URL('pages') . "/" . $row->product_category_url ?>"><?php echo strtoupper($row->product_category_name); ?></a></li>
-                        <?php endforeach; ?>
+                        <li><a href="<?php echo BASE_URL('pages/pelayanan/') ?>">PELAYANAN</a></li>
+                        <li><a href="<?php echo BASE_URL('pages/produk/') ?>">PRODUK</a></li>
+                        <li><a href="<?php echo BASE_URL('pages/promo/') ?>">PROMO</a></li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <h3>ABOUT US</h3>
+                    <h3>TENTANG KAMI</h3>
                     <div class="address">
                         Merupakan salah satu klinik kecantikan di Indonesia yang terdapat di beberapa cabang di Jakarta, Bekasi, dan Yogyakarta. Menggabungkan perawatan kecantikan yang dilakukan oleh dokter dan beauty therapist secara terpadu untuk seluruh tubuh anda. Berupaya memberikan hasil yang prima juga kenyamanan, keamanan, keramahan dan privasi.
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <h3>HELP</h3>
-                    <ul class="list-link">
-                        <li><a href="how-to-buy.html">HOW TO BOOK</a></li>
-                        <!-- <li><a href="<?php echo BASE_URL('pages/confirm') ?>">CONFIRMATION</a></li> -->
-                    </ul>
+
                 </div>
             </div>
             <div class="bottom-footer">

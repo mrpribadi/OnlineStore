@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Customer <br>
-        <small>Edit Customer</small>
+        Pelanggan <br>
+        <small>Edit Pelanggan</small>
     </h1>
     <div class="content-header-action">
 
@@ -25,8 +25,8 @@
                     <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->customer_id; ?>">
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" autocomplete="off" value="<?php echo $row->customer_nama; ?>">
+                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->pelanggan_id; ?>">
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" autocomplete="off" value="<?php echo $row->pelanggan_nama; ?>">
                         <div id="name_error"></div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <label for="email" class="col-sm-2 control-label">Email</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" value="<?php echo $row->customer_email; ?>" readonly>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" value="<?php echo $row->pelanggan_email; ?>" readonly>
                         <div id="email_error"></div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <label for="phone" class="col-sm-2 control-label">No. Telp</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="number" class="form-control" name="phone" id="phone" placeholder="Nomor Telpon" autocomplete="off" value="<?php echo $row->customer_phone; ?>">
+                        <input type="number" class="form-control" name="phone" id="phone" placeholder="Nomor Telpon" autocomplete="off" value="<?php echo $row->pelanggan_telepon; ?>">
                         <div id="phone_error"></div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     <div class="col-sm-4 col-sm-4">
                         <select name="gender" id="gender" class="form-control">
                             <?php
-                            if ($row->customer_gender == 'pria') {
+                            if ($row->pelanggan_jenis_kelamin == 'Pria') {
                                 echo '<option value="pria" selected>Pria</option>
                                 <option value="wanita">Wanita</option>';
                             } else {
@@ -79,33 +79,17 @@
                         <div id="cpassword_error"></div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
 
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="status" id="status" class="form-control">
-                            <?php
-                            if ($row->customer_status == 'active') {
-                                echo '<option value="active" selected>Aktif</option>
-                              <option value="deactive">Tidak Aktif</option>';
-                            } else {
-                                echo '<option value="active">Aktif</option>
-                              <option value="deactive" selected>Tidak Aktif</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
             </div>
         </form>
 
         <div class="box-footer">
-            <button class="btn btn-default" onclick="return back()">Cancel</button>
+            <button class="btn btn-default" onclick="return back()">Batal</button>
             <button class="btn btn-info pull-right" id="btn-save">
-                <i class="fa fa-save"></i> Save
+                <i class="fa fa-save"></i> Simpan
             </button>
             <button class="btn btn-danger pull-right" id="btn-delete" style="margin-right:20px">
-                <i class="fa fa-trash"></i> Delete
+                <i class="fa fa-trash"></i> Hapus
             </button>
         </div>
     </div>
@@ -152,7 +136,7 @@
                         }
                     },
                     error: function() {
-                        alert('Check Your internet connection..!')
+                        alert('Cek internet kamu..!');
                     }
                 });
             }
@@ -161,8 +145,8 @@
         $("#btn-delete").click(function() {
             var data = $("#form_customer").serialize();
             swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this customer!",
+                    title: "Apakah anda yakin?",
+                    text: "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -179,17 +163,15 @@
                             },
                             success: function(data) {
                                 if (data.status == 'success') {
-                                    swal("Deleted!", "Your customer has been deleted.", "success");
+                                    swal("Berhasil!", "Data berhasil dihapus.", "success");
                                     window.location.href = '<?= base_url() ?>customer';
 
                                 } else {
-                                    swal("Cancelled", "Error delete data", "error");
+                                    swal("Cancelled", "Gagal hapus data", "error");
                                 }
 
                             }
                         });
-                    } else {
-                        swal("Cancelled", "Your customer is safe :)", "error");
                     }
                 });
 

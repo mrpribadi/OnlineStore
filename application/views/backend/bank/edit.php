@@ -4,7 +4,7 @@
     </div>
     <h1>
         Bank <br>
-        <small>Tambah Bank</small>
+        <small>Edit Data Bank</small>
     </h1>
     <div class="content-header-action">
 
@@ -25,8 +25,8 @@
                     <label for="name" class="col-sm-2 control-label">Nama Bank</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->payment_id; ?>">
-                        <input type="text" class="form-control" name="nama_bank" id="nama_bank" placeholder="Nama Bank" autocomplete="off" value="<?php echo $row->payment_bank_name; ?>">
+                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $row->bank_id; ?>">
+                        <input type="text" class="form-control" name="nama_bank" id="nama_bank" placeholder="Nama Bank" autocomplete="off" value="<?php echo $row->bank_nama; ?>">
                         <div id="nama_error"></div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <label for="rek" class="col-sm-2 control-label">Nomor Rekening</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="number" class="form-control" name="rek" id="rek" placeholder="1234xxx" autocomplete="off" value="<?php echo $row->payment_bank_account_no; ?>">
+                        <input type="number" class="form-control" name="rek" id="rek" placeholder="1234xxx" autocomplete="off" value="<?php echo $row->bank_nomor_rekening; ?>">
                         <div id="rek_error"></div>
                     </div>
                 </div>
@@ -42,52 +42,20 @@
                     <label for="rek" class="col-sm-2 control-label">Nama Pemilik</label>
 
                     <div class="col-sm-4 col-sm-4">
-                        <input type="text" class="form-control" name="pemilik" id="pemilik" placeholder="Nama Pemilik" autocomplete="off" value="<?php echo $row->payment_bank_account_name; ?>">
+                        <input type="text" class="form-control" name="pemilik" id="pemilik" placeholder="Nama Pemilik" autocomplete="off" value="<?php echo $row->bank_nama_rekening; ?>">
                         <div id="rek_error"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="tipe" class="col-sm-2 control-label">Tipe Pembayaran</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="tipe" id="tipe" class="form-control">
-                            <?php
-                            foreach ($payment_type as $pr) {
-                                ?>
-                                <option value="<?= $pr->payment_type_id ?>"><?= $pr->payment_type_nama ?></option>
-                            <?php
-                        }
-                        ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
-
-                    <div class="col-sm-4 col-sm-4">
-                        <select name="status" id="status" class="form-control">
-                            <?php
-                            if ($row->payment_status == 'active') {
-                                echo '<option value="active" selected>Aktif</option>
-                                  <option value="deactive">Tidak Aktif</option>';
-                            } else {
-                                echo '<option value="active">Aktif</option>
-                                  <option value="deactive" selected>Tidak Aktif</option>';
-                            }
-                            ?>
-                        </select>
                     </div>
                 </div>
             </div>
         </form>
 
         <div class="box-footer">
-            <button class="btn btn-default" onclick="return back()">Cancel</button>
+            <button class="btn btn-default" onclick="return back()">Batal</button>
             <button class="btn btn-info pull-right" id="btn-save">
-                <i class="fa fa-save"></i> Save
+                <i class="fa fa-save"></i> Simpan
             </button>
             <button class="btn btn-danger pull-right" id="btn-delete" style="margin-right:20px">
-                <i class="fa fa-trash"></i> Delete
+                <i class="fa fa-trash"></i> Hapus
             </button>
         </div>
     </div>
@@ -129,7 +97,7 @@
                         }
                     },
                     error: function() {
-                        alert('Check Your internet connection..!')
+                        alert('Cek internet kamu..!')
                     }
                 });
             }
@@ -138,8 +106,8 @@
         $("#btn-delete").click(function() {
             var data = $("#form_bank").serialize();
             swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this bank!",
+                    title: "Apakah anda yakin?",
+                    text: "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -152,21 +120,19 @@
                             url: '<?php echo BASE_URL() ?>bank/delete',
                             data: data,
                             error: function() {
-                                alert('Something is wrong');
+                                alert('Ada yang salah');
                             },
                             success: function(data) {
                                 if (data.status == 'success') {
-                                    swal("Deleted!", "Your bank has been deleted.", "success");
+                                    swal("Berhasil!", "Data berhasil dihapus", "success");
                                     window.location.href = '<?= base_url() ?>bank';
 
                                 } else {
-                                    swal("Cancelled", "Error delete data", "error");
+                                    swal("Gagal", "Gagal hapus data", "error");
                                 }
 
                             }
                         });
-                    } else {
-                        swal("Cancelled", "Your bank is safe :)", "error");
                     }
                 });
 

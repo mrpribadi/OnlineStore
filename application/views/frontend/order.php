@@ -1,7 +1,7 @@
 <div class="main">
     <div class="container">
         <div class="header-page">
-            <h1>BOOKING</h1>
+            <h1>PENDAFTARAN</h1>
         </div>
         <!-- /.header-page -->
         <div class="main-content">
@@ -10,7 +10,7 @@
                     <div class="billing-details">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>PERSONAL INFORMATION </h3>
+                                <h3>DATA PERSONAL </h3>
                                 <div class="wrap-different-address">
                                     <input class="input-form" type="text" id="fullname" name="fullname" autocomplete="off" value="<?php echo $this->session->userdata('nama'); ?>" required readonly />
                                     <!-- <div class="row">
@@ -26,20 +26,20 @@
                                     </div> -->
                                     <input class="input-form" type="number" placeholder="PHONE" id="phone" name="phone" autocomplete="off" value="<?php echo $this->session->userdata('telp'); ?>" required readonly />
                                     <input class="input-form" type="email" placeholder="EMAIL" id="email" name="email" autocomplete="off" value="<?php echo $this->session->userdata('email'); ?>" required readonly />
-                                    <input class="input-form" type="hidden" name="product_id" value="<?php echo $produk->product_id; ?>" />
-                                    <input class="input-form" type="hidden" name="product_harga" value="<?php echo $produk->product_harga; ?>" />
-                                    <input class="input-form" type="hidden" name="product_name" value="<?php echo $produk->product_name; ?>" />
-                                    <input class="input-form" type="hidden" name="product_image" value="<?php echo $produk->product_image; ?>" />
+                                    <input class="input-form" type="hidden" name="product_id" value="<?php echo $produk_detail->pelayanan_id; ?>" />
+                                    <input class="input-form" type="hidden" name="product_harga" value="<?php echo $produk_detail->pelayanan_harga; ?>" />
+                                    <input class="input-form" type="hidden" name="product_name" value="<?php echo $produk_detail->pelayanan_nama; ?>" />
+                                    <input class="input-form" type="hidden" name="product_image" value="<?php echo $produk_detail->pelayanan_gambar; ?>" />
                                 </div>
                             </div>
                             <!-- /.wrap-different-address -->
 
                             <div class="col-md-12">
-                                <h3>BOOKING INFORMATION </h3>
+                                <h3>INFORMASI PENDAFTARAN </h3>
                                 <div class="wrap-different-address">
                                     <div class="row">
                                         <div class="col-md-6 pdr-5">
-                                            <input class="input-form date" type="text" placeholder="DATE" id="date" name="date" autocomplete="off" required />
+                                            <input class="input-form date" type="text" placeholder="TANGGAL PELAYANAN" id="date" name="date" autocomplete="off" required />
                                         </div>
                                         <div class="col-md-6 pdl-5">
                                             <select name="time" id="time" class="custom-select">
@@ -54,41 +54,41 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <textarea class="textarea-form" name="notes" placeholder="NOTES"></textarea>
+                                    <textarea class="textarea-form" name="notes" placeholder="CATATAN"></textarea>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <!-- /.billing-details -->
-                    <h3>CHECK OUT</h3>
+                    <h3>PEMBAYARAN</h3>
                     <div class="table-responsive">
                         <table class="check-out-table table" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="product-name">Product</th>
+                                    <th class="product-name">Pelayanan</th>
                                     <th class="no-border"></th>
-                                    <th class="product-subtotal">Total</th>
+                                    <th class="product-subtotal">Subtotal</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="product-name" style="text-align: left" ;>
-                                        <?php echo $produk->product_name ?>
+                                        <?php echo $produk_detail->pelayanan_nama ?>
                                     </td>
                                     <td class="no-border"></td>
                                     <td class="product-subtotal" style="text-align: right" ;>
-                                        Rp. <?php echo formatUang($produk->product_harga) ?>
+                                        Rp. <?php echo formatUang($produk_detail->pelayanan_harga) ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="product-name" style="text-align: left" ;>
-                                        <span class="highlight">Order Total</span>
+                                        <span class="highlight">Total Bayar</span>
                                     </td>
                                     <td class="no-border"></td>
                                     <td class="product-subtotal" style="text-align: right" ;>
-                                        <span class="highlight">Rp. <?php echo formatUang($produk->product_harga) ?></span>
+                                        <span class="highlight">Rp. <?php echo formatUang($produk_detail->pelayanan_harga) ?></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -97,7 +97,7 @@
                     </div>
                     <!-- /.table-responsive -->
                     <div class="payment-methods">
-                        <ul class="responsive-accordion responsive-accordion-default">
+                        <!-- <ul class="responsive-accordion responsive-accordion-default">
 
                             <li class="first-open">
                                 <?php foreach ($payment as $row) : ?>
@@ -111,9 +111,9 @@
                                 </div>
                             </li>
 
-                        </ul>
+                        </ul> -->
                         <button type="button" id="bt_complete_order" class="place-order-btn" onClick="complete_order()">
-                            <i class="fa fa-check"></i> BOOK NOW
+                            <i class="fa fa-check"></i> DAFTAR
                         </button>
                         <!-- <input class="place-order-btn" type="submit" value="PLACE ORDER"> -->
                     </div>
@@ -129,7 +129,7 @@
 <!-- /.main -->
 
 <?php
-$this->session->set_flashdata('idproduct', $produk->product_id);
+$this->session->set_flashdata('idproduct', $produk_detail->pelayanan_id);
 ?>
 
 <script type="text/javascript">

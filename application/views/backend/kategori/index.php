@@ -3,8 +3,8 @@
         <i class="fa fa-list"></i>
     </div>
     <h1>
-        Menu <br>
-        <small>Menu Produk</small>
+        Kategori <br>
+        <small>Kategori Pelayanan</small>
     </h1>
     <div class="content-header-action">
         <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-upload" data-backdrop="static" data-keyboard="false"> <i class="fa fa-upload fa-sm fa-mr"></i> Import</button> -->
@@ -15,7 +15,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List</h3>
+            <h3 class="box-title">Daftar</h3>
         </div>
         <div class="box-body">
             <div class="row">
@@ -23,9 +23,7 @@
                     <table class="table table-bordered data-table" id="table-order">
                         <thead>
                             <tr>
-                                <th>Status</th>
-                                <th>Nama Menu</th>
-                                <th>Parent</th>
+                                <th>Kategori</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -33,18 +31,16 @@
                             <?php
                             foreach ($kategori as $row) {
                                 ?>
-                                <tr id="<?php echo $row->product_category_id; ?>">
-                                    <td><?php echo $row->product_category_status; ?></td>
-                                    <td><?php echo $row->product_category_name; ?></td>
-                                    <td><?php echo $row->parent_name; ?></td>
+                                <tr id="<?php echo $row->kategori_id; ?>">
+                                    <td><?php echo $row->kategori_nama; ?></td>
                                     <td width="8%" class="text-center">
-                                        <a href="<?php echo BASE_URL() . "kategori/edit/" . $row->product_category_id; ?>" class="btn btn-sm bg-purple">Detail Menu</a>
+                                        <a href="<?php echo BASE_URL() . "kategori/edit/" . $row->kategori_id; ?>" class="btn btn-sm bg-purple">Detail Kategori</a>
                                         <!-- <a href="#" id="<?php echo $row->product_category_id; ?>" class="btn btn-sm bg-red delete"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

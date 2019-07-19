@@ -1,8 +1,8 @@
 <?php
-if ($order->order_status == '0') {
-    $status = '<span class="text-danger"><b>Unpaid</b></span>';
+if ($order->pemesanan_status == '0') {
+    $status = '<span class="text-danger"><b>Belum Dibayar</b></span>';
 } else {
-    $status = '<span class="text-green"><b>Paid</b></span>';
+    $status = '<span class="text-green"><b>Sudah Dibayar</b></span>';
 }
 ?>
 
@@ -12,8 +12,8 @@ if ($order->order_status == '0') {
     <div class="row">
         <div class="col-xs-12">
             <h2 class="page-header">
-                <i class="fa fa-globe"></i> Ratna Dewi Clinic
-                <small class="pull-right">Date: <?php echo formatTanggal($order->order_date); ?></small>
+                <i class="fa fa-globe"></i> Ratna Dewi Klinic
+                <small class="pull-right">Tanggal: <?php echo formatTanggal($order->pemesanan_detail_tanggal); ?></small>
             </h2>
         </div>
         <!-- /.col -->
@@ -21,29 +21,29 @@ if ($order->order_status == '0') {
     <!-- info row -->
     <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
-            From
+            Dari
             <address>
-                <strong><?php echo $order->customer_nama ?></strong><br>
-                <?php echo $order->customer_code ?><br>
-                Phone: <?php echo $order->customer_phone ?><br>
-                Email: <?php echo $order->customer_email ?>
+                <strong><?php echo $order->pelanggan_nama ?></strong><br>
+                <?php echo $order->pelanggan_kode_member ?><br>
+                Telp: <?php echo $order->pelanggan_telepon ?><br>
+                Email: <?php echo $order->pelanggan_email ?>
             </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-            To
+            Untuk
             <address>
-                <strong>Ratna Dewi Clinic</strong><br>
+                <strong>Ratna Dewi Klinic</strong><br>
                 Email: <?php echo $this->session->userdata('email') ?>
             </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-            <b>Invoice #<?php echo $order->order_no ?></b><br>
+            <b>Invoice #<?php echo $order->pemesanan_nomer ?></b><br>
             <br>
             <b>Status :</b> <?php echo $status ?><br>
-            <b>Account Name :</b> <?php echo $order->confirmation_bank_from_account_name ?><br>
-            <b>Account No :</b> (<?php echo $order->confirmation_bank_from ?>) <?php echo $order->confirmation_bank_from_account_no ?>
+            <b>Nama Rekening :</b> <?php echo $order->konfirmasi_nama_rekening ?><br>
+            <b>Nomor Rekening :</b> (<?php echo $order->konfirmasi_nama_bank ?>) <?php echo $order->konfirmasi_nomor_rekening ?>
         </div>
         <!-- /.col -->
     </div>
@@ -55,20 +55,20 @@ if ($order->order_status == '0') {
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Treatment</th>
-                        <th>Serial #</th>
-                        <th>Description</th>
-                        <th>Booking Date</th>
+                        <th>Pelayanan</th>
+                        <th>Kode Pelayanan</th>
+                        <th>Deskripsi</th>
+                        <th>Tgl. Pemesanan (Jam)</th>
                         <th>Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?php echo $order->product_name ?></td>
-                        <td><?php echo $order->product_reff_code ?></td>
-                        <td><?php echo substr($order->product_deskripsi, 0, 100) . "...."; ?></td>
-                        <td><?php echo formatTanggal($order->order_working_date) ?> (<?php echo $order->order_working_time ?>)</td>
-                        <td class="text-right"><?php echo formatUang($order->order_total) ?></td>
+                        <td><?php echo $order->pelayanan_nama ?></td>
+                        <td><?php echo $order->pelayanan_kode ?></td>
+                        <td><?php echo substr($order->pelayanan_deskripsi, 0, 100) . "...."; ?></td>
+                        <td><?php echo formatTanggal($order->pemesanan_detail_tanggal) ?> (<?php echo $order->pemesanan_detail_jam ?>)</td>
+                        <td class="text-right"><?php echo formatUang($order->pemesanan_total) ?></td>
                     </tr>
 
                 </tbody>
@@ -78,18 +78,17 @@ if ($order->order_status == '0') {
     </div>
     <!-- /.row -->
     <form class="form-horizontal" id="form_order">
-        <input type="hidden" id="id" name="id" value="<?php echo $order->order_id ?>">
+        <input type="hidden" id="id" name="id" value="<?php echo $order->pemesanan_id ?>">
     </form>
 
     <div class="row">
         <!-- accepted payments column -->
         <div class="col-xs-6">
-            <p class="lead">Payment Methods:</p>
+            <p class="lead">Konfirmasi Pembayaran:</p>
 
             <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-                <?php echo $order->payment_type_nama ?>
                 <div class="text-center">
-                    <img src="<?php echo base_url() ?>assets/confirm/<?php echo $order->confirmation_bank_from_image; ?>" class="img-responsive img-thumbnail" width="30%">
+                    <img src="<?php echo base_url() ?>assets/confirm/<?php echo $order->konfirmasi_gambar; ?>" class="img-responsive img-thumbnail" width="30%">
                 </div>
             </p>
 
@@ -99,8 +98,8 @@ if ($order->order_status == '0') {
             <div class="table-responsive">
                 <table class="table">
                     <tr>
-                        <th>Total:</th>
-                        <td class="text-right"><?php echo formatUang($order->order_total) ?></td>
+                        <th>Total Bayar:</th>
+                        <td class="text-right"><?php echo formatUang($order->pemesanan_total) ?></td>
                     </tr>
                 </table>
             </div>
@@ -113,19 +112,21 @@ if ($order->order_status == '0') {
     <div class="row no-print">
         <div class="col-xs-12">
             <!-- <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a> -->
-            <button class="btn btn-warning" onclick="return back()"><i class="fa fa-arrow-left margin-r-5"></i> Back</button>
+            <button class="btn btn-warning" onclick="return back()"><i class="fa fa-arrow-left margin-r-5"></i> Kembali</button>
             <!-- <button type="button" class="btn btn-success pull-right">
                 <i class="fa fa-credit-card"></i> Submit Payment
             </button> -->
             <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
                 <i class="fa fa-download"></i> Generate PDF
             </button> -->
-            <button class="btn btn-success pull-right" id="btn-approve">
-                <i class="fa fa-check"></i> Approve
-            </button>
-            <button class="btn btn-danger pull-right" id="btn-reject" style="margin-right:20px">
-                <i class="fa fa-times"></i> Reject
-            </button>
+            <?php if ($order->konfirmasi_status == '') : ?>
+                <button class="btn btn-success pull-right" id="btn-approve">
+                    <i class="fa fa-check"></i> Setujui
+                </button>
+                <button class="btn btn-danger pull-right" id="btn-reject" style="margin-right:20px">
+                    <i class="fa fa-times"></i> Batalkan
+                </button>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -144,8 +145,8 @@ if ($order->order_status == '0') {
             var data = $("#form_order").serialize();
             //swal(data);
             swal({
-                    title: "Are you sure?",
-                    text: "Once approve, you will not be able to recover this order!",
+                    title: "Apakah anda yakin?",
+                    text: "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -162,17 +163,15 @@ if ($order->order_status == '0') {
                             },
                             success: function(data) {
                                 if (data.status == 'success') {
-                                    swal("Approved!", "Your order has been approved.", "success");
+                                    swal("Disetujui!", "Pemesanan berhasil disetujui", "success");
                                     window.location.href = '<?= base_url() ?>order';
 
                                 } else {
-                                    swal("Cancelled", "Error approve order", "error");
+                                    swal("Gagal", "Persetujuan gagal", "error");
                                 }
 
                             }
                         });
-                    } else {
-                        swal("Cancelled", "Your order is not approved :)", "error");
                     }
                 });
         });
@@ -181,8 +180,8 @@ if ($order->order_status == '0') {
             var data = $("#form_order").serialize();
             //swal(data);
             swal({
-                    title: "Are you sure?",
-                    text: "Once rejected, you will not be able to recover this order!",
+                    title: "Apakah anda yakin?",
+                    text: "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -199,17 +198,15 @@ if ($order->order_status == '0') {
                             },
                             success: function(data) {
                                 if (data.status == 'success') {
-                                    swal("Rejected!", "Your order has been rejected.", "success");
+                                    swal("Dibatalkan!", "Pemesanan berhasil dibatalkan", "success");
                                     window.location.href = '<?= base_url() ?>order';
 
                                 } else {
-                                    swal("Cancelled", "Error reject data", "error");
+                                    swal("Gagal", "Pembatalan gagal", "error");
                                 }
 
                             }
                         });
-                    } else {
-                        swal("Cancelled", "Your order is not rejected :)", "error");
                     }
                 });
         });

@@ -21,7 +21,7 @@
                     <label for="foto">IMAGE</label>
                     <input id="foto" type="file" name="foto" id="foto">
                     <?php echo  form_error('foto', '<small class="text-danger">', '</small>'); ?>
-                    <input type="hidden" name="idorder" id="idorder" value="<?php echo $order->order_id; ?>">
+                    <input type="hidden" name="idorder" id="idorder" value="<?php echo $order->pemesanan_id; ?>">
                     <br><br>
                     <button class="submit-btn" type="submit">CONFIRM</button>
                 </form>

@@ -11,7 +11,7 @@
 <!-- /.about-company-banner -->
 <div class="theme-features center-features">
     <div class="container">
-        <h3 class="mgb-60">OUR SERVICES</h3>
+        <h3 class="mgb-60">PELAYANAN KAMI</h3>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="feature-item pe-7s-star">
@@ -38,7 +38,7 @@
 <hr class="gray-line" />
 <div class="our-office">
     <div class="container-fluid">
-        <h3 class="mgb-60">OUR OFFICE</h3>
+        <h3 class="mgb-60">KANTOR KAMI</h3>
         <div class="row">
             <div class="col-md-3 col-sm-6 no-pd">
                 <div class="office-item">
@@ -115,7 +115,7 @@
 <hr class="gray-line" />
 <div class="our-team">
     <div class="container">
-        <h3 class="mgb-60">OUR TEAM</h3>
+        <h3 class="mgb-60">TIM KAMI</h3>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="table-responsive">
