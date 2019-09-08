@@ -10,11 +10,11 @@ class Home extends CI_Controller
 
     function index()
     {
-        $treatment_popular = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_populer = 1 ORDER BY  pelayanan_populer_tanggal DESC LIMIT 4")->result();
-        $treatment_promo = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_promo = 1 ORDER BY pelayanan_promo_tanggal DESC LIMIT 2")->result();
-        $treatment_new = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_baru = 1 ORDER BY pelayanan_baru_tanggal DESC LIMIT 2")->result();
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $treatment_popular = $this->app_model->get_data_query("SELECT * FROM pelayanan WHERE pelayanan_populer = 1 ORDER BY  pelayanan_populer_tanggal DESC LIMIT 4")->result();
+        $treatment_promo = $this->app_model->get_data_query("SELECT * FROM pelayanan WHERE pelayanan_promo = 1 ORDER BY pelayanan_promo_tanggal DESC LIMIT 2")->result();
+        $treatment_new = $this->app_model->get_data_query("SELECT * FROM pelayanan WHERE pelayanan_baru = 1 ORDER BY pelayanan_baru_tanggal DESC LIMIT 2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
         $data = array(
             'content' => 'frontend/home',
             'popular' => $treatment_popular,
@@ -29,9 +29,9 @@ class Home extends CI_Controller
     function detail()
     {
         $url = $this->uri->segment(2);
-        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.kategori_nama  FROM Pelayanan a LEFT JOIN Kategori b ON b.kategori_id = a.kategori_id WHERE a.pelayanan_url = '" . $url . "' ")->row();
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.kategori_nama  FROM pelayanan a LEFT JOIN kategori b ON b.kategori_id = a.kategori_id WHERE a.pelayanan_url = '" . $url . "' ")->row();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
         $data = array(
             'content' => 'frontend/detail',
             'pelayanan' => $pelayanan,
@@ -44,12 +44,12 @@ class Home extends CI_Controller
     function pages()
     {
         $url = $this->uri->segment(2);
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
 
         switch ($url) {
             case 'pelayanan':
-                $list_product = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE kategori_id = '1' ")->result();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM pelayanan WHERE kategori_id = '1' ")->result();
                 $data = array(
                     'content' => 'frontend/pages',
                     'pelayanan' => $pelayanan,
@@ -58,7 +58,7 @@ class Home extends CI_Controller
                 );
                 break;
             case 'produk':
-                $list_product = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE kategori_id = '2' ")->result();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM pelayanan WHERE kategori_id = '2' ")->result();
                 $data = array(
                     'content' => 'frontend/pages_produk',
                     'pelayanan' => $pelayanan,
@@ -67,7 +67,7 @@ class Home extends CI_Controller
                 );
                 break;
             case 'promo':
-                $list_product = $this->app_model->get_data_query("SELECT * FROM Pelayanan WHERE pelayanan_promo = 1 ORDER BY pelayanan_promo_tanggal DESC")->result();
+                $list_product = $this->app_model->get_data_query("SELECT * FROM pelayanan WHERE pelayanan_promo = 1 ORDER BY pelayanan_promo_tanggal DESC")->result();
                 $data = array(
                     'content' => 'frontend/pages',
                     'pelayanan' => $pelayanan,
@@ -147,9 +147,9 @@ class Home extends CI_Controller
             redirect('home/login');
         }
         $url = $this->uri->segment(3);
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
-        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.kategori_nama  FROM Pelayanan a LEFT JOIN Kategori b ON b.kategori_id = a.kategori_id WHERE a.pelayanan_url = '" . $url . "' ")->row();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
+        $detail_product = $this->app_model->get_data_query("SELECT a.*, b.kategori_nama  FROM pelayanan a LEFT JOIN kategori b ON b.kategori_id = a.kategori_id WHERE a.pelayanan_url = '" . $url . "' ")->row();
         //$payment = $this->app_model->get_data_query("SELECT * FROM payment_type WHERE payment_type_status = 'active' ")->result();
         $data = array(
             'content' => 'frontend/order',
@@ -168,8 +168,8 @@ class Home extends CI_Controller
             redirect('home');
         }
         $id = $this->session->userdata('id');
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
         $data_history = $this->app_model->get_data_query("  SELECT
                                                                 a.*, b.pelayanan_id,
                                                                 b.pemesanan_detail_tanggal,
@@ -178,7 +178,7 @@ class Home extends CI_Controller
                                                                 c.pelayanan_nama,
                                                                 d.konfirmasi_status
                                                             FROM
-                                                                Pemesanan AS a
+                                                                pemesanan AS a
                                                             INNER JOIN pemesanan_detail AS b ON b.pemesanan_id = a.pemesanan_id
                                                             INNER JOIN pelayanan AS c ON c.pelayanan_id = b.pelayanan_id
                                                             LEFT JOIN pembayaran AS d ON d.pemesanan_id = a.pemesanan_id
@@ -194,8 +194,8 @@ class Home extends CI_Controller
 
     function profile()
     {
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
 
         $data = array(
             'content' => 'frontend/profile',
@@ -211,8 +211,8 @@ class Home extends CI_Controller
             redirect('home');
         }
         $id = $this->uri->segment(3);
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
         $where = array('pemesanan_id' => $id);
         $order = $this->app_model->get_data('pemesanan', $where, 'pemesanan_id', 'ASC')->row();
 
@@ -267,8 +267,8 @@ class Home extends CI_Controller
         if ($this->session->userdata('id') != '') {
             redirect('home');
         }
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -284,7 +284,7 @@ class Home extends CI_Controller
             $password = md5($this->input->post('password'));
             $key = array('pelanggan_email' => $email);
 
-            $customer = $this->app_model->get_data('Pelanggan', $key, 'pelanggan_email', 'ASC');
+            $customer = $this->app_model->get_data('pelanggan', $key, 'pelanggan_email', 'ASC');
             if ($customer->num_rows() != '') {
                 $cust = $customer->row();
                 if ($password == $cust->pelanggan_password) {
@@ -316,8 +316,8 @@ class Home extends CI_Controller
         if ($this->session->userdata('id') != '') {
             redirect('home');
         }
-        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=1")->result();
-        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM Pelayanan WHERE kategori_id=2")->result();
+        $pelayanan = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=1")->result();
+        $produk = $this->app_model->get_data_query("SELECT pelayanan_id, kategori_id, pelayanan_nama, pelayanan_url FROM pelayanan WHERE kategori_id=2")->result();
         $data = array(
             'content' => 'frontend/register',
             'pelayanan' => $pelayanan,

@@ -28,11 +28,11 @@ class Proses extends CI_Controller
         $product_image = $this->input->post('product_image');
 
 
-        $get_line_exist = $this->app_model->get_data_query("SELECT MAX(pemesanan_detail_nomor_ruangan) AS last_line FROM Pemesanan_detail WHERE pemesanan_detail_tanggal = '" . $date . "' AND pemesanan_detail_jam = '" . $time . "'")->row();
+        $get_line_exist = $this->app_model->get_data_query("SELECT MAX(pemesanan_detail_nomor_ruangan) AS last_line FROM pemesanan_detail WHERE pemesanan_detail_tanggal = '" . $date . "' AND pemesanan_detail_jam = '" . $time . "'")->row();
         if ($get_line_exist->last_line == '8') {
             echo json_encode(array('status' => 'failed', 'message' => 'Booking full, silahkan cari waktu lain'));
         } else {
-            $get_last_order_id = "SELECT MAX(pemesanan_nomer) AS last_code FROM Pemesanan";
+            $get_last_order_id = "SELECT MAX(pemesanan_nomer) AS last_code FROM pemesanan";
             $query_last = $this->app_model->get_data_query($get_last_order_id)->row();
             if ($query_last->last_code == "") {
                 $new_code = "CUST00001";
@@ -43,7 +43,7 @@ class Proses extends CI_Controller
                 $new_code = "CUST" . sprintf("%05s", $inc);
             }
 
-            $get_last_line = "SELECT MAX(pemesanan_detail_nomor_ruangan) AS last_line FROM Pemesanan_detail WHERE pemesanan_detail_tanggal = '" . $date . "' AND pemesanan_detail_jam = '" . $time . "'";
+            $get_last_line = "SELECT MAX(pemesanan_detail_nomor_ruangan) AS last_line FROM pemesanan_detail WHERE pemesanan_detail_tanggal = '" . $date . "' AND pemesanan_detail_jam = '" . $time . "'";
             $query_last_line = $this->app_model->get_data_query($get_last_line)->row();
             if ($query_last_line->last_line == "") {
                 $new_line = "1";
@@ -57,10 +57,10 @@ class Proses extends CI_Controller
                 'pemesanan_status'          => 'Open',
                 'pelanggan_id'              => $cust_id
             );
-            $save_order = $this->app_model->insert_data('Pemesanan', $data_book_insert);
+            $save_order = $this->app_model->insert_data('pemesanan', $data_book_insert);
             if ($save_order) {
 
-                $get_header_id = "SELECT pemesanan_id FROM Pemesanan WHERE pemesanan_nomer = '" . $new_code . "' ";
+                $get_header_id = "SELECT pemesanan_id FROM pemesanan WHERE pemesanan_nomer = '" . $new_code . "' ";
                 $query_header_id = $this->app_model->get_data_query($get_header_id)->row();
                 $data_detail = array(
                     'pemesanan_id' => $query_header_id->pemesanan_id,
@@ -71,7 +71,7 @@ class Proses extends CI_Controller
                     'pemesanan_detail_subtotal' => $harga
                 );
 
-                $save_order_detail = $this->app_model->insert_data('Pemesanan_detail', $data_detail);
+                $save_order_detail = $this->app_model->insert_data('pemesanan_detail', $data_detail);
 
                 if ($save_order_detail) {
                     $data_session = array(
